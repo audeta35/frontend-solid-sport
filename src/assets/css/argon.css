@@ -5816,6 +5816,11 @@ input[type='button'].btn-block
 
     list-style: none;
 }
+.navbar-nav li a:hover{
+    background-color: #f6f9fc;
+    cursor: pointer;
+
+}
 .navbar-nav .nav-link
 {
     padding-right: 0;
@@ -22507,6 +22512,10 @@ textarea[resize='horizontal']
         transition: all .15s cubic-bezier(.68, -.55, .265, 1.55); 
         transform: translateX(-150%);
     }
+    .card-login{
+        top: 30% !important;
+        margin: 20px;
+    }
 }
 @media (max-width: 575.98px) and (prefers-reduced-motion: reduce)
 {
@@ -29836,4 +29845,8 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 .bootstrap-datetimepicker-widget.dropdown-black table td .btn[data-action='togglePeriod']
 {
     background: transparent;
+}
+
+.card-login{
+    top: 40%;
 }

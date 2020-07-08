@@ -1,0 +1,132 @@
+<body style="background:url('assets/images/banner/banner7.jpg');">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+
+                <div class="card bg-secondary border-0 mb-0 card-login">
+
+                    <div class="card-header bg-transparent pb-0 pt-4 text-center">
+                        <img src="assets/images/logo/ada.png" class="img-fluid mb-3" style="width: 200px;" alt="">
+                        <ul class="nav nav-tabs nav-fill mt-2" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false">Juri</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="card-body px-lg-5 py-lg-3">
+
+
+
+                                <form role="form">
+                                    <div class="form-group mb-3">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                            </div>
+                                            <input (keyup)="isValidate()" class="form-control"
+                                                [(ngModel)]="payload.username" [ngModelOptions]="{standalone: true}"
+                                                placeholder="Username" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i
+                                                        class="ni ni-lock-circle-open"></i></span>
+                                            </div>
+                                            <input (keyup)="isValidate()" class="form-control" placeholder="Password"
+                                                [(ngModel)]="payload.password" [ngModelOptions]="{standalone: true}"
+                                                [type]="show_button ? 'text' : 'password'">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i
+                                                        [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                                                        (click)="showPassword()"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <div *ngIf="isDisabled; else button">
+                                            <button type="button" (click)="onSubmit()"
+                                                class="btn btn-danger btn-block my-4">Sign
+                                                in</button>
+                                        </div>
+                                        <ng-template #button>
+                                            <button type="button" (click)="onSubmit()"
+                                                class="btn btn-muted btn-block my-4" disabled>Sign
+                                                in</button>
+                                        </ng-template>
+
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="card-body px-lg-5 py-lg-3">
+
+
+
+                                <form role="form">
+                                    <div class="form-group mb-3">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                            </div>
+                                            <input (keyup)="isValidate2()" class="form-control"
+                                                [(ngModel)]="payload.usernameJury" [ngModelOptions]="{standalone: true}"
+                                                placeholder="Username juri" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i
+                                                        class="ni ni-lock-circle-open"></i></span>
+                                            </div>
+                                            <input (keyup)="isValidate2()" class="form-control"
+                                                placeholder="Password juri" [(ngModel)]="payload.passwordJury"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [type]="show_button ? 'text' : 'password'">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i
+                                                        [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                                                        (click)="showPassword()"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <div *ngIf="isDisabled2; else button2">
+                                            <button type="button" (click)="onSubmitJury()"
+                                                class="btn btn-danger btn-block my-4">Sign
+                                                in</button>
+                                        </div>
+                                        <ng-template #button2>
+                                            <button type="button" (click)="onSubmitJury()"
+                                                class="btn btn-muted btn-block my-4" disabled>Sign
+                                                in</button>
+                                        </ng-template>
+
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
