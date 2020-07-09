@@ -1,0 +1,76 @@
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="text-center">
+                    <h1 style="font-size: 50px;">J1</h1>
+                    <h5 class="h3 mb-0">
+                        Iskandar
+                    </h5>
+                    <div class="h5 font-weight-300">
+                        <i class="ni location_pin"></i>Ciukui
+                    </div>
+
+                    <div>
+                        <i class="ni education_hat mr-2"></i>University of Karate
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Data Juri</p>
+
+            </div>
+            <!-- Card stats -->
+
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -50px;">
+    <div class="col"></div>
+    <div class="col-lg-8 col-md-10">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-items-center">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="sort" data-sort="name">No</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Tatami</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+
+                            <tr *ngFor="let i = index;let item of Data" data-toggle="modal" data-target="#detailModal">
+                                <td>{{i + 1}}</td>
+                                <td>{{item.username}}</td>
+                                <td>{{item.tatami}}</td>
+                                <th scope="row">
+                                    <span><i class="fa fa-edit"></i></span>
+                                    <span class="text-danger"><i class="fa fa-trash"></i></span>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
