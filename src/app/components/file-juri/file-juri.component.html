@@ -2,26 +2,18 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header mb-0">
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+            <div class="modal-body bg-dark rounded">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;">
+                  <span class="text-white" aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
-
                 <div class="text-center">
-                    <h6 class="heading-small text-muted mb-4">Detail Juri</h6>
-                    <h1 style="font-size: 50px;">J1</h1>
-                    <h5 class="h3 mb-0">
+                    <h1 class="text-white" style="font-size: 50px;">J1</h1>
+                    <h5 class="h3 text-white mb-3">
                         Iskandar
                     </h5>
-                    <div class="h5 font-weight-300">
-                        <i class="ni location_pin"></i>Ciukui
-                    </div>
 
                     <div>
-                        <span class="badge badge-pill badge-danger">AKA</span>
+                        <span class="badge badge-pill badge-success">online</span>
                     </div>
                 </div>
             </div>
@@ -62,64 +54,58 @@
         </div>
     </div>
 </div>
-<div class="row" style="margin-top: -50px;">
+<div class="row" style="margin-top: -40px;">
     <div class="col"></div>
     <div class="col-lg-8 col-md-10">
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table align-items-center">
-                        <thead class="thead-light">
-                            <tr class="d-flex">
-                                <th scope="col" class="col-1">No</th>
-                                <th scope="col" class="col-3">Username</th>
-                                <th scope="col" class="col-3">Kontingen</th>
-                                <th scope="col" class="col-2">Position</th>
-                                <th scope="col" class="col-2">Tatami</th>
-                                <th scope="col" class="col-1"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="list">
+      <div class="table-responsive bg-white rounded">
+        <table class="table table-borderless table-striped table-striped">
+          <thead class="thead-light text-dark">
+            <tr>
+              <th scope="col" class="col-1">No</th>
+              <th scope="col" class="col-3">Nama Juri</th>
+              <th scope="col" class="col-2">Posisi Juri</th>
+              <th scope="col" class="col-1">status</th>
 
-                            <tr *ngFor="let i = index;let item of Data" class="d-flex">
-                                <td class="col-1">{{i + 1}}.</td>
-                                <td class="col-3">{{item.username}}</td>
-                                <td class="col-3">{{item.kontingen}}</td>
-                                <td class="col-2"><strong>{{item.position}}</strong></td>
+              <th scope="col" class="col-1 text-center">
+                <i class="fa fa-cog"></i>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="list">
 
-                                <td class="col-2" *ngIf="item.tatami === 'AKA'">
-                                    <span class="badge badge-pill badge-danger">{{item.tatami}}</span>
-                                </td>
-                                <td class="col-2" *ngIf="item.tatami === 'AO'">
-                                    <span class="badge badge-pill badge-primary">{{item.tatami}}</span>
-                                </td>
+            <tr *ngFor="let i = index;let item of Data">
+              <td class="col-1">{{i + 1}}.</td>
+              <td class="col-3">{{item.username}}</td>
+              <td class="col-2"><strong>{{item.position}}</strong></td>
+              <td class="col-1">
+                <span class="badge badge-pill {{item.status === 'online' ? 'badge-success' : 'badge-danger'}}">
+                  {{item.status}}
+                </span>
+              </td>
 
-                                <td class="text-right col-1">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                                data-target="#detailModal"> <i class="fa fa-info-circle text-info"></i>
-                                                Detail
-                                            </a>
-                                            <a class="dropdown-item" routerLink="/edit-juri"> <i
-                                                    class="fa fa-edit text-warning"></i>
-                                                Edit </a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                                data-target="#deleteModal"> <i class="fa fa-trash text-danger"></i>
-                                                Hapus </a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+              <td class="text-center col-1">
+                <div class="dropdown">
+                  <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#detailModal"> <i
+                        class="fa fa-info-circle text-info"></i>
+                      Detail
+                    </a>
+                    <a class="dropdown-item" routerLink="/edit-juri"> <i class="fa fa-edit text-warning"></i>
+                      Edit </a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal"> <i
+                        class="fa fa-trash text-danger"></i>
+                      Hapus </a>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col"></div>
 </div>
