@@ -86,6 +86,8 @@ section
 
 body
 {
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
     font-family: Open Sans, sans-serif;
     font-size: 1rem;
     font-weight: 400;
