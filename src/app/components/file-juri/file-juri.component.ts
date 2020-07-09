@@ -8,32 +8,46 @@ import { Component, OnInit } from '@angular/core';
 export class FileJuriComponent implements OnInit {
   Data = [
     {
-      username: 'J1',
-      tatami: '5',
+      username: 'Muhadek sadikin',
+      kontingen: 'Cikarang',
+      position: 'J1',
+      tatami: 'AKA',
     },
     {
-      username: 'J2',
-      tatami: '2',
+      username: 'Muleha',
+      kontingen: 'Cilangkap',
+      position: 'J2',
+      tatami: 'AO',
     },
     {
-      username: 'J3',
-      tatami: '6',
+      username: 'Budi sutoso',
+      kontingen: 'Citeureup',
+      position: 'J3',
+      tatami: 'AO',
     },
     {
-      username: 'J4',
-      tatami: '3',
+      username: 'Hasan sadikin',
+      kontingen: 'Cileungsi',
+      position: 'J4',
+      tatami: 'AKA',
     },
     {
-      username: 'J5',
-      tatami: '5',
+      username: 'Palepi hasan',
+      kontingen: 'Cibitung',
+      position: 'J5',
+      tatami: 'AKA',
     },
     {
-      username: 'J6',
-      tatami: '8',
+      username: 'Sutarno',
+      kontingen: 'Jakarta',
+      position: 'J6',
+      tatami: 'AO',
     },
     {
-      username: 'J7',
-      tatami: '9',
+      username: 'Syauqi',
+      kontingen: 'Cililin',
+      position: 'J7',
+      tatami: 'AO',
     },
   ]
   constructor() { }
