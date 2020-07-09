@@ -1,10 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  pathname = window.location.pathname;
+  loginPage: boolean;
   title = 'fss';
+  constructor() {
+    let path = this.pathname.split("/")[1];
+    if (path === 'login-admin') {
+      this.loginPage = false;
+    } else {
+      this.loginPage = true;
+
+    }
+
+  }
+  ngOnInit(): void {
+    console.log('app component!');
+  }
+  logout() {
+    this.loginPage = false;
+    window.location.href = 'login-admin';
+  }
 }
