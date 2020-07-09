@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+});
 
 @Component({
   selector: 'app-login-admin',
@@ -56,10 +64,15 @@ export class LoginAdminComponent implements OnInit {
         if (!this.payload[i]) {
           this.valid[i] = false;
 
+          Toast.fire({
+            icon: 'error',
+            title: 'Field tidak boleh kosong',
+          });
+
         }
       }
     } else {
-      window.location.href = 'index';
+      window.location.replace('/index');
     }
   }
   onSubmitJury() {
@@ -67,10 +80,16 @@ export class LoginAdminComponent implements OnInit {
       for (let i in this.payload) {
         if (!this.payload[i]) {
           this.valid[i] = false;
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Field tidak boleh kosong',
+          });
+
         }
       }
     } else {
-      alert('berhasil login juri');
+      window.location.replace('/index');
     }
   }
 }

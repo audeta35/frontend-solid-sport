@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
     console.log('app component!');
   }
   logout() {
-    this.loginPage = false;
-    window.location.href = 'login-admin';
+    window.location.replace('/login-admin');
   }
 }
