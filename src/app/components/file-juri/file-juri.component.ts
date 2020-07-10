@@ -1,10 +1,13 @@
+import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-file-juri',
   templateUrl: './file-juri.component.html',
   styleUrls: ['./file-juri.component.css']
 })
+@Injectable()
 export class FileJuriComponent implements OnInit {
   Data = [
     {
@@ -50,9 +53,10 @@ export class FileJuriComponent implements OnInit {
       status: 'online',
     },
   ]
-  constructor() { }
+  constructor(private socket: Socket) { }
 
   ngOnInit(): void {
+
   }
 
 }
