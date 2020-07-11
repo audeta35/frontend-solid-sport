@@ -43,4 +43,28 @@ export class UserService {
       })
     })
   }
+
+  loginAdmin(payload) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.juriUrl + "login-admin", payload, {
+        headers: new HttpHeaders()
+      }).subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err)
+      })
+    })
+  }
+
+  logOut(payload) {
+    return new Promise((resolve, reject) => {
+      this.http.put<any>(this.juriUrl + "logout", payload, {
+        headers: new HttpHeaders()
+      }).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
 }

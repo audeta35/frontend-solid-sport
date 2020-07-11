@@ -246,6 +246,10 @@
                   <div *ngIf="user.level === 0">
                     <span class="bg-danger text-white px-1 rounded-circle font-weight-bold">{{user.name}}</span>
                   </div>
+
+                  <div *ngIf="user.level === 1">
+                    <span class="text-white font-weight-bold">{{user.name}}</span>
+                  </div>
                 </div>
               </div>
             </a>
