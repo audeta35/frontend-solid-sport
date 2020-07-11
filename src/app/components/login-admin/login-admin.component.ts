@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
 import { UserService } from 'src/app/provider/services/users';
+import Swal from 'sweetalert2';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -68,21 +68,47 @@ export class LoginAdminComponent implements OnInit {
 
     this.isLoadingOne = true;
 
-    if (!this.payload.username || !this.payload.password) {
-      for (let i in this.payload) {
-        if (!this.payload[i]) {
-          this.valid[i] = false;
+    setTimeout(() => {
+      if (!this.payload.username || !this.payload.password) {
+        for (let i in this.payload) {
+          if (!this.payload[i]) {
+            this.valid[i] = false;
 
-          Toast.fire({
-            icon: 'warning',
-            title: 'Field tidak boleh kosong',
-          });
+            Toast.fire({
+              icon: 'warning',
+              title: 'Field tidak boleh kosong',
+            });
 
+            this.isLoadingOne = false;
+
+          }
         }
+      } else {
+
+        let payload = {
+          username: this.payload.username,
+          password: this.payload.password
+        }
+
+        this.userService.loginAdmin(payload)
+          .then((res: any) => {
+            this.isLoadingOne = false;
+            console.log('hello', res);
+
+            sessionStorage.setItem('users', JSON.stringify(res.result[0]))
+            sessionStorage.setItem('token', JSON.stringify(res.token))
+            window.location.replace('/index');
+
+          }).catch((err: any) => {
+            this.isLoadingOne = false;
+            Toast.fire({
+              icon: 'error',
+              title: err.error.message,
+            });
+            console.log(err);
+          })
       }
-    } else {
-      window.location.replace('/index');
-    }
+    }, 1500)
   }
   onSubmitJury() {
 
