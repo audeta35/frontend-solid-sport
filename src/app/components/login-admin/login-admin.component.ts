@@ -99,13 +99,19 @@ export class LoginAdminComponent implements OnInit {
             sessionStorage.setItem('token', JSON.stringify(res.token))
             window.location.replace('/index');
 
+            this.payload.username = null;
+            this.payload.password = null;
+
           }).catch((err: any) => {
+            console.log(err);
+
             this.isLoadingOne = false;
+            this.payload.password = null;
+
             Toast.fire({
               icon: 'error',
               title: err.error.message,
             });
-            console.log(err);
           })
       }
     }, 1500)
@@ -141,17 +147,23 @@ export class LoginAdminComponent implements OnInit {
             this.isLoading = false;
             console.log('hello', res);
 
+            this.payload.usernameJury = null;
+            this.payload.passwordJury = null;
+
             sessionStorage.setItem('users', JSON.stringify(res.result[0]))
             sessionStorage.setItem('token', JSON.stringify(res.token))
             window.location.replace('/index');
 
           }).catch((err: any) => {
+            console.log(err);
+
             this.isLoading = false;
+            this.payload.passwordJury = null;
+
             Toast.fire({
               icon: 'error',
               title: err.error.message,
             });
-            console.log(err);
           })
       }
     }, 1500)
