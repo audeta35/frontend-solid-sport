@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { UserService } from 'src/app/provider/services/users';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -21,8 +22,11 @@ export class LoginAdminComponent implements OnInit {
     usernameJury: '',
     passwordJury: '',
   }
+
   isDisabled = false;
   isDisabled2 = false;
+  isLoading = false;
+  isLoadingOne = false;
 
   valid = {
     username: true,
@@ -33,7 +37,9 @@ export class LoginAdminComponent implements OnInit {
 
   show_button: Boolean = false;
   show_eye: Boolean = false;
-  constructor() {
+  constructor(
+    private userService: UserService
+  ) {
 
   }
 
@@ -59,13 +65,16 @@ export class LoginAdminComponent implements OnInit {
     this.show_eye = !this.show_eye;
   }
   onSubmit() {
+
+    this.isLoadingOne = true;
+
     if (!this.payload.username || !this.payload.password) {
       for (let i in this.payload) {
         if (!this.payload[i]) {
           this.valid[i] = false;
 
           Toast.fire({
-            icon: 'error',
+            icon: 'warning',
             title: 'Field tidak boleh kosong',
           });
 
@@ -76,20 +85,49 @@ export class LoginAdminComponent implements OnInit {
     }
   }
   onSubmitJury() {
-    if (!this.payload.usernameJury || !this.payload.passwordJury) {
-      for (let i in this.payload) {
-        if (!this.payload[i]) {
-          this.valid[i] = false;
 
-          Toast.fire({
-            icon: 'error',
-            title: 'Field tidak boleh kosong',
-          });
+    this.isLoading = true;
 
+    setTimeout(() => {
+      if (!this.payload.usernameJury || !this.payload.passwordJury) {
+        for (let i in this.payload) {
+          if (!this.payload[i]) {
+            this.valid[i] = false;
+
+            Toast.fire({
+              icon: 'warning',
+              title: 'Field tidak boleh kosong',
+            });
+
+            this.isLoading = false;
+
+          }
         }
+      } else {
+
+        let payload = {
+          username: this.payload.usernameJury,
+          password: this.payload.passwordJury
+        }
+
+        this.userService.loginUsers(payload)
+          .then((res: any) => {
+            this.isLoading = false;
+            console.log('hello', res);
+
+            sessionStorage.setItem('users', JSON.stringify(res.result[0]))
+            sessionStorage.setItem('token', JSON.stringify(res.token))
+            window.location.replace('/index');
+
+          }).catch((err: any) => {
+            this.isLoading = false;
+            Toast.fire({
+              icon: 'error',
+              title: err.error.message,
+            });
+            console.log(err);
+          })
       }
-    } else {
-      window.location.replace('/index');
-    }
+    }, 1500)
   }
 }
