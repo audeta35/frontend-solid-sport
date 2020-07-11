@@ -11,7 +11,9 @@ export class IndexComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    if (!sessionStorage.getItem('token')) {
+      window.location.replace('/login-admin');
+    }
   }
 
 }

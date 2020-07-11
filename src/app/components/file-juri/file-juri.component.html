@@ -57,12 +57,12 @@
 <div class="row" style="margin-top: -80px;">
   <div class="col"></div>
   <div class="col-lg-8 col-md-10">
-    <button class="btn btn-success" routerLink="/add-juri"> <i class="fa fa-plus"></i> Tambah</button>
-    <div class="table-responsive bg-white rounded mt-2">
-      <table class="table table-borderless table-striped table-striped">
+    <button class="btn btn-outline-danger" routerLink="/add-juri"> <i class="fa fa-plus"></i> Tambah</button>
+    <div class="table-responsive shadow bg-white rounded mt-2">
+      <table class="table table-sm table-borderless table-striped table-striped">
         <thead class="thead-light text-dark">
           <tr>
-            <th scope="col">No</th>
+            <th scope="col" class="text-center">No</th>
             <th scope="col">Nama Juri</th>
             <th scope="col">Posisi Juri</th>
             <th scope="col">status</th>
@@ -75,7 +75,7 @@
         <tbody class="list">
 
             <tr *ngFor="let i = index;let item of userData">
-              <td class="col-1">{{i + 1}}.</td>
+              <td class="col-1 text-center">{{i + 1}}.</td>
               <td class="col-3">{{item.username}}</td>
               <td class="col-2"><strong>{{item.name}}</strong></td>
               <td class="col-1">
@@ -84,7 +84,7 @@
                 </span>
               </td>
 
-            <td class="text-center ">
+            <td class="text-center col-1">
               <div class="dropdown">
                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
