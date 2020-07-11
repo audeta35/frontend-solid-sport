@@ -22,7 +22,7 @@
   id="sidenav-main">
   <div class="scrollbar-inner">
     <!-- Brand -->
-    <div class="sidenav-header  align-items-center">
+    <div class="sidenav-header mb-3 align-items-center">
       <a class="navbar-brand" href="javascript:void(0)">
         <img src="assets/images/logo/ada.png" class="navbar-brand-img" alt="...">
       </a>
@@ -39,24 +39,32 @@
               <span class="nav-link-text">Beranda</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-admin">
-              <i class="fa fa-check-circle text-primary"></i>
-              <span class="nav-link-text">Admin</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-juri">
-              <i class="fa fa-user-circle text-primary"></i>
-              <span class="nav-link-text">Juri</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="fa fa-id-badge text-primary"></i>
-              <span class="nav-link-text">Atlet</span>
-            </a>
-          </li>
+          <div *ngIf="user.level === 1">
+            <li class="nav-item">
+              <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-admin">
+                <i class="fa fa-check-circle text-primary"></i>
+                <span class="nav-link-text">Admin</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-juri">
+                <i class="fa fa-user-circle text-primary"></i>
+                <span class="nav-link-text">Juri</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <i class="fa fa-id-badge text-primary"></i>
+                <span class="nav-link-text">Atlet</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Papan skor</span>
+              </a>
+            </li>
+          </div>
           <li class="nav-item">
             <a class="nav-link">
               <i class="fa fa-street-view text-primary"></i>
@@ -67,12 +75,6 @@
             <a class="nav-link">
               <i class="fa fa-pencil-alt text-primary"></i>
               <span class="nav-link-text">Penilaian</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="ni ni-tv-2 text-primary"></i>
-              <span class="nav-link-text">Papan skor</span>
             </a>
           </li>
           <div class="dropdown-divider"></div>
@@ -240,11 +242,10 @@
           <li class="nav-item dropdown">
             <a class=" pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="http://placehold.it/50/30a5ff/fff">
-                </span>
-                <div class="media-body  ml-2  d-none d-lg-block">
-                  <span class="mb-0 text-sm text-light font-weight-bold">Admin</span>
+                <div class="media-body mr-3">
+                  <div *ngIf="user.level === 0">
+                    <span class="bg-danger text-white px-1 rounded-circle font-weight-bold">{{user.name}}</span>
+                  </div>
                 </div>
               </div>
             </a>

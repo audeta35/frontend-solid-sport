@@ -10,9 +10,13 @@ export class AppComponent implements OnInit {
   loginPage: boolean;
   title = 'fss';
   path = this.pathname.split("/")[1];
+  user:any;
 
   constructor() {
-
+    if (sessionStorage.getItem('token')) {
+      this.user = JSON.parse(sessionStorage.getItem('users'));
+      this.user.name = this.user.name.toUpperCase();
+    }
   }
   ngOnInit(): void {
     if (this.path === 'login-admin') {
