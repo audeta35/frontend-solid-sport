@@ -10,6 +10,7 @@ import { GlobalProvider } from './provider/global';
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,

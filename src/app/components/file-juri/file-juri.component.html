@@ -1,77 +1,78 @@
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body bg-dark rounded">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;">
-                  <span class="text-white" aria-hidden="true">&times;</span>
-                </button>
-                <div class="text-center">
-                    <h1 class="text-white" style="font-size: 50px;">J1</h1>
-                    <h5 class="h3 text-white mb-3">
-                        Iskandar
-                    </h5>
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body bg-dark rounded">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;">
+          <span class="text-white" aria-hidden="true">&times;</span>
+        </button>
+        <div class="text-center">
+          <h1 class="text-white" style="font-size: 50px;">J1</h1>
+          <h5 class="h3 text-white mb-3">
+            Iskandar
+          </h5>
 
-                    <div>
-                        <span class="badge badge-pill badge-success">online</span>
-                    </div>
-                </div>
-            </div>
-
+          <div>
+            <span class="badge badge-pill badge-success">online</span>
+          </div>
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Pemberitahuan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Apakah anda yakin ingin menghapus data ini?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
-        </div>
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Pemberitahuan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah anda yakin ingin menghapus data ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger">Hapus</button>
+      </div>
     </div>
+  </div>
 </div>
 <div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
-    <div class="container-fluid">
-        <div class="header-body">
-            <div class="row align-items-center py-4">
-                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Data Juri</p>
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Data Juri</p>
 
-            </div>
-            <!-- Card stats -->
+      </div>
+      <!-- Card stats -->
 
-        </div>
     </div>
+  </div>
 </div>
-<div class="row" style="margin-top: -40px;">
-    <div class="col"></div>
-    <div class="col-lg-8 col-md-10">
-      <div class="table-responsive bg-white rounded">
-        <table class="table table-borderless table-striped table-striped">
-          <thead class="thead-light text-dark">
-            <tr>
-              <th scope="col" class="col-1">No</th>
-              <th scope="col" class="col-3">Nama Juri</th>
-              <th scope="col" class="col-2">Posisi Juri</th>
-              <th scope="col" class="col-1">status</th>
+<div class="row" style="margin-top: -80px;">
+  <div class="col"></div>
+  <div class="col-lg-8 col-md-10">
+    <button class="btn btn-success" routerLink="/add-juri"> <i class="fa fa-plus"></i> Tambah</button>
+    <div class="table-responsive bg-white rounded mt-2">
+      <table class="table table-borderless table-striped table-striped">
+        <thead class="thead-light text-dark">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Juri</th>
+            <th scope="col">Posisi Juri</th>
+            <th scope="col">status</th>
 
-              <th scope="col" class="col-1 text-center">
-                <i class="fa fa-cog"></i>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="list">
+            <th scope="col" class="text-center">
+              <i class="fa fa-cog"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="list">
 
             <tr *ngFor="let i = index;let item of userData">
               <td class="col-1">{{i + 1}}.</td>
@@ -83,29 +84,29 @@
                 </span>
               </td>
 
-              <td class="text-center col-1">
-                <div class="dropdown">
-                  <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
+            <td class="text-center ">
+              <div class="dropdown">
+                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#detailModal"> <i
+                      class="fa fa-info-circle text-info"></i>
+                    Detail
                   </a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#detailModal"> <i
-                        class="fa fa-info-circle text-info"></i>
-                      Detail
-                    </a>
-                    <a class="dropdown-item" routerLink="/edit-juri"> <i class="fa fa-edit text-warning"></i>
-                      Edit </a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal"> <i
-                        class="fa fa-trash text-danger"></i>
-                      Hapus </a>
-                  </div>
+                  <a class="dropdown-item" routerLink="/edit-juri"> <i class="fa fa-edit text-warning"></i>
+                    Edit </a>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal"> <i
+                      class="fa fa-trash text-danger"></i>
+                    Hapus </a>
                 </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col"></div>
+  </div>
+  <div class="col"></div>
 </div>
