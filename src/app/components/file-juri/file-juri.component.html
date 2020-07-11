@@ -73,10 +73,10 @@
           </thead>
           <tbody class="list">
 
-            <tr *ngFor="let i = index;let item of Data">
+            <tr *ngFor="let i = index;let item of userData">
               <td class="col-1">{{i + 1}}.</td>
               <td class="col-3">{{item.username}}</td>
-              <td class="col-2"><strong>{{item.position}}</strong></td>
+              <td class="col-2"><strong>{{item.name}}</strong></td>
               <td class="col-1">
                 <span class="badge badge-pill {{item.status === 'online' ? 'badge-success' : 'badge-danger'}}">
                   {{item.status}}
