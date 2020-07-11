@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './provider/services/users';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -19,22 +20,31 @@ export class AppComponent implements OnInit {
   loginPage: boolean;
   title = 'fss';
   path = this.pathname.split("/")[1];
-  user:any;
+  user:any = {};
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private routes: Router) {
     if (sessionStorage.getItem('token')) {
       this.user = JSON.parse(sessionStorage.getItem('users'));
       this.user.name = this.user.name.toUpperCase();
-    }
-  }
-  ngOnInit(): void {
-    if (this.path === 'login-admin') {
-      this.loginPage = false;
-    } else {
       this.loginPage = true;
+      this.routes.navigate(['/index']);
+    } else {
 
+      this.loginPage = false;
+
+      if(this.path === "login-admin") {
+
+      }
+      else {
+        Toast.fire({
+          icon: 'error',
+          title: 'Harap login terlebih dahulu',
+        });
+        this.routes.navigate(['/login-admin']);
+      }
     }
   }
+  ngOnInit(): void {}
   logout() {
     this.userService.logOut(this.user)
     .then((res) => {

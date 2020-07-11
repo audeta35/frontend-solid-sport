@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -8,12 +9,12 @@ import { Socket } from 'ngx-socket-io';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routes: Router) {
+
+  }
 
   ngOnInit(): void {
-    if (!sessionStorage.getItem('token')) {
-      window.location.replace('/login-admin');
-    }
+
   }
 
 }
