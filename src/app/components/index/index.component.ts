@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-index',
@@ -10,6 +11,7 @@ export class IndexComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

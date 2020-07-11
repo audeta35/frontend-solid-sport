@@ -56,14 +56,20 @@
 
                                     <div class="text-center">
                                         <div *ngIf="isDisabled; else button">
-                                            <button type="button" (click)="onSubmit()"
-                                                class="btn btn-danger btn-block my-4">Sign
-                                                in</button>
+                                          <div *ngIf="isLoadingOne; else noLoading">
+                                            <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block my-4" disabled>
+                                              Loading...
+                                            </button>
+                                          </div>
+                                          <ng-template #noLoading>
+                                            <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block my-4">
+                                              Sign in
+                                            </button>
+                                          </ng-template>
                                         </div>
                                         <ng-template #button>
-                                            <button type="button" (click)="onSubmit()"
-                                                class="btn btn-muted btn-block my-4">Sign
-                                                in</button>
+                                          <button type="button" (click)="onSubmit()" class="btn btn-dark btn-block my-4">Sign
+                                            in</button>
                                         </ng-template>
 
                                     </div>
@@ -107,13 +113,19 @@
 
                                     <div class="text-center">
                                         <div *ngIf="isDisabled2; else button2">
-                                            <button type="button" (click)="onSubmitJury()"
-                                                class="btn btn-danger btn-block my-4">Sign
-                                                in</button>
+                                          <div *ngIf="isLoading; else noLoading">
+                                            <button type="button" (click)="onSubmitJury()" class="btn btn-danger btn-block my-4" disabled>
+                                              Loading...
+                                            </button>
+                                          </div>
+                                          <ng-template #noLoading>
+                                            <button type="button" (click)="onSubmitJury()" class="btn btn-danger btn-block my-4">
+                                              Sign in
+                                            </button>
+                                          </ng-template>
                                         </div>
                                         <ng-template #button2>
-                                            <button type="button" (click)="onSubmitJury()"
-                                                class="btn btn-muted btn-block my-4">Sign
+                                              <button type="button" (click)="onSubmitJury()" class="btn btn-dark btn-block my-4">Sign
                                                 in</button>
                                         </ng-template>
 

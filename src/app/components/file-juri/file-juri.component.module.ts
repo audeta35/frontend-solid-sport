@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FileJuriComponent } from './file-juri.component';
 import { routing } from './file-juri.component.routing';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
-const path = "http://localhost:3000/";
-const config: SocketIoConfig = { url: path, options: {} };
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [routing, CommonModule, SocketIoModule.forRoot(config)],
+  imports: [routing, HttpClientModule, CommonModule, ReactiveFormsModule],
     declarations: [FileJuriComponent]
 })
 export class FileJuriComponentModule { }
