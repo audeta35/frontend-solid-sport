@@ -95,6 +95,11 @@ export class LoginAdminComponent implements OnInit {
             this.isLoadingOne = false;
             console.log('hello', res);
 
+            Toast.fire({
+              icon: 'info',
+              title: `Login sebagai ${res.result[0].name}`,
+            });
+
             sessionStorage.setItem('users', JSON.stringify(res.result[0]))
             sessionStorage.setItem('token', JSON.stringify(res.token))
             window.location.replace('/index');
@@ -149,6 +154,12 @@ export class LoginAdminComponent implements OnInit {
 
             this.payload.usernameJury = null;
             this.payload.passwordJury = null;
+
+            Toast.fire({
+              icon: 'info',
+              title: `Login sebagai ${res.result[0].name}`,
+            });
+
 
             sessionStorage.setItem('users', JSON.stringify(res.result[0]))
             sessionStorage.setItem('token', JSON.stringify(res.token))
