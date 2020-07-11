@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     }
   }
   logout() {
+    sessionStorage.clear();
     window.location.replace('/login-admin');
   }
 }
