@@ -21,6 +21,8 @@ export class FileJuriComponent implements OnInit {
   userData:any;
   deleteId:number;
 
+  detailUser: any = {}
+
   constructor(
     private userService: UserService,
     private routes: Router
@@ -42,6 +44,10 @@ export class FileJuriComponent implements OnInit {
 
   setIdUser(id) {
     this.deleteId = id;
+  }
+
+  setDetailUser(payload) {
+    this.detailUser = payload;
   }
 
   deleteUser() {

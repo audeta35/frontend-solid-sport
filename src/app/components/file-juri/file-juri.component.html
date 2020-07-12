@@ -7,13 +7,17 @@
           <span class="text-white" aria-hidden="true">&times;</span>
         </button>
         <div class="text-center">
-          <h1 class="text-white" style="font-size: 50px;">J1</h1>
-          <h5 class="h3 text-white mb-3">
-            Iskandar
+          <h1 class="text-white" style="font-size: 50px;">{{detailUser.name}}</h1>
+          <h5 class="h3 text-white mb-1">
+            {{detailUser.username}}
           </h5>
-
-          <div>
-            <span class="badge badge-pill badge-success">online</span>
+          <i class="{{detailUser.status === 'online' ? 'text-light' : null}}">
+            {{detailUser.status}}
+          </i>
+          <div class="mt-2">
+            <span class="badge badge-pill {{detailUser.tatami  === 'aka' ? 'badge-primary' : 'badge-danger'}}">
+              {{detailUser.tatami}}
+            </span>
           </div>
         </div>
       </div>
@@ -91,7 +95,7 @@
                   <i class="fas fa-ellipsis-v"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#detailModal"> <i
+                  <a class="dropdown-item" (click)="setDetailUser(item)" data-toggle="modal" data-target="#detailModal"> <i
                       class="fa fa-info-circle text-info"></i>
                     Detail
                   </a>
