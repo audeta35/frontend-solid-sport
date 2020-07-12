@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditJuriComponent } from './edit-juri.component';
 
 const routes: Routes = [
-    { path: '', component: EditJuriComponent }
+  { path: '', component: EditJuriComponent}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

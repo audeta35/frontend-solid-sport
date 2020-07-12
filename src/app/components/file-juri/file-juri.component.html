@@ -65,7 +65,7 @@
             <th scope="col" class="text-center">No</th>
             <th scope="col">Nama Juri</th>
             <th scope="col">Posisi Juri</th>
-            <th scope="col">status</th>
+            <th scope="col">Tatami</th>
 
             <th scope="col" class="text-center">
               <i class="fa fa-cog"></i>
@@ -79,8 +79,8 @@
               <td class="col-3">{{item.username}}</td>
               <td class="col-2"><strong>{{item.name}}</strong></td>
               <td class="col-1">
-                <span class="badge badge-pill {{item.status === 'online' ? 'badge-success' : 'badge-danger'}}">
-                  {{item.status}}
+                <span class="badge badge-pill {{item.tatami === 'aka' ? 'badge-primary' : 'badge-danger'}}">
+                  {{item.tatami}}
                 </span>
               </td>
 
@@ -95,7 +95,7 @@
                       class="fa fa-info-circle text-info"></i>
                     Detail
                   </a>
-                  <a class="dropdown-item" routerLink="/edit-juri"> <i class="fa fa-edit text-warning"></i>
+                  <a class="dropdown-item" (click)="getDataUser(item)"> <i class="fa fa-edit text-warning"></i>
                     Edit </a>
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal"> <i
                       class="fa fa-trash text-danger"></i>
