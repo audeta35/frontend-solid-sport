@@ -59,6 +59,18 @@ export class UserService {
     })
   }
 
+  deletaUser(id) {
+    return new Promise((resolve, reject) => {
+      this.http.delete<any>(this.juriUrl + "delete/" + id, {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err)
+      })
+    })
+  }
+
   loginUsers(payload) {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.juriUrl + "login", payload, {

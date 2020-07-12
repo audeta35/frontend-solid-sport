@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/provider/services/users';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+});
 
 @Component({
   selector: 'app-file-juri',
@@ -11,6 +19,7 @@ import { Router } from '@angular/router';
 export class FileJuriComponent implements OnInit {
 
   userData:any;
+  deleteId:number;
 
   constructor(
     private userService: UserService,
@@ -24,11 +33,32 @@ export class FileJuriComponent implements OnInit {
   getAllUser() {
     this.userService.getUsers()
     .then((res:any) => {
-      console.table(res.result);
       this.userData = res.result;
     })
     .catch((err) => {
       console.info(err);
+    })
+  }
+
+  setIdUser(id) {
+    this.deleteId = id;
+  }
+
+  deleteUser() {
+    this.userService.deletaUser(this.deleteId)
+    .then((res) => {
+      Toast.fire({
+        icon: 'success',
+        title: `Data berhasil dihapus`,
+      });
+
+      this.getAllUser();
+
+    }).catch((err) => {
+      Toast.fire({
+        icon: 'warning',
+        title: `Kesalahan pada server`,
+      });
     })
   }
 

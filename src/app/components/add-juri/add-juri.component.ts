@@ -91,7 +91,6 @@ export class AddJuriComponent implements OnInit {
           icon: 'success',
           title: `Data juri berhasil di tambah`,
         });
-
         this.routes.navigate(['file-juri']);
       }).catch((err) => {
         console.warn(err);
