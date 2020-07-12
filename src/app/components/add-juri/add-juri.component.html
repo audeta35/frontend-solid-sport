@@ -13,7 +13,7 @@
 <div class="row" style="margin-top: -100px;">
     <div class="col"></div>
     <div class="col-lg-8 col-md-10">
-        <a routerLink="/file-juri" class="btn btn-neutral mb-4"> <i class="fa fa-angle-left"></i> Back</a>
+        <a routerLink="/file-juri" class="btn btn-sm btn-neutral mb-4"> <i class="fa fa-angle-left"></i> Kembali</a>
         <div class="card">
 
             <div class="card-body">
@@ -23,14 +23,21 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-username">Username</label>
-                                    <input type="text" id="input-username" class="form-control" placeholder="Username"
-                                        value="Iskandar">
+                                    <input (change)="keyUp()" type="text" id="input-username" class="form-control" placeholder="Username"[(ngModel)]="payload.username" [ngModelOptions]="{standalone: true}"
+                                        placeholder="username juri">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label">Kontingen</label>
-                                    <input type="text" class="form-control" placeholder="Kontingen" value="Ciukui">
+                                  <label class="form-control-label">Password</label>
+                                  <div class="input-group input-group-merge input-group-alternative">
+                                    <input (change)="keyUp()" class="form-control" placeholder="Password juri" [(ngModel)]="payload.password"
+                                      [ngModelOptions]="{standalone: true}" [type]="showButton ? 'text' : 'password'">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i [class]="showButton ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                                          (click)="showPassword()"></i></span>
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
 
@@ -38,34 +45,44 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1" class="form-control-label">Position</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>J-1</option>
-                                        <option>J-2</option>
-                                        <option>J-3</option>
-                                        <option>J-4</option>
-                                        <option>J-5</option>
-                                        <option>J-6</option>
-                                        <option>J-7</option>
+                                    <label for="exampleFormControlSelect1" class="form-control-label">Pilihan Juri</label>
+                                    <select (change)="keyUp()" [(ngModel)]="payload.position"
+                                      [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1">
+                                      <option disabled selected>posisi juri</option>
+                                      <option *ngFor="let opt of listJury" [value]="opt.value" [selected]="opt.value == true">
+                                        {{opt.name}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1" class="form-control-label">Tatami</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Tatami 1</option>
-                                        <option>Tatami 2</option>
+                                    <select (change)="keyUp()" [(ngModel)]="payload.tatami"
+                                      [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1">
+                                        <option disabled selected>Pilih Tatami</option>
+                                        <option *ngFor="let opt of listTatami" [value]="opt.value" [selected]="opt.value == true">
+                                          {{opt.name}}
+                                        </option>
                                     </select>
                                 </div>
 
                             </div>
                         </div>
-                        <hr class="my-4" />
                         <div class="row">
 
-                            <div class="col-lg-12">
-                                <button class="btn btn-success float-right"> <i class="fa fa-plus"></i> Tambah</button>
+                            <div *ngIf="isValid == true" class="col-lg-12">
+                                <div *ngIf="isLoading == true">
+                                  <button (click)="onSubmit()" class="btn btn-outline-danger float-right" disabled> <i class="fa fa-cog"></i> Proses...</button>
+                                </div>
+                                <div *ngIf="isLoading == false">
+                                  <button (click)="onSubmit()" class="btn btn-outline-danger float-right"> <i class="fa fa-plus"></i> Tambah</button>
+                                </div>
+                            </div>
+
+                            <div *ngIf="isValid == false" class="col-lg-12">
+                              <div *ngIf="isLoading == false">
+                                <button (click)="onSubmit()" disabled class="btn btn-outline-danger float-right"> <i class="fa fa-plus"></i> Tambah</button>
+                              </div>
                             </div>
                         </div>
                     </div>

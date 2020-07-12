@@ -10,21 +10,36 @@ import { GlobalProvider } from '../global';
 */
 @Injectable()
 export class UserService {
+  token: string;
+  juriUrl = this.global.config("juriUrl");
+
   constructor(
     public http: HttpClient,
     public global: GlobalProvider
   ){
-    console.log("users service provider!")
+    if(sessionStorage.getItem('token')) {
+      this.token = sessionStorage.getItem('token');
+    }
   }
-
-  juriUrl = this.global.config("juriUrl");
 
   getUsers() {
     return new Promise((resolve, reject) => {
       this.http.get<any>(this.juriUrl, {
-        headers: new HttpHeaders()
+        headers: new HttpHeaders().set('Authorization', this.token)
       })
       .subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err)
+      })
+    })
+  }
+
+  addUsers(payload) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.juriUrl + "add", payload, {
+        headers : new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
         resolve(res)
       }, (err) => {
         reject(err)
@@ -59,7 +74,7 @@ export class UserService {
   logOut(payload) {
     return new Promise((resolve, reject) => {
       this.http.put<any>(this.juriUrl + "logout", payload, {
-        headers: new HttpHeaders()
+        headers: new HttpHeaders().set('Authorization', this.token)
       }).subscribe((res) => {
         resolve(res);
       }, (err) => {
