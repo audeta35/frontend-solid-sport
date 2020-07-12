@@ -27,7 +27,10 @@ export class AppComponent implements OnInit {
       this.user = JSON.parse(sessionStorage.getItem('users'));
       this.user.name = this.user.name.toUpperCase();
       this.loginPage = true;
-      this.routes.navigate(['/index']);
+
+      if(this.path === "") {
+        this.routes.navigate(['/index']);
+      }
     } else {
 
       this.loginPage = false;
