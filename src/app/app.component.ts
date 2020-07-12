@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './provider/services/users';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -21,12 +22,31 @@ export class AppComponent implements OnInit {
   title = 'fss';
   path = this.pathname.split("/")[1];
   user:any = {};
+  jury:any = [];
 
-  constructor(private userService: UserService, private routes: Router) {
+  constructor(private userService: UserService, private routes: Router, private socket: Socket) {
     if (sessionStorage.getItem('token')) {
       this.user = JSON.parse(sessionStorage.getItem('users'));
       this.user.name = this.user.name.toUpperCase();
       this.loginPage = true;
+
+      this.socket.emit('login', this.user);
+
+      this.socket.on('getStatus', () => {
+        userService.getUsers().then((res:any) => {
+          this.jury = res.result;
+        }).catch((err) => {
+          console.warn(err);
+        })
+      })
+
+      this.socket.on('getStatus2', () => {
+        userService.getUsers().then((res: any) => {
+          this.jury = res.result;
+        }).catch((err) => {
+          console.warn(err);
+        })
+      })
 
       if(this.path === "") {
         this.routes.navigate(['/index']);

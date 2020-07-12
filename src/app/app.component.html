@@ -114,126 +114,54 @@
         <!-- Navbar links -->
         <ul class="navbar-nav align-items-center  ml-md-auto ">
 
-          <li class="nav-item d-sm-none">
+          <li class="nav-item d-lg-none">
             <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
               <i class="ni ni-zoom-split-in"></i>
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown ml-auto">
             <button class="nav-link" class="btn btn-secondary" role="button" data-toggle="dropdown" aria-haspopup="true"
               style="background-color: transparent !important;border: none !important;" aria-expanded="false">
-              <i class="ni ni-bell-55 text-light"></i>
+              <i class="fa fa-users text-light"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
               <!-- Dropdown header -->
               <div class="px-3 py-3">
-                <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">13</strong> notifications.</h6>
+                <h6 class="text-sm text-muted m-0"> Daftar Juri</h6>
               </div>
               <!-- List group -->
               <div class="list-group list-group-flush">
-                <a href="#!" class="list-group-item list-group-item-action">
+                <div *ngFor="let juri of jury" class="list-group-item list-group-item-action">
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <!-- Avatar -->
-                      <img alt="Image placeholder" src="http://placehold.it/50/30a5ff/fff"
-                        class="avatar rounded-circle">
+                      <h1 class="{{juri.tatami === 'aka' ? 'bg-primary' : 'bg-danger'}} text-white py-1 px-3 rounded text-center">
+                        <b class="text-uppercase">
+                          {{juri.name}}
+                        </b>
+                      </h1>
                     </div>
                     <div class="col ml--2">
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
-                          <h4 class="mb-0 text-sm">John Snow</h4>
+                          <h4 class="mb-0 text-sm">
+                            {{juri.username}}
+                            <b class="text-muted">
+                              {{ juri.id_user === user.id_user ? '(anda)' : ''}}
+                            </b>
+                          </h4>
                         </div>
-                        <div class="text-right text-muted">
-                          <small>2 hrs ago</small>
-                        </div>
-                      </div>
-                      <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-                    </div>
-                  </div>
-                </a>
-                <a href="#!" class="list-group-item list-group-item-action">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <!-- Avatar -->
-                      <img alt="Image placeholder" src="http://placehold.it/50/30a5ff/fff"
-                        class="avatar rounded-circle">
-                    </div>
-                    <div class="col ml--2">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <h4 class="mb-0 text-sm">John Snow</h4>
-                        </div>
-                        <div class="text-right text-muted">
-                          <small>3 hrs ago</small>
+                        <div class="text-right">
+                          <small class="badge {{juri.status === 'online' ? 'badge-success' : 'badge-danger'}}">
+                            {{juri.status}}
+                          </small>
                         </div>
                       </div>
-                      <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
+                      <p class="text-sm mb-0">Perwakilan dari tatami <b class="text-uppercase">{{juri.tatami}}</b></p>
                     </div>
                   </div>
-                </a>
-                <a href="#!" class="list-group-item list-group-item-action">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <!-- Avatar -->
-                      <img alt="Image placeholder" src="http://placehold.it/50/30a5ff/fff"
-                        class="avatar rounded-circle">
-                    </div>
-                    <div class="col ml--2">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <h4 class="mb-0 text-sm">John Snow</h4>
-                        </div>
-                        <div class="text-right text-muted">
-                          <small>5 hrs ago</small>
-                        </div>
-                      </div>
-                      <p class="text-sm mb-0">Your posts have been liked a lot.</p>
-                    </div>
-                  </div>
-                </a>
-                <a href="#!" class="list-group-item list-group-item-action">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <!-- Avatar -->
-                      <img alt="Image placeholder" src="http://placehold.it/50/30a5ff/fff"
-                        class="avatar rounded-circle">
-                    </div>
-                    <div class="col ml--2">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <h4 class="mb-0 text-sm">John Snow</h4>
-                        </div>
-                        <div class="text-right text-muted">
-                          <small>2 hrs ago</small>
-                        </div>
-                      </div>
-                      <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-                    </div>
-                  </div>
-                </a>
-                <a href="#!" class="list-group-item list-group-item-action">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <!-- Avatar -->
-                      <img alt="Image placeholder" src="http://placehold.it/50/30a5ff/fff"
-                        class="avatar rounded-circle">
-                    </div>
-                    <div class="col ml--2">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <h4 class="mb-0 text-sm">John Snow</h4>
-                        </div>
-                        <div class="text-right text-muted">
-                          <small>3 hrs ago</small>
-                        </div>
-                      </div>
-                      <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
-                    </div>
-                  </div>
-                </a>
+                </div>
               </div>
-              <!-- View all -->
-              <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>
           </li>
 
@@ -244,7 +172,7 @@
               <div class="media align-items-center">
                 <div class="media-body mr-3">
                   <div *ngIf="user.level === 0">
-                    <span class="bg-danger text-white px-1 rounded-circle font-weight-bold">{{user.name}}</span>
+                    <span class="{{user.tatami === 'aka' ? 'bg-primary' : 'bg-danger'}} text-white px-1 rounded-circle font-weight-bold">{{user.name}}</span>
                   </div>
 
                   <div *ngIf="user.level === 1">
