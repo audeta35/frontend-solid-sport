@@ -12,5 +12,6 @@ const routes: Routes = [
   { path: 'edit-admin', loadChildren: () => import('src/app/components/edit-admin/edit-admin.component.module').then(m => m.EditAdminComponentModule) },
   { path: 'add-admin', loadChildren: () => import('src/app/components/add-admin/add-admin.component.module').then(m => m.AddAdminComponentModule) },
   { path: 'login-admin', loadChildren: () => import('src/app/components/login-admin/login-admin.component.module').then(m => m.LoginAdminComponentModule) },
+  { path: 'scoreboard', loadChildren: () => import('src/app/components/scoreboard/scoreboard.component.module').then(m => m.ScoreboardComponentModule) },
 ];
 export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);

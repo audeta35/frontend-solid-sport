@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
   loginPage: boolean;
   title = 'fss';
   path = this.pathname.split("/")[1];
-  user:any = {};
-  jury:any = [];
+  user: any = {};
+  jury: any = [];
 
   constructor(private userService: UserService, private routes: Router, private socket: Socket) {
     if (sessionStorage.getItem('token')) {
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
       this.socket.emit('login', this.user);
 
       this.socket.on('getStatus', () => {
-        userService.getUsers().then((res:any) => {
+        userService.getUsers().then((res: any) => {
           this.jury = res.result;
         }).catch((err) => {
           console.warn(err);
@@ -47,15 +47,19 @@ export class AppComponent implements OnInit {
           console.warn(err);
         })
       })
-
-      if(this.path === "") {
+      if (this.path === "scoreboard") {
+        this.loginPage = false;
+      } else {
+        this.loginPage = true;
+      }
+      if (this.path === "") {
         this.routes.navigate(['/index']);
       }
     } else {
 
       this.loginPage = false;
 
-      if(this.path === "login-admin") {
+      if (this.path === "login-admin") {
 
       }
       else {
@@ -67,18 +71,18 @@ export class AppComponent implements OnInit {
       }
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   logout() {
     this.userService.logOut(this.user)
-    .then((res) => {
-      sessionStorage.clear();
-      window.location.replace('/login-admin');
-    })
-    .catch((err) => {
-      Toast.fire({
-        icon: 'error',
-        title: 'Proses Logout Gagal',
-      });
-    })
+      .then((res) => {
+        sessionStorage.clear();
+        window.location.replace('/login-admin');
+      })
+      .catch((err) => {
+        Toast.fire({
+          icon: 'error',
+          title: 'Proses Logout Gagal',
+        });
+      })
   }
 }
