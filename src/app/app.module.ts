@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { UserService } from './provider/services/users';
 import { GlobalProvider } from './provider/global';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
 const path = 'http://localhost:3000';
 const config: SocketIoConfig = { url: path, options: {} };
 
