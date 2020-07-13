@@ -1,0 +1,117 @@
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Tambah Atlet</p>
+
+            </div>
+            <!-- Card stats -->
+
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -50px;">
+    <div class="col"></div>
+    <div class="col-lg-11 col-md-11">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+
+
+                                <label class="btn btn-light mb-0"> <input type="checkbox" [(ngModel)]="selectedAll"
+                                        [ngModelOptions]="{standalone: true}" (change)="selectAll();"> Pilih
+                                    semua</label>
+                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col-md-4">
+                                <form>
+                                    <div class="input-group">
+
+                                        <input type="text" (keypress)="numberOnly($event)" maxlength="2"
+                                            placeholder="Masukan jumlah atlet" class="form-control">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success">Masukan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-light">
+                                <thead>
+                                    <tr>
+                                        <th>Pilih</th>
+                                        <th>No</th>
+                                        <th>Nama Atlet</th>
+                                        <th>Kontingen</th>
+                                        <th>Kata yang dimainkan</th>
+                                        <th>Atribut</th>
+                                    </tr>
+                                </thead>
+                                <p class="text-center mb-0" style="font-weight: 900;"><strong>GRUP A</strong></p>
+                                <tbody>
+
+                                    <tr *ngFor="let i = index;let n of names">
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="checkbox" style="width: 15px;height: 15px;"
+                                                    [(ngModel)]="n.selected" [ngModelOptions]="{standalone: true}"
+                                                    (change)="checkIfAllSelected();" class="form-control">
+                                            </div>
+                                        </td>
+                                        <th class="text-center">
+                                            {{i + 1}}
+                                        </th>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" value="{{n.name}}" placeholder="Nama atlet"
+                                                    class="form-control">
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="Kontingen" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="Kata" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option style="background-color: red;color: #fff;">AKA</option>
+                                                    <option style="background-color: blue;color: #fff;">AO</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-success btn-block mt-2">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

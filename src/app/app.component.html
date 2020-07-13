@@ -53,7 +53,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link">
+              <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet">
                 <i class="fa fa-id-badge text-primary"></i>
                 <span class="nav-link-text">Atlet</span>
               </a>
@@ -135,7 +135,8 @@
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <!-- Avatar -->
-                      <h1 class="{{juri.tatami === 'aka' ? 'bg-primary' : 'bg-danger'}} text-white py-1 px-3 rounded text-center">
+                      <h1
+                        class="{{juri.tatami === 'aka' ? 'bg-primary' : 'bg-danger'}} text-white py-1 px-3 rounded text-center">
                         <b class="text-uppercase">
                           {{juri.name}}
                         </b>
@@ -172,7 +173,8 @@
               <div class="media align-items-center">
                 <div class="media-body mr-3">
                   <div *ngIf="user.level === 0">
-                    <span class="{{user.tatami === 'aka' ? 'bg-primary' : 'bg-danger'}} text-white px-1 rounded-circle font-weight-bold">{{user.name}}</span>
+                    <span
+                      class="{{user.tatami === 'aka' ? 'bg-primary' : 'bg-danger'}} text-white px-1 rounded-circle font-weight-bold">{{user.name}}</span>
                   </div>
 
                   <div *ngIf="user.level === 1">
