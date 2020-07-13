@@ -119,5 +119,8 @@
       }
     }
   },
-  "defaultProject": "fss"
+  "defaultProject": "fss",
+  "cli": {
+    "analytics": "2b69fbfb-29b8-40d4-b484-ca65f4ae70ac"
+  }
 }
