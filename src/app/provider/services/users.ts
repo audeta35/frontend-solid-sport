@@ -23,6 +23,7 @@ export class UserService {
   }
 
   getUsers() {
+
     return new Promise((resolve, reject) => {
       this.http.get<any>(this.juriUrl, {
         headers: new HttpHeaders().set('Authorization', this.token)
@@ -32,6 +33,20 @@ export class UserService {
       }, (err) => {
         reject(err)
       })
+    })
+  }
+
+  getAdmin() {
+
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.juriUrl + "admin", {
+        headers: new HttpHeaders().set('Authorization', this.token)
+      })
+        .subscribe((res) => {
+          resolve(res)
+        }, (err) => {
+          reject(err)
+        })
     })
   }
 

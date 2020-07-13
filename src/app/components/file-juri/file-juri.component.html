@@ -7,7 +7,7 @@
           <span class="text-white" aria-hidden="true">&times;</span>
         </button>
         <div class="text-center">
-          <h1 class="text-white" style="font-size: 50px;">{{detailUser.name}}</h1>
+          <h1 class="text-white text-uppercase" style="font-size: 50px;">{{detailUser.name}}</h1>
           <h5 class="h3 text-white mb-1">
             {{detailUser.username}}
           </h5>
@@ -80,16 +80,24 @@
             <tr>
               <td *ngIf="!userData" colspan="5" class="text-center">
                 <div class="my-5">
-                  <img src="assets/images/logo/solid.png" width="200" />
+                  <h1 class="my-5">
+                    <i class="fa fa-cogs fa-3x"></i>
+                  </h1>
                 </div>
               </td>
             </tr>
             <tr *ngFor="let i = index;let item of userData">
+              <td *ngIf="!item" colspan="5" class="text-center">
+                <div class="my-5">
+                  <img src="assets/images/logo/solid.png" width="200" />
+                  <h2>Tidak ada juri terdaftar</h2>
+                </div>
+              </td>
               <td class="col-1 text-center">{{i + 1}}.</td>
               <td class="col-3">{{item.username}}</td>
-              <td class="col-2"><strong>{{item.name}}</strong></td>
+              <td class="col-2 text-capitalize"><strong>{{item.name}}</strong></td>
               <td class="col-1">
-                <span class="badge badge-pill {{item.tatami === 'aka' ? 'badge-primary' : 'badge-danger'}}">
+                <span class="badge badge-pill {{item.tatami === 'ao' ? 'badge-primary' : 'badge-danger'}}">
                   {{item.tatami}}
                 </span>
               </td>
