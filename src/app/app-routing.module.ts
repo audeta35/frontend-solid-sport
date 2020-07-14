@@ -12,6 +12,8 @@ const routes: Routes = [
   { path: 'file-admin', loadChildren: () => import('src/app/components/file-admin/file-admin.component.module').then(m => m.FileAdminComponentModule) },
   { path: 'edit-admin', loadChildren: () => import('src/app/components/edit-admin/edit-admin.component.module').then(m => m.EditAdminComponentModule) },
   { path: 'add-admin', loadChildren: () => import('src/app/components/add-admin/add-admin.component.module').then(m => m.AddAdminComponentModule) },
+  { path: 'file-atlet', loadChildren: () => import('src/app/components/file-atlet/file-atlet.component.module').then(m => m.FileAtletComponentModule) },
+  { path: 'edit-atlet', loadChildren: () => import('src/app/components/edit-atlet/edit-atlet.component.module').then(m => m.EditAtletComponentModule) },
   { path: 'add-atlet', loadChildren: () => import('src/app/components/add-atlet/add-atlet.component.module').then(m => m.AddAtletComponentModule) },
   { path: 'scoreboard', loadChildren: () => import('src/app/components/scoreboard/scoreboard.component.module').then(m => m.ScoreboardComponentModule) },
 ];
