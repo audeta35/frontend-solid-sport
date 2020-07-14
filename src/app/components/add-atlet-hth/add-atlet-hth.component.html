@@ -1,0 +1,127 @@
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Tambah Head to head</p>
+
+            </div>
+            <!-- Card stats -->
+
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -100px;">
+    <div class="col"></div>
+    <div class="col-lg-11 col-md-11">
+        <div class="row">
+            <div class="col-md-12">
+                <a routerLink="/file-atlet" class="btn btn-sm btn-neutral mb-4"> <i class="fa fa-angle-left"></i>
+                    Back</a>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-7">
+                                <form>
+                                    <div class="input-group">
+
+                                        <input type="text" (keypress)="numberOnly($event)" maxlength="2"
+                                            placeholder="Masukan jumlah atlet yang akan bertanding"
+                                            class="form-control">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-light">
+                                                proses
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col">
+                                <button class="float-right btn btn-success">
+                                    Simpan Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+
+                                        <th>No</th>
+                                        <th>Nama Atlet</th>
+                                        <th>Kontingen</th>
+                                        <th>Kata yang dimainkan</th>
+                                        <th>Atribut</th>
+                                        <th>Pertandingan ke</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <th>1.</th>
+
+                                        <td>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>INKAI</option>
+                                                    <option>UNSU</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option style="background-color: red;color: #fff;">AKA</option>
+                                                    <option style="background-color: blue;color: #fff;">AO</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-block btn-outline-dark">
+                                Tambah
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
