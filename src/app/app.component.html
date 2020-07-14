@@ -41,18 +41,31 @@
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-admin">
-              <i class="fa fa-user-circle text-primary"></i>
+              <i class="fa fa-user-lock text-primary"></i>
               <span class="nav-link-text">Admin</span>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-juri">
-              <i class="fa fa-users text-primary"></i>
+              <i class="fa fa-user-check text-primary"></i>
               <span class="nav-link-text">Juri</span>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
+              <i class="fa fa-id-badge text-primary"></i>
+              <span class="nav-link-text">Data Atlet</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet">
+              <i class="fa fa-users text-primary"></i>
+              <span class="nav-link-text">Grouping</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-group">
+
               <i class="fa fa-id-badge text-primary"></i>
               <span class="nav-link-text">Atlet</span>
             </a>

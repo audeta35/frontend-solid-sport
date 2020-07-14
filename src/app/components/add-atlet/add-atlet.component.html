@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="row align-items-center py-4">
-                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Tambah Atlet</p>
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Tambah Group</p>
 
             </div>
             <!-- Card stats -->
@@ -20,26 +20,50 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3">
-
-
-                                <label class="btn btn-light mb-0"> <input type="checkbox" [(ngModel)]="selectedAll"
-                                        [ngModelOptions]="{standalone: true}" (change)="selectAll();"> Pilih
-                                    semua</label>
-                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                          <div *ngIf="!names.length" class="col-md-3">
+                            <button disabled class="btn btn-outline-dark mb-0">
+                              <input type="checkbox" disabled [(ngModel)]="selectedAll" [ngModelOptions]="{standalone: true}" (change)="selectAll();">
+                              Pilih
+                              semua
+                            </button>
+                            <button class="btn btn-outline-danger" disabled (click)="deleteForm()">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                            <div *ngIf="names.length" class="col-md-3">
+                                <label class="btn btn-dark mb-0">
+                                  <input type="checkbox" [(ngModel)]="selectedAll" [ngModelOptions]="{standalone: true}" (change)="selectAll();"> Pilih
+                                    semua
+                                </label>
+                                <button class="btn btn-danger" (click)="deleteForm()">
+                                  <i class="fa fa-trash"></i>
+                                </button>
                             </div>
-                            <div class="col"></div>
-                            <div class="col-md-4">
+                            <div class="col-md-7">
                                 <form>
                                     <div class="input-group">
 
-                                        <input type="text" (keypress)="numberOnly($event)" maxlength="2"
+                                        <input type="text" (keypress)="numberOnly($event)" [(ngModel)]="totalForm"
+                                        [ngModelOptions]="{standalone: true}" maxlength="2"
                                             placeholder="Masukan jumlah atlet" class="form-control">
                                         <div class="input-group-append">
-                                            <button class="btn btn-success">Masukan</button>
+                                            <button (click)="setForm()" class="btn btn-outline-light">
+                                                proses
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+
+                            <div *ngIf="!names.length" class="col">
+                                <button (click)="submitForm()" class="float-right btn btn-outline-success" disabled>
+                                    Simpan Data
+                                </button>
+                            </div>
+                            <div *ngIf="names.length" class="col">
+                              <button (click)="submitForm()" class="float-right btn btn-success">
+                                Simpan Data
+                              </button>
                             </div>
                         </div>
                     </div>
@@ -50,11 +74,14 @@
 
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div *ngFor="let g of group" class="col-md-12">
+                <h1 class="text-capitalize bg-primary text-center text-white rounded">
+                  {{g.name}}
+                </h1>
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-light">
+                            <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th>Pilih</th>
@@ -65,38 +92,40 @@
                                         <th>Atribut</th>
                                     </tr>
                                 </thead>
-                                <p class="text-center mb-0" style="font-weight: 900;"><strong>GRUP A</strong></p>
                                 <tbody>
 
                                     <tr *ngFor="let i = index;let n of names">
-                                        <td>
+
+                                        <td *ngIf="g.name === n.group">
                                             <div class="form-group">
                                                 <input type="checkbox" style="width: 15px;height: 15px;"
                                                     [(ngModel)]="n.selected" [ngModelOptions]="{standalone: true}"
-                                                    (change)="checkIfAllSelected();" class="form-control">
+                                                    (change)="checkIfAllSelected();" class="form-control form-control-lg">
                                             </div>
                                         </td>
-                                        <th class="text-center">
+                                        <td *ngIf="g.name === n.group">
+                                          <b>
                                             {{i + 1}}
-                                        </th>
-                                        <td>
+                                          </b>
+                                        </td>
+                                        <td *ngIf="g.name === n.group">
                                             <div class="form-group">
                                                 <input type="text" value="{{n.name}}" placeholder="Nama atlet"
                                                     class="form-control">
                                             </div>
 
                                         </td>
-                                        <td>
+                                        <td *ngIf="g.name === n.group">
                                             <div class="form-group">
                                                 <input type="text" placeholder="Kontingen" class="form-control">
                                             </div>
                                         </td>
-                                        <td>
+                                        <td *ngIf="g.name === n.group">
                                             <div class="form-group">
                                                 <input type="text" placeholder="Kata" class="form-control">
                                             </div>
                                         </td>
-                                        <td>
+                                        <td *ngIf="g.name === n.group">
                                             <div class="form-group">
                                                 <select class="form-control">
                                                     <option style="background-color: red;color: #fff;">AKA</option>
@@ -107,8 +136,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button class="btn btn-success btn-block mt-2">Simpan</button>
-                        </div>
+                            <button class="btn btn-block btn-outline-dark" (click)="addForm(g.name)">
+                              tambah form
+                            </button>
+                          </div>
                     </div>
                 </div>
             </div>
