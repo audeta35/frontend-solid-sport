@@ -12,7 +12,7 @@ export class AddAtletComponent implements OnInit {
   names: any = [];
   totalForm: number;
   selectedAll: any;
-  angka: number = 0;
+  isProcess: boolean = false;
 
   constructor() { }
 
@@ -21,7 +21,6 @@ export class AddAtletComponent implements OnInit {
   selectAll() {
     for (var i = 0; i < this.names.length; i++) {
       this.names[i].selected = this.selectedAll;
-      console.log(this.names)
     }
   }
 
@@ -33,45 +32,69 @@ export class AddAtletComponent implements OnInit {
 
   setForm() {
 
+    this.isProcess = !this.isProcess;
+
     let total = this.totalForm / this.maxUserGroup;
     let result = Math.ceil(total);
     let i: number;
 
-    // set group
+    setTimeout(() => {
+      // set group
 
-    for(i=1; i<=result; i++) {
-      this.group.push({
-        name : `group ${i}`,
-        value : 0
-      })
-    }
-
-    for(i=1; i<=result; i++) {
-      for (let x = 1; x <= this.maxUserGroup; x++) {
-
-        this.names.push({
-          name: "",
-          selected: false,
-          group: `group ${i}`
+      for (i = 1; i <= result; i++) {
+        this.group.push({
+          name: `group ${i}`,
         })
       }
-    }
 
-    for(i=0; i<=this.names.length; i++) {
-      if (i < this.totalForm) {
-        this.names.splice(this.totalForm, i);
+      for (i = 1; i <= result; i++) {
+        for (let x = 1; x < this.maxUserGroup; x++) {
+
+          this.names.push({
+            name: "",
+            kontingen: "",
+            kata: "",
+            atribute: "",
+            selected: false,
+            group: `group ${i}`
+          })
+        }
       }
-    }
 
-    console.log(this.names)
+      for (i = 0; i <= this.names.length; i++) {
+        if (i > this.totalForm) {
+          this.names.splice(this.totalForm, i);
+        }
+      }
+
+      this.isProcess = !this.isProcess;
+    }, 1000)
+  }
+
+  refresh() {
+    this.group = [];
+    this.names = [];
+  }
+
+  addGroup() {
+    this.group.push({
+      name : `group ${this.group.length + 1}`
+    })
   }
 
   addForm(group) {
 
     this.names.push({
       name: "",
+      kontingen: "",
+      kata: "",
+      atribute: "",
       group: group
     })
+  }
+
+  deleteGroup(id) {
+    this.group.splice(id, 1);
   }
 
   deleteForm() {
@@ -82,10 +105,6 @@ export class AddAtletComponent implements OnInit {
         this.names.splice(i, 1); i--;
       }
     }
-
-    console.log("names : ", this.names);
-    console.log("group :", this.group);
-
   }
 
   numberOnly(event): boolean {
