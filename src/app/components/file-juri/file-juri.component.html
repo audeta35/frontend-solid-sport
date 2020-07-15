@@ -77,45 +77,46 @@
           </tr>
         </thead>
         <tbody class="list">
-            <tr>
-              <td *ngIf="!userData" colspan="5" class="text-center">
-                <div class="my-5">
-                  <h1 class="my-5">
-                    <i class="fa fa-cogs fa-3x"></i>
-                  </h1>
-                </div>
-              </td>
-            </tr>
-            <tr *ngFor="let i = index;let item of userData">
-              <td *ngIf="!item" colspan="5" class="text-center">
-                <div class="my-5">
-                  <img src="assets/images/logo/solid.png" width="200" />
-                  <h2>Tidak ada juri terdaftar</h2>
-                </div>
-              </td>
-              <td class="col-1 text-center">{{i + 1}}.</td>
-              <td class="col-3">{{item.username}}</td>
-              <td class="col-2 text-capitalize"><strong>{{item.name}}</strong></td>
-              <td class="col-1">
-                <span class="badge badge-pill {{item.tatami === 'ao' ? 'badge-primary' : 'badge-danger'}}">
-                  {{item.tatami}}
-                </span>
-              </td>
+          <tr>
+            <td *ngIf="!userData" colspan="5" class="text-center">
+              <div class="my-5">
+                <h1 class="my-5">
+                  <i class="fa fa-cogs fa-3x"></i>
+                </h1>
+              </div>
+            </td>
+          </tr>
+          <tr *ngFor="let i = index;let item of userData">
+            <td *ngIf="!item" colspan="5" class="text-center">
+              <div class="my-5">
+                <img src="assets/images/logo/solid.png" width="200" />
+                <h2>Tidak ada juri terdaftar</h2>
+              </div>
+            </td>
+            <td class="text-center">{{i + 1}}.</td>
+            <td>{{item.username}}</td>
+            <td class=" text-capitalize"><strong>{{item.name}}</strong></td>
+            <td>
+              <span class="badge badge-pill {{item.tatami === 'ao' ? 'badge-primary' : 'badge-danger'}}">
+                {{item.tatami}}
+              </span>
+            </td>
 
-            <td class="text-center col-1">
+            <td class="text-center">
               <div class="dropdown">
                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-ellipsis-v"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                  <a class="dropdown-item" (click)="setDetailUser(item)" data-toggle="modal" data-target="#detailModal"> <i
-                      class="fa fa-info-circle text-info"></i>
+                  <a class="dropdown-item" (click)="setDetailUser(item)" data-toggle="modal" data-target="#detailModal">
+                    <i class="fa fa-info-circle text-info"></i>
                     Detail
                   </a>
                   <a class="dropdown-item" (click)="getDataUser(item)"> <i class="fa fa-edit text-warning"></i>
                     Edit </a>
-                  <button class="dropdown-item" data-toggle="modal" (click)="setIdUser(item.id_user)" data-target="#deleteModal">
+                  <button class="dropdown-item" data-toggle="modal" (click)="setIdUser(item.id_user)"
+                    data-target="#deleteModal">
                     <i class="fa fa-trash text-danger"></i>
                     Hapus
                   </button>

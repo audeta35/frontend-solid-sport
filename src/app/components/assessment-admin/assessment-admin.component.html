@@ -1,0 +1,156 @@
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Penilaian Admin</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -80px;">
+    <div class="col"></div>
+    <div class="col-lg-8 col-md-10">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="text-center">
+                                    <label>Nama Atlet </label>
+                                    <h1> Mujadilah sanawiyah hasanah</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center">
+                                    <label>Memainkan kata </label>
+                                    <h2> UNSU</h2>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-center">
+                                    <label>Kontingen </label>
+                                    <h2>Cikarang</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-lg-10 col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+
+                                        <th>No</th>
+                                        <th>Juri</th>
+                                        <th>Nilai Teknik</th>
+                                        <th>Nilai Atletik</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let i = index;let item of Data">
+                                        <th>{{i+1}}</th>
+                                        <th>{{item.juri}}</th>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>0</option>
+                                                    <option>5.0</option>
+                                                    <option>5.2</option>
+                                                    <option>5.4</option>
+                                                    <option>5.6</option>
+                                                    <option>5.8</option>
+                                                    <option>6.0</option>
+                                                    <option>6.2</option>
+                                                    <option>6.4</option>
+                                                    <option>6.6</option>
+                                                    <option>6.8</option>
+                                                    <option>7.0</option>
+                                                    <option>7.2</option>
+                                                    <option>7.4</option>
+                                                    <option>7.6</option>
+                                                    <option>7.8</option>
+                                                    <option>8.0</option>
+                                                    <option>8.2</option>
+                                                    <option>8.4</option>
+                                                    <option>8.6</option>
+                                                    <option>8.8</option>
+                                                    <option>9.0</option>
+                                                    <option>9.2</option>
+                                                    <option>9.4</option>
+                                                    <option>9.6</option>
+                                                    <option>9.8</option>
+                                                    <option>10.0</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>0</option>
+                                                    <option>5.0</option>
+                                                    <option>5.2</option>
+                                                    <option>5.4</option>
+                                                    <option>5.6</option>
+                                                    <option>5.8</option>
+                                                    <option>6.0</option>
+                                                    <option>6.2</option>
+                                                    <option>6.4</option>
+                                                    <option>6.6</option>
+                                                    <option>6.8</option>
+                                                    <option>7.0</option>
+                                                    <option>7.2</option>
+                                                    <option>7.4</option>
+                                                    <option>7.6</option>
+                                                    <option>7.8</option>
+                                                    <option>8.0</option>
+                                                    <option>8.2</option>
+                                                    <option>8.4</option>
+                                                    <option>8.6</option>
+                                                    <option>8.8</option>
+                                                    <option>9.0</option>
+                                                    <option>9.2</option>
+                                                    <option>9.4</option>
+                                                    <option>9.6</option>
+                                                    <option>9.8</option>
+                                                    <option>10.0</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                            <button class="btn btn-outline-success float-right"> <i class="fa fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
