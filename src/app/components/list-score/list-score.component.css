@@ -1,0 +1,27 @@
+th{
+    font-size: 30px !important;
+    font-weight: 700;
+}
+
+td{
+    font-size: 30px !important;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    
+}
+tbody{
+    background: rgba(0, 0, 0, 0.1);
+}
+.score{
+    font-size: 55px !important;
+}
+
+.badge-dangerr{
+    background-color: rgb(194, 26, 26);
+    color: #fff;
+}
+.name{
+    font-size: 35px !important;
+
+}

@@ -24,3 +24,6 @@ td{
   .bg-biru{
       background-color: #1d4efd;
   }
+  .card{
+      border-radius: 0px !important;
+  }
