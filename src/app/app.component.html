@@ -52,8 +52,15 @@
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet-hth">
+
+              <i class="fa fa-user text-primary"></i>
+              <span class="nav-link-text">Atlet</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
-              <i class="fa fa-id-badge text-primary"></i>
+              <i class="fa fa-table text-primary"></i>
               <span class="nav-link-text">Data Atlet</span>
             </a>
           </li>
@@ -61,13 +68,6 @@
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet">
               <i class="fa fa-users text-primary"></i>
               <span class="nav-link-text">Grouping</span>
-            </a>
-          </li>
-          <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-group">
-
-              <i class="fa fa-id-badge text-primary"></i>
-              <span class="nav-link-text">Atlet</span>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
