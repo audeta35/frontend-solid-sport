@@ -19,5 +19,6 @@ const routes: Routes = [
   { path: 'assessment-admin', loadChildren: () => import('src/app/components/assessment-admin/assessment-admin.component.module').then(m => m.AssessmentAdminComponentModule) },
   { path: 'assessment-juri', loadChildren: () => import('src/app/components/assessment-juri/assessment-juri.component.module').then(m => m.AssessmentJuriComponentModule) },
   { path: 'scoreboard', loadChildren: () => import('src/app/components/scoreboard/scoreboard.component.module').then(m => m.ScoreboardComponentModule) },
+  { path: 'list-score', loadChildren: () => import('src/app/components/list-score/list-score.component.module').then(m => m.ListScoreComponentModule) },
 ];
 export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);

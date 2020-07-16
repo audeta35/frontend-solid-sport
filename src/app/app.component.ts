@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
       })
       if (this.path === "scoreboard") {
         this.loginPage = false;
+      } if (this.path === "list-score") {
+        this.loginPage = false;
       } else {
         this.loginPage = true;
       }

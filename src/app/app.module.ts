@@ -8,13 +8,13 @@ import { UserService } from './provider/services/users';
 import { GlobalProvider } from './provider/global';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AtletService } from './provider/services/atlet';
+
 const path = 'http://localhost:3000';
 const config: SocketIoConfig = { url: path, options: {} };
 
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
