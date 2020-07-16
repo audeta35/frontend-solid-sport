@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { AtletService } from 'src/app/provider/services/atlet';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+});
 
 @Component({
   selector: 'app-add-atlet',
@@ -14,7 +24,10 @@ export class AddAtletComponent implements OnInit {
   selectedAll: any;
   isProcess: boolean = false;
 
-  constructor() { }
+  constructor(
+    private atletService: AtletService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {}
 
@@ -54,7 +67,7 @@ export class AddAtletComponent implements OnInit {
             name: "",
             kontingen: "",
             kata: "",
-            atribute: "",
+            attribute: "",
             selected: false,
             group: `group ${i}`
           })
@@ -78,7 +91,7 @@ export class AddAtletComponent implements OnInit {
 
   addGroup() {
     this.group.push({
-      name : `group ${this.group.length + 1}`
+      name: `group ${this.group.length + 1}`
     })
   }
 
@@ -88,7 +101,8 @@ export class AddAtletComponent implements OnInit {
       name: "",
       kontingen: "",
       kata: "",
-      atribute: "",
+      attribute: "",
+      selected: false,
       group: group
     })
   }
@@ -116,7 +130,22 @@ export class AddAtletComponent implements OnInit {
   }
 
   submitForm() {
-    console.table(this.names);
+   this.atletService.addAtletGroup(this.names, this.group)
+   .then((res) => {
+     Toast.fire({
+       icon: 'success',
+       title: `Data Atlet berhasil di tambah`,
+     });
+     console.log(res);
+    //  this.router.navigate(['file-atlet'])
+   })
+   .catch((err) => {
+     Toast.fire({
+       icon: 'error',
+       title: `Kesalahan pada server`,
+     });
+     console.log(err);
+   })
   }
 
 }

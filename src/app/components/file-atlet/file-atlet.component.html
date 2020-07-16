@@ -33,22 +33,24 @@
 <div class="row" style="margin-top: -100px;">
     <div class="col"></div>
     <div class="col-lg-11 col-md-11">
-        <button class="btn btn-outline-primary btn-sm" routerLink="/add-atlet"> <i class="fa fa-plus"></i>
-            Tambah</button>
-        <button class="btn btn-outline-warning btn-sm float-right" routerLink="/add-atlet-hth"> <i
+        <button class="btn btn-outline-primary btn-sm" routerLink="/add-atlet-hth"> <i class="fa fa-plus"></i>
+            Tambah atlet
+          </button>
+        <button class="btn btn-outline-warning btn-sm float-right" routerLink="/add-atlet"> <i
                 class="fa fa-plus"></i>
-            Tambah</button>
+            Tambah group
+        </button>
         <div class="nav-wrapper">
             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
                         href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i
-                            class="fa fa-users mr-2"></i>Grouping</a>
+                            class="fa fa-male mr-1"></i><i class="fa fa-male mr-2"></i> Head to head</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                         href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
-                            class="fa fa-male mr-1"></i> <i class="fa fa-male mr-2"></i> Head to head</a>
+                            class="fa fa-users mr-2"></i> Grouping</a>
                 </li>
             </ul>
         </div>
@@ -65,26 +67,22 @@
                                         <th>Nama</th>
                                         <th>Kontingen</th>
                                         <th>Kata</th>
-                                        <th>Tatami</th>
-
-                                        <th>Urutan Pertadingan</th>
-                                        <th>Poin Rekap</th>
+                                        <th>Atribut</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let i = index; let item of Data">
-                                        <td>{{i + 1}}</td>
-                                        <td>{{item.username}}</td>
-                                        <td>{{item.kontingen}}</td>
-                                        <td>{{item.kata}}</td>
+                                    <tr *ngFor="let i = index; let item of atlet">
+                                        <td *ngIf="item.grouping === 'null'">{{i + 1}}</td>
+                                        <td *ngIf="item.grouping === 'null'">{{item.atlet_name}}</td>
+                                        <td *ngIf="item.grouping === 'null'">{{item.kontingen}}</td>
+                                        <td *ngIf="item.grouping === 'null'">{{item.kata_name}}</td>
 
-                                        <td> <span
-                                                class="badge badge-pill {{item.tatami === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.tatami}}</span>
+                                        <td *ngIf="item.grouping === 'null'"> <span
+                                                class="badge badge-pill {{item.tatami === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
                                         </td>
-                                        <td>{{item.step}}</td>
-                                        <td>{{item.point}}</td>
-                                        <td>
+
+                                        <td *ngIf="item.grouping === 'null'">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -109,89 +107,33 @@
                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                         aria-labelledby="tabs-icons-text-2-tab">
                         <div class="row">
-                            <div class="col-md-6">
-                                <p class="text-center mb-0" style="font-weight: 900;"><strong>GRUP A</strong></p>
+                            <div *ngFor="let ii = index; let groups of group" class="col-md-12 my-1">
+                                <h1 class="text-center text-capitalize text-white bg-primary rounded">
+                                  {{groups.group_name}}
+                                </h1>
                                 <div class="table-responsive shadow bg-white rounded mt-2">
-                                    <table class="table table-sm table-borderless table-striped table-striped">
+                                    <table class="table table-sm table-bordered table-striped table-striped">
                                         <thead class="thead-light text-dark">
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Kontingen</th>
                                                 <th>Kata</th>
-                                                <th>Tatami</th>
-
-                                                <th>Urutan Pertadingan</th>
-                                                <th>Poin Rekap</th>
+                                                <th>Atribut</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let i = index; let item of Data">
-                                                <td>{{i + 1}}</td>
-                                                <td>{{item.username}}</td>
-                                                <td>{{item.kontingen}}</td>
-                                                <td>{{item.kata}}</td>
+                                            <tr *ngFor="let i = index; let item of atlet">
+                                                <td *ngIf="groups.group_name === item.grouping">{{i + 1}}</td>
+                                                <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
+                                                <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
+                                                <td *ngIf="groups.group_name === item.grouping">{{item.kata_name}}</td>
 
-                                                <td><span
-                                                        class="badge badge-pill {{item.tatami === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.tatami}}</span>
+                                                <td *ngIf="groups.group_name === item.grouping"><span
+                                                        class="badge badge-pill {{item.attribute === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
                                                 </td>
-                                                <td>{{item.step}}</td>
-                                                <td>{{item.point}}</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <button class="dropdown-item" routerLink="/edit-atlet"> <i
-                                                                    class="fa fa-edit text-warning"></i>
-                                                                Edit </button>
-                                                            <button class="dropdown-item" href="#" data-toggle="modal"
-                                                                data-target="#deleteModal"> <i
-                                                                    class="fa fa-trash text-danger"></i>
-                                                                Hapus </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-center mb-0" style="font-weight: 900;"><strong>GRUP B</strong></p>
-                                <div class="table-responsive shadow bg-white rounded mt-2">
-                                    <table class="table table-sm table-borderless table-striped table-striped">
-                                        <thead class="thead-light text-dark">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Kontingen</th>
-                                                <th>Kata</th>
-                                                <th>Tatami</th>
-
-                                                <th>Urutan Pertadingan</th>
-                                                <th>Poin Rekap</th>
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let i = index; let item of Data">
-                                                <td>{{i + 1}}</td>
-                                                <td>{{item.username}}</td>
-                                                <td>{{item.kontingen}}</td>
-                                                <td>{{item.kata}}</td>
-
-                                                <td><span
-                                                        class="badge badge-pill {{item.tatami === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.tatami}}</span>
-                                                </td>
-                                                <td>{{item.step}}</td>
-                                                <td>{{item.point}}</td>
-                                                <td>
+                                                <td *ngIf="groups.group_name === item.grouping">
                                                     <div class="dropdown">
                                                         <a class="btn btn-sm btn-icon-only text-light" href="#"
                                                             role="button" data-toggle="dropdown" aria-haspopup="true"

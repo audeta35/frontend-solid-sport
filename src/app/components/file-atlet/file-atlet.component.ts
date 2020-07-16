@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AtletService } from 'src/app/provider/services/atlet';
 
 @Component({
   selector: 'app-file-atlet',
@@ -6,27 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-atlet.component.css']
 })
 export class FileAtletComponent implements OnInit {
-  Data = [
-    {
-      username: 'Mijani ahmad',
-      kontingen: 'Citeureup',
-      kata: 'UNSU',
-      tatami: 'AKA',
-      step: '1',
-      point: '31',
-    },
-    {
-      username: 'Mujailah sulaiman',
-      kontingen: 'cikurep',
-      kata: 'UNSU',
-      tatami: 'AO',
-      step: '1',
-      point: '43',
-    },
-  ]
-  constructor() { }
+
+  atlet:any = [];
+  group:any = [];
+
+  constructor(
+    private atletService: AtletService
+  ) { }
 
   ngOnInit(): void {
+    this.atletService.getAtlet()
+    .then((res:any) => {
+      this.atlet = res.result.atlet;
+      this.group = res.result.group;
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
-
 }
