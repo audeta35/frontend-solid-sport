@@ -59,15 +59,15 @@
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
-              <i class="fa fa-table text-primary"></i>
-              <span class="nav-link-text">Data Atlet</span>
-            </a>
-          </li>
-          <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet">
               <i class="fa fa-users text-primary"></i>
               <span class="nav-link-text">Grouping</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
+              <i class="fa fa-table text-primary"></i>
+              <span class="nav-link-text">Data Atlet</span>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
@@ -79,7 +79,7 @@
           <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link">
               <i class="fa fa-street-view text-primary"></i>
-              <span class="nav-link-text">Pertandingan</span>
+              <span class="nav-link-text">Hasil Tanding</span>
             </a>
           </li>
           <li class="nav-item">
