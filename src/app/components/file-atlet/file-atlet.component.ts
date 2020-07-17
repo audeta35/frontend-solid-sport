@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AtletService } from 'src/app/provider/services/atlet';
 import { MatchService } from 'src/app/provider/services/match';
+import Swal from 'sweetalert2';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+});
 
 @Component({
   selector: 'app-file-atlet',
@@ -11,8 +19,6 @@ export class FileAtletComponent implements OnInit {
 
   atlet:any = [];
   group:any = [];
-  match:any = [];
-  totalMatch:any;
 
   constructor(
     private atletService: AtletService,
@@ -28,33 +34,21 @@ export class FileAtletComponent implements OnInit {
       .then((res: any) => {
         this.atlet = res.result.atlet;
         this.group = res.result.group;
-        this.totalMatch = Object.keys(res.result.atlet);
-        this.getAllMatch();
+        console.log(res.result)
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  getAllMatch() {
-    this.matchService.getMatch()
-    .then((res:any) => {
-      this.match = res.result;
-      this.isMatch();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-
-  isMatch() {
-    console.log(this.totalMatch)
-  }
-
   startGroupMatch(atlet) {
     this.matchService.addGroupMatch(atlet)
     .then((res) => {
-      console.log(res)
+      Toast.fire({
+        icon: 'info',
+        title: `Atlet ${atlet.atlet_name} memulai pertandingan`,
+      });
+      this.getAllAtlet();
     })
     .catch((err) => {
       console.log(err)

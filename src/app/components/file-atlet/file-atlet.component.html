@@ -82,9 +82,17 @@
                     </td>
 
                     <td *ngIf="item.grouping === 'null'">
-                      <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
-                        Mulai
-                      </button>
+                      <div *ngIf="item.status === 0">
+                        <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
+                          Mulai
+                        </button>
+                      </div>
+
+                      <div *ngIf="item.status === 1">
+                        <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
+                          Selesai
+                        </button>
+                      </div>
                     </td>
 
                     <td *ngIf="item.grouping === 'null'">
@@ -143,9 +151,17 @@
                                 class="badge badge-pill {{item.attribute === 'ao' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
                             </td>
                             <td *ngIf="groups.group_name === item.grouping">
-                              <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
-                                Mulai
-                              </button>
+                              <div *ngIf="item.status === 0">
+                                <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
+                                  Mulai
+                                </button>
+                              </div>
+
+                              <div *ngIf="item.status === 1">
+                                <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-warning">
+                                  Selesaikan
+                                </button>
+                              </div>
                             </td>
                             <td *ngIf="groups.group_name === item.grouping">
                               <button class="btn btn-block btn-sm btn-outline-danger">
