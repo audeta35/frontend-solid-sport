@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-assessment-juri',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessmentJuriComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private socket: Socket,
+  ) { }
 
   ngOnInit(): void {
+    this.socket.on('data-juri', () => {
+
+    })
+  }
+
+  onSubmit() {
+    // fungsi
+    this.socket.emit('scoreboard');
+    this.socket.emit('result-admin');
+    this.socket.emit('result-juri');
   }
 
 }

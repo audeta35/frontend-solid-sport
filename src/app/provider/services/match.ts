@@ -10,14 +10,10 @@ import { GlobalProvider } from '../global';
 */
 @Injectable()
 export class MatchService {
-
   token: string;
-  matchUrl = this.global.config("matchUrl");
+  matchUrl = this.global.config('matchUrl');
 
-  constructor(
-    public http: HttpClient,
-    public global: GlobalProvider
-  ) {
+  constructor(public http: HttpClient, public global: GlobalProvider) {
     if (sessionStorage.getItem('token')) {
       this.token = sessionStorage.getItem('token');
     }
@@ -25,29 +21,56 @@ export class MatchService {
 
   getMatch() {
     return new Promise((resolve, reject) => {
-      this.http.get<any>(this.matchUrl + "getMatch", {
-        headers: new HttpHeaders().set("Authorization", this.token)
-      }).subscribe((res) => {
-        resolve(res)
-      }, (err) => {
-        reject(err)
-      })
-    })
+      this.http.get<any>(this.matchUrl + 'getMatch', {
+          headers: new HttpHeaders().set('Authorization', this.token),
+        })
+        .subscribe(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  updateMatch(id) {
+    let data = {
+      id: id,
+    };
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.matchUrl + 'finish', data, {
+          headers: new HttpHeaders().set('Authorization', this.token),
+        })
+        .subscribe(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
   }
 
   addGroupMatch(atlet) {
     let data = {
-      atlet: atlet
-    }
+      atlet: atlet,
+    };
 
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.matchUrl + "group-add", data, {
-        headers: new HttpHeaders().set("Authorization", this.token)
-      }).subscribe((res) => {
-        resolve(res)
-      }, (err) => {
-        reject(err)
-      })
-    })
+      this.http.post<any>(this.matchUrl + 'group-add', data, {
+          headers: new HttpHeaders().set('Authorization', this.token),
+        })
+        .subscribe(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
   }
 }

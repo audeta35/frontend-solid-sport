@@ -47,17 +47,22 @@ export class AppComponent implements OnInit {
           console.warn(err);
         })
       })
-      if (this.path === "scoreboard") {
-        this.loginPage = false;
-      } else if (this.path === "list-score") {
-        this.loginPage = false;
-      } else {
-        this.loginPage = true;
-      }
+
+      this.loginPage = true;
+
       if (this.path === "") {
         this.routes.navigate(['/index']);
       }
-    } else {
+
+    }
+
+    else if (this.path === "scoreboard") {
+      this.loginPage = false;
+    }
+    else if (this.path === "list-score") {
+      this.loginPage = false;
+    }
+    else {
 
       this.loginPage = false;
       if (this.path === "login-admin") {
