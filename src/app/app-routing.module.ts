@@ -20,5 +20,6 @@ const routes: Routes = [
   { path: 'assessment-juri', loadChildren: () => import('src/app/components/assessment-juri/assessment-juri.component.module').then(m => m.AssessmentJuriComponentModule) },
   { path: 'scoreboard', loadChildren: () => import('src/app/components/scoreboard/scoreboard.component.module').then(m => m.ScoreboardComponentModule) },
   { path: 'list-score', loadChildren: () => import('src/app/components/list-score/list-score.component.module').then(m => m.ListScoreComponentModule) },
+  { path: 'recap', loadChildren: () => import('src/app/components/recap/recap.component.module').then(m => m.RecapComponentModule) },
 ];
 export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);
