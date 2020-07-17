@@ -34,11 +34,11 @@
     <div class="col"></div>
     <div class="col-lg-11 col-md-11">
         <button class="btn btn-outline-primary btn-sm" routerLink="/add-atlet-hth"> <i class="fa fa-plus"></i>
-            Tambah atlet
+            Tambah atlet perorangan
           </button>
         <button class="btn btn-outline-warning btn-sm float-right" routerLink="/add-atlet"> <i
                 class="fa fa-plus"></i>
-            Tambah group
+            Tambah atlet grup
         </button>
         <div class="nav-wrapper">
             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
@@ -54,113 +54,118 @@
                 </li>
             </ul>
         </div>
-        <div class="card shadow">
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                        aria-labelledby="tabs-icons-text-1-tab">
-                        <div class="table-responsive shadow bg-white rounded mt-2">
-                            <table class="table table-sm table-borderless table-striped table-striped">
-                                <thead class="thead-light text-dark">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Kontingen</th>
-                                        <th>Kata</th>
-                                        <th>Atribut</th>
-                                        <th>Opsi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let i = index; let item of atlet">
-                                        <td *ngIf="item.grouping === 'null'">{{i + 1}}</td>
-                                        <td *ngIf="item.grouping === 'null'">{{item.atlet_name}}</td>
-                                        <td *ngIf="item.grouping === 'null'">{{item.kontingen}}</td>
-                                        <td *ngIf="item.grouping === 'null'">{{item.kata_name}}</td>
 
-                                        <td *ngIf="item.grouping === 'null'"> <span
-                                                class="badge badge-pill {{item.tatami === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
-                                        </td>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+            <div class="table-responsive shadow bg-white rounded mt-2">
+              <table class="table table-sm table-borderless table-striped table-striped">
+                <thead class="thead-light text-dark">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Kontingen</th>
+                    <th>Kata</th>
+                    <th>Atribut</th>
+                    <th>Pertandingan</th>
+                    <th>Opsi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i = index; let item of atlet; let m of match">
+                    <td *ngIf="item.grouping === 'null'">{{i + 1}}</td>
+                    <td *ngIf="item.grouping === 'null'">{{item.atlet_name}}</td>
+                    <td *ngIf="item.grouping === 'null'">{{item.kontingen}}</td>
+                    <td *ngIf="item.grouping === 'null'">{{item.kata_name}}</td>
 
-                                        <td *ngIf="item.grouping === 'null'">
-                                            <div class="dropdown">
-                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <button class="dropdown-item" routerLink="/edit-atlet"> <i
-                                                            class="fa fa-edit text-warning"></i>
-                                                        Edit </button>
-                                                    <button class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#deleteModal"> <i
-                                                            class="fa fa-trash text-danger"></i>
-                                                        Hapus </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <td *ngIf="item.grouping === 'null'"> <span
+                        class="badge badge-pill {{item.attribute === 'aka' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
+                    </td>
+
+                    <td *ngIf="item.grouping === 'null'">
+                      <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
+                        Mulai
+                      </button>
+                    </td>
+
+                    <td *ngIf="item.grouping === 'null'">
+                      <div class="dropdown">
+                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <button class="dropdown-item" routerLink="/edit-atlet"> <i class="fa fa-edit text-warning"></i>
+                            Edit </button>
+                          <button class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal"> <i
+                              class="fa fa-trash text-danger"></i>
+                            Hapus </button>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                        aria-labelledby="tabs-icons-text-2-tab">
-                        <div class="row">
-                            <div *ngFor="let ii = index; let groups of group" class="col-md-12 my-1">
-                                <h1 class="text-center text-capitalize text-white bg-primary rounded">
-                                  {{groups.group_name}}
-                                </h1>
-                                <div class="table-responsive shadow bg-white rounded mt-2">
-                                    <table class="table table-sm table-bordered table-striped table-striped">
-                                        <thead class="thead-light text-dark">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Kontingen</th>
-                                                <th>Kata</th>
-                                                <th>Atribut</th>
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let i = index; let item of atlet">
-                                                <td *ngIf="groups.group_name === item.grouping">{{i + 1}}</td>
-                                                <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
-                                                <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
-                                                <td *ngIf="groups.group_name === item.grouping">{{item.kata_name}}</td>
-
-                                                <td *ngIf="groups.group_name === item.grouping"><span
-                                                        class="badge badge-pill {{item.attribute === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
-                                                </td>
-                                                <td *ngIf="groups.group_name === item.grouping">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <button class="dropdown-item" routerLink="/edit-atlet"> <i
-                                                                    class="fa fa-edit text-warning"></i>
-                                                                Edit </button>
-                                                            <button class="dropdown-item" href="#" data-toggle="modal"
-                                                                data-target="#deleteModal"> <i
-                                                                    class="fa fa-trash text-danger"></i>
-                                                                Hapus </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
+          <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+            <div class="row">
+              <div *ngFor="let ii = index; let groups of group" class="col-md-12 my-2">
+                <div class="card card-shadow rounded">
+                  <div class="card-header bg-primary">
+                    <h1 class="text-center text-uppercase text-white">
+                      <b>
+                        {{groups.group_name}}
+                      </b>
+                    </h1>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive shadow bg-white rounded mt-2">
+                      <table class="table table-sm table-bordered table-striped table-striped">
+                        <thead class="thead-light text-dark">
+                          <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Kontingen</th>
+                            <th>Kata</th>
+                            <th>Atribut</th>
+                            <th class="text-center">Pertandingan</th>
+                            <th class="text-center">Opsi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let i = index; let item of atlet">
+                            <td *ngIf="groups.group_name === item.grouping">{{i + 1}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.kata_name}}</td>
+
+                            <td *ngIf="groups.group_name === item.grouping"><span
+                                class="badge badge-pill {{item.attribute === 'ao' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
+                            </td>
+                            <td *ngIf="groups.group_name === item.grouping">
+                              <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
+                                Mulai
+                              </button>
+                            </td>
+                            <td *ngIf="groups.group_name === item.grouping">
+                              <button class="btn btn-block btn-sm btn-outline-danger">
+                                Diskualifikasi
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-block btn-outline-primary">
+                      Hapus Group & Data
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
     </div>
