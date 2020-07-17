@@ -44,7 +44,7 @@ export class AtletService {
       this.http.post<any>(this.atletUrl + "add", atlet, {
         headers: new HttpHeaders().set("Authorization", this.token)
       }).subscribe((res) => {
-        resolve(res);
+        resolve(res);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
       }, (err) => {
         reject(err);
       })
@@ -60,6 +60,18 @@ export class AtletService {
       this.http.post<any>(this.atletUrl + "add-hth", atlet, {
         headers: new HttpHeaders().set("Authorization", this.token)
       }).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
+  getAtletByMatch() {
+    console.log('=== sebelum service')
+    return new Promise((resolve, reject) => {
+      this.http.get(this.atletUrl+'get-by-match')
+      .subscribe((res) => {
         resolve(res);
       }, (err) => {
         reject(err);

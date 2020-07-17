@@ -9,6 +9,7 @@ import { GlobalProvider } from './provider/global';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AtletService } from './provider/services/atlet';
 import { MatchService } from './provider/services/match';
+import { PointService } from './provider/services/points';
 
 const path = 'http://localhost:3000';
 const config: SocketIoConfig = { url: path, options: {} };
@@ -27,7 +28,8 @@ const config: SocketIoConfig = { url: path, options: {} };
     GlobalProvider,
     UserService,
     AtletService,
-    MatchService
+    MatchService,
+    PointService
   ],
   bootstrap: [AppComponent]
 })

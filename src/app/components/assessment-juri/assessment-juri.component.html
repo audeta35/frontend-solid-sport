@@ -9,7 +9,7 @@
         </div>
     </div>
 </div>
-<div class="row" style="margin-top: -80px;">
+<div class="row" style="margin-top: -80px;" *ngIf="!isLoading">
     <div class="col"></div>
     <div class="col-lg-8 col-md-10">
         <div class="row">
@@ -21,7 +21,7 @@
 
                                 <div class="text-center">
                                     <label>Nama Atlet </label>
-                                    <h1> Mujadilah sanawiyah hasanah</h1>
+                                    <h1> {{ userData.atlet_name }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -30,13 +30,13 @@
                             <div class="col-md-6">
                                 <div class="text-center">
                                     <label>Kontingen </label>
-                                    <h2>Cikarang</h2>
+                                    <h2>{{ userData.kontingen }}</h2>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center">
                                     <label>Tatami </label>
-                                    <h2 class="bg-danger text-white"> AKA</h2>
+                                    <h2 class="bg-danger text-white"> {{ userData.tatami }}</h2>
 
                                 </div>
                             </div>
@@ -60,34 +60,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nilai Teknik</label>
-                                    <select class="form-control">
-                                        <option>0</option>
-                                        <option>5.0</option>
-                                        <option>5.2</option>
-                                        <option>5.4</option>
-                                        <option>5.6</option>
-                                        <option>5.8</option>
-                                        <option>6.0</option>
-                                        <option>6.2</option>
-                                        <option>6.4</option>
-                                        <option>6.6</option>
-                                        <option>6.8</option>
-                                        <option>7.0</option>
-                                        <option>7.2</option>
-                                        <option>7.4</option>
-                                        <option>7.6</option>
-                                        <option>7.8</option>
-                                        <option>8.0</option>
-                                        <option>8.2</option>
-                                        <option>8.4</option>
-                                        <option>8.6</option>
-                                        <option>8.8</option>
-                                        <option>9.0</option>
-                                        <option>9.2</option>
-                                        <option>9.4</option>
-                                        <option>9.6</option>
-                                        <option>9.8</option>
-                                        <option>10.0</option>
+                                    <select (change)="_handlerPoint($event.target.value, 'techValue')" class="form-control">
+                                        <option id="pointOptions" [selected]="true" value="0" selected>0</option>
+                                        <option *ngFor="let option of optionValue">{{ option }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -97,34 +72,9 @@
 
                                 <div class="form-group">
                                     <label>Nilai Atletik</label>
-                                    <select class="form-control">
-                                        <option>0</option>
-                                        <option>5.0</option>
-                                        <option>5.2</option>
-                                        <option>5.4</option>
-                                        <option>5.6</option>
-                                        <option>5.8</option>
-                                        <option>6.0</option>
-                                        <option>6.2</option>
-                                        <option>6.4</option>
-                                        <option>6.6</option>
-                                        <option>6.8</option>
-                                        <option>7.0</option>
-                                        <option>7.2</option>
-                                        <option>7.4</option>
-                                        <option>7.6</option>
-                                        <option>7.8</option>
-                                        <option>8.0</option>
-                                        <option>8.2</option>
-                                        <option>8.4</option>
-                                        <option>8.6</option>
-                                        <option>8.8</option>
-                                        <option>9.0</option>
-                                        <option>9.2</option>
-                                        <option>9.4</option>
-                                        <option>9.6</option>
-                                        <option>9.8</option>
-                                        <option>10.0</option>
+                                    <select class="form-control" (change)="_handlerPoint($event.target.value, 'athValue')">
+                                        <option id="pointOptions2" [selected]="true" value="0" selected>0</option>
+                                        <option *ngFor="let option of optionValue" >{{ option }}</option>                                       
                                     </select>
                                 </div>
                             </div>
@@ -133,9 +83,9 @@
                         <div class="row">
 
                             <div class="col-md-12">
-                                <button class="btn btn-success btn-block"> <i class="fa fa-save"></i> Simpan
+                                <button class="btn btn-success btn-block" (click)="onSubmit()"> <i class="fa fa-save"></i> Simpan
                                 </button>
-                                <button class="btn btn-danger btn-block"> <i class="fa fa-power-off"></i> Keluar
+                                <button class="btn btn-danger btn-block" (click)="logout()"> <i class="fa fa-power-off"></i> Keluar
                                 </button>
                             </div>
                         </div>

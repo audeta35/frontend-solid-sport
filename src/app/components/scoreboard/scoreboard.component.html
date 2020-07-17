@@ -1,4 +1,4 @@
-<body style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
+<body *ngIf="!isLoading" style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
     <div class="container mt-2 mb-4">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
@@ -12,23 +12,25 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" *ngFor="let item of Data">
+    <div class="container-fluid" *ngIf="userData">
         <div class="col-md-12 col-lg-12 col-xl-12">
 
             <div class="row">
                 <div class="col-md-4">
-                    <div *ngIf="item.belt === 'AKA'" class="card bg-danger" style="width: 100%;height: auto;">
+                    <div *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="card bg-danger" style="width: 100%;height: auto;">
                         <div class="card-body">
                             <h1 class="text-center"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                {{item.score}}</h1>
+                                0    
+                            </h1>
                         </div>
                     </div>
-                    <div *ngIf="item.belt === 'AO'" class="card bg-primary" style="width: 100%;height: auto;">
+                    <div *ngIf="userData.attribute.toUpperCase() === 'AO'" class="card bg-primary" style="width: 100%;height: auto;">
                         <div class="card-body">
                             <h1 class="text-center"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                {{item.score}}</h1>
+                                0    
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -37,7 +39,7 @@
                         <div class="container">
                             <h1 class="mb-0"
                                 style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{item.username}}</h1>
+                                {{ userData.atlet_name }}</h1>
                         </div>
                     </div>
                     <div class="card">
@@ -45,7 +47,7 @@
 
                             <h1 class="mb-0"
                                 style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{item.kontingen}}
+                                {{ userData.kontingen }}
                             </h1>
                         </div>
                     </div>
@@ -54,7 +56,7 @@
 
                             <h1 class="mb-0"
                                 style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{item.kata}}
+                                {{ userData.kata_name }}
                             </h1>
                         </div>
                     </div>
@@ -91,6 +93,7 @@
                                 <th>J-5 <span class="dot bg-success"></span></th>
                                 <th>J-6 <span class="dot bg-success"></span></th>
                                 <th>J-7 <span class="dot bg-success"></span></th>
+                                <th>FAC</th>
                                 <th>JUMLAH</th>
                                 <th>HASIL</th>
                             </tr>
@@ -116,6 +119,7 @@
                                 <th>J-5 <span class="dot bg-success"></span></th>
                                 <th>J-6 <span class="dot bg-success"></span></th>
                                 <th>J-7 <span class="dot bg-success"></span></th>
+                                <th>FAC</th>
                                 <th>JUMLAH</th>
                                 <th>HASIL</th>
                             </tr>
@@ -123,29 +127,12 @@
                         <tbody>
                             <tr>
                                 <th style="color: #fff;font-weight: 700;">TEKNIK</th>
-
-                                <td>12</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td *ngFor="let points of pointList">{{ points.technicalValue !== 'false' ? points.technicalValue : points.FAC_TECH }}</td>
                             </tr>
                             <tr>
 
-                                <th style="color: #fff;font-weight: 700;">ATLETIK</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <th style="color: #fff;font-weight: 700;">ATLETIK</th>                        
+                                <td *ngFor="let points of pointList">{{ points.athleticValue !== 'false' ? points.athleticValue : points.FAC_ATH }}</td>
                             </tr>
                         </tbody>
                     </table>

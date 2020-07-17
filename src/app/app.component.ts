@@ -84,6 +84,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    console.log(this.user)
     this.userService.logOut(this.user)
       .then((res) => {
         sessionStorage.clear();
