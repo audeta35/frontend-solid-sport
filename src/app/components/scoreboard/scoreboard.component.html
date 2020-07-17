@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <h1 class="text-center"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                0    
+                                {{ finalScore }}   
                             </h1>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <h1 class="text-center"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                0    
+                                {{ finalScore }}    
                             </h1>
                         </div>
                     </div>
@@ -127,12 +127,48 @@
                         <tbody>
                             <tr>
                                 <th style="color: #fff;font-weight: 700;">TEKNIK</th>
-                                <td *ngFor="let points of pointList">{{ points.technicalValue !== 'false' ? points.technicalValue : points.FAC_TECH }}</td>
+                                <td *ngFor="let points of pointList">
+                                    <div *ngIf="points.technical_result_status === 1 ">
+                                        {{ points.technical_result }} 
+                                    </div>
+
+                                    <div *ngIf="!points.technical_result_status && !points.noColor" style="text-decoration: line-through; color: red;">                                    
+                                        {{ points.technical_result > -1 
+                                           ? points.technical_result 
+                                           : points.FAC_TECH || points.technical_point_result || points.technical_point
+                                        }}
+                                    </div>
+
+                                    
+                                    <div *ngIf="!points.technical_result_status && points.noColor">
+                                        {{ points.athletic_result > -1 
+                                            ? points.athletic_result 
+                                            : points.FAC_TECH || points.technical_point_result || points.technical_point
+                                        }}
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
 
                                 <th style="color: #fff;font-weight: 700;">ATLETIK</th>                        
-                                <td *ngFor="let points of pointList">{{ points.athleticValue !== 'false' ? points.athleticValue : points.FAC_ATH }}</td>
+                                <td *ngFor="let points of pointList">
+                                    <div *ngIf="points.athletic_result_status === 1">
+                                        {{ points.athletic_result }} 
+                                    </div>
+                                    <div *ngIf="!points.athletic_result_status && !points.noColor" style="text-decoration: line-through; color: red;">
+                                        {{ points.athletic_result > -1 
+                                            ? points.athletic_result 
+                                            : points.FAC_ATH || points.athletic_point_result || points.athletic_point
+                                        }}
+                                    </div>
+
+                                    <div *ngIf="!points.athletic_result_status && points.noColor">
+                                        {{ points.athletic_result > -1 
+                                            ? points.athletic_result 
+                                            : points.FAC_ATH || points.athletic_point_result || points.athletic_point
+                                        }}
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

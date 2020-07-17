@@ -13,6 +13,7 @@ export class ScoreboardComponent implements OnInit {
   userData: any;
   pointList: any = [];
   atlet: any;
+  finalScore: number = 0;
   Data = [
     {
       username: 'Muhammad deta sandi bima',
@@ -43,20 +44,39 @@ export class ScoreboardComponent implements OnInit {
       this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
       .then(response => {
         console.log('=== response', response)
-        // for(let i = 0; i < 10; i++) {
-        //   if(i == 7) {
-        //     this.pointList.push({
-        //       FAC_ATH: 0.3,
-        //       FAC_TECH: 0.7
-        //     })
-        //   } else {
+        this.pointList = response['result']['athlete_point_list'];
+        this.finalScore = response['result']['total_point'];
+
+        for(let i = this.pointList.length; i < 10; i++) {
+          console.log(i)
+          if(i === 7) {
+            this.pointList.push({
+              FAC_ATH: 0.3,
+              FAC_TECH: 0.7,
+              noColor: true
+            })
+          } else if(i < 7){
             
-        //     this.pointList.push({
-        //       technicalValue: 0,
-        //       athleticValue: 0
-        //     })
-        //   }
-        // }
+            this.pointList.push({
+              technicalValue: 0,
+              athleticValue: 0
+            })
+          } else if(i > 7 && i < 9) {
+            this.pointList.push({
+              technical_point_result: response['result']['technical_point_result'],
+              athletic_point_result: response['result']['athletic_point_result'],
+              noColor: true,
+            })
+          } else {
+            this.pointList.push({
+
+              technical_point: response['result']['technical_point'],
+              athletic_point: response['result']['athletic_point'],
+              noColor: true
+            })
+          }
+        }
+        console.log(this.pointList)
         this.isLoading = false;
       })
       .catch(error => {
