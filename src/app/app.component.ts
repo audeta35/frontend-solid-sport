@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
       })
       if (this.path === "scoreboard") {
         this.loginPage = false;
-      } if (this.path === "list-score") {
+      } else if (this.path === "list-score") {
         this.loginPage = false;
       } else {
         this.loginPage = true;
@@ -60,7 +60,6 @@ export class AppComponent implements OnInit {
     } else {
 
       this.loginPage = false;
-
       if (this.path === "login-admin") {
 
       }
