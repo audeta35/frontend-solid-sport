@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./recap.component.css']
 })
 export class RecapComponent implements OnInit {
-  Data = [
+  Data:any = [
     {
       username: 'ucup',
       type: 'solo',
@@ -34,6 +34,7 @@ export class RecapComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   exportexcel(): void {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
