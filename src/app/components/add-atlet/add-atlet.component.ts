@@ -137,7 +137,7 @@ export class AddAtletComponent implements OnInit {
        title: `Data Atlet berhasil di tambah`,
      });
      console.log(res);
-    //  this.router.navigate(['file-atlet'])
+     this.router.navigate(['file-atlet'])
    })
    .catch((err) => {
      Toast.fire({
