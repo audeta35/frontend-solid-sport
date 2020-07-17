@@ -1,0 +1,56 @@
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Rekap data</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -80px;">
+    <div class="col"></div>
+    <div class="col-lg-11 col-md-11">
+        <button class="btn btn-outline-success" (click)="exportexcel()"> <i class="fa fa-download"></i>
+            Excel</button>
+        <button class="btn btn-outline-danger" printSectionId="print-section" styleSheetFile="assets/css/argon.css"
+            ngxPrint> <i class="fa fa-print"></i> Print</button>
+        <div class="table-responsive bg-white rounded mt-2">
+            <div id="print-section">
+                <table class="table table-borderless" id="excel-table">
+                    <thead class="thead-light text-dark">
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Jenis pertandingan</th>
+                            <th class="text-center">Kata</th>
+                            <th class="text-center">Tatami</th>
+                            <th class="text-center">Atribut</th>
+                            <th class="text-center">Nilai teknik</th>
+                            <th class="text-center">Nilai atletik</th>
+                            <th class="text-center">Total point</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i = index;let item of Data | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <th class="text-center">{{i + 1}}</th>
+                            <td class="text-center">{{item.username}}</td>
+                            <td class="text-center">{{item.type}}</td>
+                            <td class="text-center">{{item.kata}}</td>
+                            <td class="text-center">{{item.tatami}}</td>
+                            <td class="text-center"> <span
+                                    class="badge badge-pill {{item.atribut === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.atribut}}</span>
+                            </td>
+                            <td class="text-center">{{item.teknik}}</td>
+                            <td class="text-center">{{item.atletik}}</td>
+                            <th class="text-center">{{item.point}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col"></div>
+</div>

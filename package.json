@@ -20,10 +20,14 @@
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
     "@angular/service-worker": "~9.0.7",
+    "file-saver": "^2.0.2",
+    "ngx-pagination": "^5.0.0",
+    "ngx-print": "^1.2.0-beta.5",
     "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.15.3",
     "tslib": "^1.10.0",
+    "xlsx": "^0.16.4",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
