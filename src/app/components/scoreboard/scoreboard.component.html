@@ -1,9 +1,10 @@
-<body style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;">
-    <div class="container mt-2">
+<body style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
+    <div class="container mt-2 mb-4">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 col-lg-12 col-xl-12">
 
-                <h1 class="pt-3 text-center" style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
+                <h1 class="pt-3 text-center"
+                    style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
                     <strong> Kata Perorangan kadet
                         Putra</strong>
                 </h1>
@@ -12,55 +13,59 @@
         </div>
     </div>
     <div class="container-fluid" *ngFor="let item of Data">
-        <div class="row">
-            <div class="col-md-4">
-                <div *ngIf="item.belt === 'AKA'" class="card bg-danger"
-                    style="width: 100%;height: 330px;border-radius: 20px;">
-                    <div class="card-body">
-                        <h1 class="text-center" style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                            {{item.score}}</h1>
-                    </div>
-                </div>
-                <div *ngIf="item.belt === 'AO'" class="card bg-primary"
-                    style="width: 100%;height: 330px;border-radius: 20px;">
-                    <div class="card-body">
-                        <h1 class="text-center" style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                            {{item.score}}</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8 mt-4">
-                <div class="card">
-                    <div class="container">
-                        <h1 class="mb-0"
-                            style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                            {{item.username}}</h1>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container">
+        <div class="col-md-12 col-lg-12 col-xl-12">
 
-                        <h1 class="mb-0"
-                            style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                            {{item.kontingen}}
-                        </h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div *ngIf="item.belt === 'AKA'" class="card bg-danger" style="width: 100%;height: auto;">
+                        <div class="card-body">
+                            <h1 class="text-center"
+                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
+                                {{item.score}}</h1>
+                        </div>
+                    </div>
+                    <div *ngIf="item.belt === 'AO'" class="card bg-primary" style="width: 100%;height: auto;">
+                        <div class="card-body">
+                            <h1 class="text-center"
+                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
+                                {{item.score}}</h1>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="container">
+                <div class="col-md-8 mt-4">
+                    <div class="card">
+                        <div class="container">
+                            <h1 class="mb-0"
+                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                                {{item.username}}</h1>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="container">
 
-                        <h1 class="mb-0"
-                            style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                            {{item.kata}}
-                        </h1>
+                            <h1 class="mb-0"
+                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                                {{item.kontingen}}
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="container">
+
+                            <h1 class="mb-0"
+                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                                {{item.kata}}
+                            </h1>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="container-fluid" *ngFor="let item of Data">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 col-lg-12 col-xl-12">
 
                 <div class="table-responsive">
 
