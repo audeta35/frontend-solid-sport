@@ -18,7 +18,8 @@ export class GlobalProvider {
 
     const config = {
       "juriUrl" : path + "users/",
-      "atletUrl" : path + "atlet/"
+      "atletUrl" : path + "atlet/",
+      "matchUrl": path + "match/"
     }
 
     return config[url];
