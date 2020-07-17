@@ -163,7 +163,7 @@ export class LoginAdminComponent implements OnInit {
 
             sessionStorage.setItem('users', JSON.stringify(res.result[0]))
             sessionStorage.setItem('token', JSON.stringify(res.token))
-            window.location.replace('/index');
+            window.location.replace('/assessment-juri');
 
           }).catch((err: any) => {
             console.log(err);
