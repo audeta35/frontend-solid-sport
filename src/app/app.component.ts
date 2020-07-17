@@ -73,6 +73,11 @@ export class AppComponent implements OnInit {
     }
   }
   ngOnInit(): void { }
+
+  scoreboard() {
+    window.open('/scoreboard');
+  }
+
   logout() {
     this.userService.logOut(this.user)
       .then((res) => {
