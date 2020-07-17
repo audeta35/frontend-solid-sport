@@ -71,15 +71,10 @@
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" (click)="scoreboard()">
               <i class="ni ni-tv-2 text-primary"></i>
               <span class="nav-link-text">Papan skor</span>
-            </a>
-          </li>
-          <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link">
-              <i class="fa fa-street-view text-primary"></i>
-              <span class="nav-link-text">Hasil Tanding</span>
+              <i class="fa fa-external-link-alt text-right text-muted"></i>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
