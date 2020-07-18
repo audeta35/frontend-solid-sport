@@ -14,8 +14,8 @@ export class GlobalProvider {
   ){}
 
   config(url: string) {
-    let path = "http://localhost:3000/";
-
+    // let path = "http://localhost:3000/";
+    let path = 'http://192.168.1.11:3000/';
     const config = {
       "juriUrl" : path + "users/",
       "atletUrl" : path + "atlet/",

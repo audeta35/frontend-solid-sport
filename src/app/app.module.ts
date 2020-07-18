@@ -13,7 +13,8 @@ import { PointService } from './provider/services/points';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-const path = 'http://localhost:3000';
+// const path = 'http://localhost:3000';
+const path = 'http://192.168.1.11:3000';
 const config: SocketIoConfig = { url: path, options: {} };
 
 @NgModule({
