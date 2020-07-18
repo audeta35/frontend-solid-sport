@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "solidsport": "http-server ./dist"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@angular/service-worker": "~9.0.7",
     "angular-http-server": "^1.9.0",
     "file-saver": "^2.0.2",
+    "http-server": "^0.12.3",
     "ngx-pagination": "^5.0.0",
     "ngx-print": "^1.2.0-beta.5",
     "ngx-socket-io": "^3.0.1",
