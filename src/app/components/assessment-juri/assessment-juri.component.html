@@ -9,7 +9,7 @@
         </div>
     </div>
 </div>
-<div class="row" style="margin-top: -80px;" *ngIf="!isLoading">
+<div class="row" style="margin-top: -80px;">
     <div class="col"></div>
     <div class="col-lg-8 col-md-10">
         <div class="row">
@@ -74,7 +74,7 @@
                                     <label>Nilai Atletik</label>
                                     <select class="form-control" (change)="_handlerPoint($event.target.value, 'athValue')">
                                         <option id="pointOptions2" [selected]="true" value="0" selected>0</option>
-                                        <option *ngFor="let option of optionValue" >{{ option }}</option>                                       
+                                        <option *ngFor="let option of optionValue" >{{ option }}</option>
                                     </select>
                                 </div>
                             </div>
