@@ -10,27 +10,31 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AtletService } from './provider/services/atlet';
 import { MatchService } from './provider/services/match';
 import { PointService } from './provider/services/points';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const path = 'http://localhost:3000';
 const config: SocketIoConfig = { url: path, options: {} };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production,
+      registrationStrategy: 'registerImmediately',
+    }),
   ],
   providers: [
     GlobalProvider,
     UserService,
     AtletService,
     MatchService,
-    PointService
+    PointService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
