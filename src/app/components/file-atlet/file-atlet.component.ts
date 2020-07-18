@@ -48,9 +48,9 @@ export class FileAtletComponent implements OnInit {
       .updateMatch(id)
       .then((res) => {
         console.log(res);
-        this.socket.emit("scoreboard")
-        this.socket.emit('result-admin');
-        this.socket.emit('result-juri');
+        this.socket.emit("reset-scoreboard")
+        this.socket.emit('reset-admin');
+        this.socket.emit('reset-juri');
         this.getAllAtlet();
       })
       .catch((err) => {
