@@ -3,6 +3,7 @@ import { UserService } from './provider/services/users';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
+import { SwPush } from '@angular/service-worker';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -14,17 +15,22 @@ const Toast = Swal.mixin({
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   pathname = window.location.pathname;
   loginPage: boolean;
   title = 'fss';
-  path = this.pathname.split("/")[1];
+  path = this.pathname.split('/')[1];
   user: any = {};
   jury: any = [];
 
-  constructor(private userService: UserService, private routes: Router, private socket: Socket) {
+  constructor(
+    private userService: UserService,
+    private routes: Router,
+    private socket: Socket,
+    private swPush: SwPush
+  ) {
     if (sessionStorage.getItem('token')) {
       this.user = JSON.parse(sessionStorage.getItem('users'));
       this.user.name = this.user.name.toUpperCase();
@@ -33,20 +39,26 @@ export class AppComponent implements OnInit {
       this.socket.emit('login', this.user);
 
       this.socket.on('getStatus', () => {
-        userService.getUsers().then((res: any) => {
-          this.jury = res.result;
-        }).catch((err) => {
-          console.warn(err);
-        })
-      })
+        userService
+          .getUsers()
+          .then((res: any) => {
+            this.jury = res.result;
+          })
+          .catch((err) => {
+            console.warn(err);
+          });
+      });
 
       this.socket.on('getStatus2', () => {
-        userService.getUsers().then((res: any) => {
-          this.jury = res.result;
-        }).catch((err) => {
-          console.warn(err);
-        })
-      })
+        userService
+          .getUsers()
+          .then((res: any) => {
+            this.jury = res.result;
+          })
+          .catch((err) => {
+            console.warn(err);
+          });
+      });
 
       if (this.path === 'scoreboard') {
         this.loginPage = false;
@@ -56,25 +68,17 @@ export class AppComponent implements OnInit {
         this.loginPage = true;
       }
 
-      if (this.path === "") {
+      if (this.path === '') {
         this.routes.navigate(['/index']);
       }
-
-    }
-
-    else if (this.path === "scoreboard") {
+    } else if (this.path === 'scoreboard') {
       this.loginPage = false;
-    }
-    else if (this.path === "list-score") {
+    } else if (this.path === 'list-score') {
       this.loginPage = false;
-    }
-    else {
-
+    } else {
       this.loginPage = false;
-      if (this.path === "login-admin") {
-
-      }
-      else {
+      if (this.path === 'login-admin') {
+      } else {
         Toast.fire({
           icon: 'error',
           title: 'Harap login terlebih dahulu',
@@ -83,15 +87,16 @@ export class AppComponent implements OnInit {
       }
     }
   }
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   scoreboard() {
     window.open('/scoreboard');
   }
 
   logout() {
-    console.log(this.user)
-    this.userService.logOut(this.user)
+    console.log(this.user);
+    this.userService
+      .logOut(this.user)
       .then((res) => {
         sessionStorage.clear();
         window.location.replace('/login-admin');
@@ -101,6 +106,6 @@ export class AppComponent implements OnInit {
           icon: 'error',
           title: 'Proses Logout Gagal',
         });
-      })
+      });
   }
 }
