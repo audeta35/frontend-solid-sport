@@ -12,6 +12,7 @@ export class ScoreboardComponent implements OnInit {
   isLoading: boolean = false;
   userData: any;
   pointList: any = [];
+  tmpPointList: any = [];
   atlet: any;
   finalScore: number = 0;
   Data = [
@@ -34,10 +35,20 @@ export class ScoreboardComponent implements OnInit {
           console.log('========', this.userData);
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
             .then(response => {
-              console.log('=== response', response)
-              this.pointList = response['result']['athlete_point_list'];
-              this.finalScore = response['result']['total_point'];
+              console.log('=== response point for scoreboard', response)
+              this.pointList = response['result']['athlete_point_list'] || response['result'] ;
+              this.finalScore = response['result']['total_point'] || '-';
 
+              // for(let i in this.pointList) {
+              //   if(this.pointList[i].athletic_result_status === 1) {
+              //     this.pointList[this.pointList[i].id_user - 1].noColor = false;
+              //   } else {
+              //     this.pointList[i].noColor = true;
+              //   }
+              // }
+              this.tmpPointList = response['result']['athlete_point_list'] ? [...response['result']['athlete_point_list']] : [...response['result']] ;
+              console.log('-----', this.pointList)
+              console.log('===tmp1', this.tmpPointList)
               for (let i = this.pointList.length; i < 10; i++) {
                 console.log(i)
                 if (i === 7) {
@@ -50,23 +61,51 @@ export class ScoreboardComponent implements OnInit {
 
                   this.pointList.push({
                     technicalValue: 0,
-                    athleticValue: 0
+                    athleticValue: 0,
+                    noColor: true
                   })
                 } else if (i > 7 && i < 9) {
                   this.pointList.push({
-                    technical_point_result: response['result']['technical_point_result'],
-                    athletic_point_result: response['result']['athletic_point_result'],
+                    technical_point_result: response['result']['technical_point_result'] || '0',
+                    athletic_point_result: response['result']['athletic_point_result'] || '0',
                     noColor: true,
                   })
                 } else {
                   this.pointList.push({
 
-                    technical_point: response['result']['technical_point'],
-                    athletic_point: response['result']['athletic_point'],
+                    technical_point: response['result']['technical_point'] || '0',
+                    athletic_point: response['result']['athletic_point'] || '0',
                     noColor: true
                   })
                 }
               }
+
+              console.log('===tmp2', this.tmpPointList)
+              for(let i in this.pointList) {
+                for(let j in this.tmpPointList) {
+                  if(this.tmpPointList.length === 7) {
+                    // this.pointList[this.tmpPointList[j].id_user - 1] = this.tmpPointList[j]; 
+                    // this.pointList[this.tmpPointList[j].id_user - 1].noColor = true;
+                    // if(parseInt(j) === parseInt(this.tmpPointList[j].id_user) - 1) {
+                    //   continue
+                    // }
+
+                  } else {
+                    this.pointList[this.tmpPointList[j].id_user - 1] = this.tmpPointList[j]; 
+                    this.pointList[this.tmpPointList[j].id_user - 1].noColor = true;
+                    if(parseInt(j) === parseInt(this.tmpPointList[j].id_user) - 1) {
+                      continue
+                    }
+                    this.pointList[j] = {
+                      technicalValue: 0,
+                      athleticValue: 0,
+                      noColor: true
+                    };
+                  }
+                }
+
+              }
+              // this.pointList[i]
               console.log(this.pointList)
               this.isLoading = false;
             })
@@ -105,6 +144,6 @@ export class ScoreboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-
+    console.log()
   }
 }
