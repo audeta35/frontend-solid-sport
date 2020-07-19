@@ -13,9 +13,10 @@ import { PointService } from './provider/services/points';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-// const path = 'http://localhost:3000';
+const path = 'http://localhost:3000';
 // const path = 'http://192.168.10.116:3000';
-let path = "http://solidapi.bisapastibisa.com";
+// let path = "http://solidapi.bisapastibisa.com";
+
 const config: SocketIoConfig = { url: path, options: {} };
 
 @NgModule({
