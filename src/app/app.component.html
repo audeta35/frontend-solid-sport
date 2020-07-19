@@ -65,6 +65,12 @@
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/import-atlet">
+              <i class="fa fa-user-circle text-primary"></i>
+              <span class="nav-link-text">Import Atlet</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
               <i class="fa fa-table text-primary"></i>
               <span class="nav-link-text">Data Atlet</span>
@@ -89,7 +95,7 @@
               <span class="nav-link-text">Penilaian juri</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/recap">
               <i class="fa fa-folder-open text-primary"></i>
               <span class="nav-link-text">Rekap data</span>
