@@ -40,4 +40,4 @@ const config: SocketIoConfig = { url: path, options: {} };
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
