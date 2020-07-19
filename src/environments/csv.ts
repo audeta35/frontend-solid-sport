@@ -3,4 +3,5 @@ export class CSVRecord {
   public kontingen: any;
   public attribute: any;
   public kata: any;
+  public group: any;
 }
