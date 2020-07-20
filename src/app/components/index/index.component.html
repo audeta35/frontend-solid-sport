@@ -2,12 +2,106 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="row align-items-center py-4">
-                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Index</p>
-
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">
+                  Solidsport Organizer
+                </p>
             </div>
             <!-- Card stats -->
 
         </div>
     </div>
+
+    <div class="container" style="margin-top: -20px;">
+      <div class="jumbotron">
+        <h1>
+          Salam Karate Oss!
+        </h1>
+        <hr class="my-4">
+        <p>
+          untuk pengaturan tatami dan juga kelas yang sedang dipertandingkan silahkan tekan tombol Konfigurasi.
+        </p>
+        <p class="lead">
+          <button class="btn btn-primary btn-lg" (click)="configBtn()">Konfigurasi</button>
+        </p>
+      </div>
+
+      <div *ngIf="listTatami !== 0" class="alert alert-primary" role="alert">
+        <i class="fa fa-info-circle mr-1"></i>
+        anda sudah menambahkan <b>tatami</b> & <b>kelas</b> sebelumnya
+        <a href="#" class="alert-link">klik disini</a> untuk melihat data konfigurasi.
+      </div>
+
+      <div *ngIf="config" class="card mb-5 card-shadow rounded">
+        <div class="card-header bg-primary">
+          <h1 class="text-white">
+            <b>Konfigurasi</b>
+            <button class="btn btn-outline-white float-right" (click)="addForm()">
+              Tambah Formulir
+            </button>
+          </h1>
+        </div>
+
+        <div class="card-body">
+          <div *ngIf="!tatami.length">
+            <h1 class="text-muted text-center my-3">
+              <b>
+                Belum Ada Data Konfigurasi
+              </b>
+            </h1>
+          </div>
+          <div *ngIf="tatami.length" class="table-responsive border">
+            <table class="table table-borderless table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Tatami</th>
+                  <th>Kelas</th>
+                  <th>Menu</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let i = index; let tami of tatami">
+                <tr>
+                  <td>
+                    <b>
+                      {{i + 1}}
+                    </b>
+                  </td>
+                  <td>
+                    <input type="text" placeholder="Masukan nama tatami / arena" class="form-control form-control-sm" [(ngModel)]="tami.name" [ngModelOptions]="{standalone: true}">
+                  </td>
+                  <td>
+                    <input type="text" placeholder="Masukan kelas yang di pertandingkan" class="form-control form-control-sm" [(ngModel)]="tami.class" [ngModelOptions]="{standalone: true}">
+                  </td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-sm" (click)="delForm(i)">
+                      <i class="fa fa-times"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngIf="tatami.length" class="card-footer">
+          <div *ngIf="!isLoading">
+            <button class="btn btn-block btn-primary" (click)="submitForm()">
+              Simpan Konfigurasi
+            </button>
+          </div>
+
+          <div *ngIf="isLoading">
+            <button class="btn btn-block btn-primary" disabled>
+              Proses...
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="!tatami.length" class="card-footer">
+          <button class="btn btn-block btn-primary disabled" (click)="alert()">
+            Simpan Konfigurasi
+          </button>
+        </div>
+      </div>
+    </div>
 </div>
-<p>Index works</p>
