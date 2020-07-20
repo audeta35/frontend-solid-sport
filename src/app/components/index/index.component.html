@@ -25,10 +25,10 @@
         </p>
       </div>
 
-      <div *ngIf="listTatami !== 0" class="alert alert-primary" role="alert">
+      <div *ngIf="listTatami !== 0" class="alert alert-primary rounded shadow" role="alert">
         <i class="fa fa-info-circle mr-1"></i>
-        anda sudah menambahkan <b>tatami</b> & <b>kelas</b> sebelumnya
-        <a href="#" class="alert-link">klik disini</a> untuk melihat data konfigurasi.
+        anda sudah menambahkan <b>{{listTatami}} tatami</b> & <b>kelas</b>,
+        <a href="#" class="alert-link" routerLink="/file-tatami">klik disini</a> untuk melihat data arena pertandingan.
       </div>
 
       <div *ngIf="config" class="card mb-5 card-shadow rounded">

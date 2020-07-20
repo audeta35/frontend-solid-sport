@@ -79,6 +79,7 @@ export class IndexComponent implements OnInit {
         this.getTatami();
         this.tatami = [];
         this.isLoading = !this.isLoading;
+        this.config = !this.config;
       })
       .catch((err) => {
         Toast.fire({
@@ -89,6 +90,7 @@ export class IndexComponent implements OnInit {
         this.getTatami();
         this.tatami = [];
         this.isLoading = !this.isLoading;
+        this.config = !this.config;
       })
     }, 500)
   }
