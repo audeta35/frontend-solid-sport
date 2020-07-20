@@ -89,22 +89,30 @@
                       </div>
 
                       <div *ngIf="item.status === 1">
-                        <button (click)="finishMatch(item.id_atlet)" class="btn btn-block btn-sm btn-outline-info">
+                        <button (click)="finishMatch(item)" class="btn btn-block btn-sm btn-outline-info">
                           Selesaikan
                         </button>
                       </div>
 
                       <div *ngIf="item.status === 2">
-                        <button disabled (click)="finishMatch(item.id_atlet)" class="btn btn-block btn-sm btn-dark">
+                        <button disabled (click)="finishMatch(item)" class="btn btn-block btn-sm btn-dark">
                           Sudah Tanding
                         </button>
                       </div>
                     </td>
 
                     <td *ngIf="item.grouping === 'null'">
-                      <button class="btn btn-sm btn-outline-danger" (click)="deleteAtlet(item)">
-                        Diskualifikasi
-                      </button>
+                      <div *ngIf="item.status === 1; else enable">
+                        <button class="btn btn-block btn-sm btn-outline-danger" (click)="isMatch(item)">
+                          Diskualifikasi
+                        </button>
+                      </div>
+
+                      <ng-template #enable>
+                        <button class="btn btn-block btn-sm btn-danger" (click)="deleteAtlet(item)">
+                          Diskualifikasi
+                        </button>
+                      </ng-template>
                     </td>
                   </tr>
                 </tbody>
@@ -154,21 +162,29 @@
                               </div>
 
                               <div *ngIf="item.status === 1">
-                                <button (click)="finishMatch(item.id_atlet)" class="btn btn-block btn-sm btn-outline-info">
+                                <button (click)="finishMatch(item)" class="btn btn-block btn-sm btn-outline-info">
                                   Selesaikan
                                 </button>
                               </div>
 
                               <div *ngIf="item.status === 2">
-                                <button disabled (click)="finishMatch(item.id_atlet)" class="btn btn-block btn-sm btn-dark">
+                                <button disabled (click)="finishMatch(item)" class="btn btn-block btn-sm btn-dark">
                                   Sudah Tanding
                                 </button>
                               </div>
                             </td>
                             <td *ngIf="groups.group_name === item.grouping">
-                              <button class="btn btn-block btn-sm btn-outline-danger" (click)="deleteAtlet(item)">
-                                Diskualifikasi
-                              </button>
+                              <div *ngIf="item.status === 1; else enable">
+                                <button class="btn btn-block btn-sm btn-outline-danger" (click)="isMatch(item)">
+                                  Diskualifikasi
+                                </button>
+                              </div>
+
+                              <ng-template #enable>
+                                <button class="btn btn-block btn-sm btn-danger" (click)="deleteAtlet(item)">
+                                  Diskualifikasi
+                                </button>
+                              </ng-template>
                             </td>
                           </tr>
                         </tbody>
