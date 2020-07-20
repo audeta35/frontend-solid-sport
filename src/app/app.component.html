@@ -41,6 +41,12 @@
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-admin">
+              <i class="fa fa-flag-checkered text-primary"></i>
+              <span class="nav-link-text">Arena Pertandingan</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-admin">
               <i class="fa fa-user-lock text-primary"></i>
               <span class="nav-link-text">Admin</span>
             </a>
