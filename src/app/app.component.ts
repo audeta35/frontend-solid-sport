@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
   user: any = {};
   jury: any = [];
 
+  year: any = new Date().getFullYear();
+
   constructor(
     private userService: UserService,
     private routes: Router,
