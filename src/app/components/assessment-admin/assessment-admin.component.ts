@@ -11,7 +11,16 @@ import { PointService } from 'src/app/provider/services/points';
 export class AssessmentAdminComponent implements OnInit {
   isLoading: boolean = false;
   userData: any = {}  ;
-  optionValue: any = [];
+  optionValue: any = [{
+    data: [{
+      point: '',
+      selectedAthletic: false,
+      selectedTechnical: false,
+    }],
+    point: '',
+    userId: 1
+  }];
+  originalOptionValue: any = [];
   userPoint: any = [];
 
   Data = [
@@ -42,41 +51,34 @@ export class AssessmentAdminComponent implements OnInit {
     this.socket.on("data-admin", () => {
       this.atletService.getAtletByMatch()
         .then((res: any) => {
-          console.log(res)
           this.userData = res['result'][0];
-          console.log(this.userData);
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
             .then((response: any) => {
               this.userPoint = response['result']['athlete_point_list'];
-              console.log('=== response', this.userPoint)
-              for (let i = 5.0; i < 10; i = i + 0.2) {
-                let point = i.toFixed(1);
-                this.optionValue.push({
-                  point: point
+              for(let i = 0; i < this.userPoint.length; i++) {
+                this.optionValue.push({ 
+                  userId: this.userPoint[i].id_user + 1,
+                  data: []
                 });
-                for (let j in this.userPoint) {
-                  if (this.userPoint[j].technical_result.toFixed(1) === point) {
-                    console.log('=== nasuk teknik', point)
-                    this.optionValue[this.optionValue.length - 1].selectedTechnical = true;
-                    this.optionValue[this.optionValue.length - 1].userId = this.userPoint[j].id_user;
-
-                    if (this.userPoint[j].athletic_result.toFixed(1) === point) {
-                      this.optionValue[this.optionValue.length - 1].selectedAthletic = true;
-                      console.log('=== nasuk atletik', point)
+                
+                for (let j = 5.0; j < 10; j = j + 0.2) {
+                  let point = j.toFixed(1);
+                  this.optionValue[i].data.push({ point: point });
+                  if(this.userPoint[i].technical_result.toFixed(1) === point) {
+                    this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedTechnical = true;                    
+                    if(this.userPoint[i].athletic_result.toFixed(1) === point) {
+                      this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedAthletic = true;                                          
                     }
-                  } else if (this.userPoint[j].athletic_result.toFixed(1) === point) {
-                    this.optionValue[this.optionValue.length - 1].selectedAthletic = true;
-                    this.optionValue[this.optionValue.length - 1].userId = this.userPoint[j].id_user;
-                    console.log('=== nasuk teknik elseif', point)
-
-                    if (this.userPoint[j].technical_result.toFixed(1) === point) {
-                      this.optionValue[this.optionValue.length - 1].selectedTechnical = true;
+                  }
+                  if(this.userPoint[i].athletic_result.toFixed(1) === point) {
+                    this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedAthletic = true;                    
+                    if(this.userPoint[i].technical_result.toFixed(1) === point) {
+                      this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedTechnical = true;                                          
                     }
                   }
                 }
               }
 
-              console.log(this.optionValue, 'boooooo')
               this.isLoading = false;
             })
             .catch(error => {
@@ -89,7 +91,6 @@ export class AssessmentAdminComponent implements OnInit {
                   });
                 }
               }
-
               this.isLoading = false;
             })
         })

@@ -68,7 +68,6 @@ export class AtletService {
   }
 
   getAtletByMatch() {
-    console.log('=== sebelum service')
     return new Promise((resolve, reject) => {
       this.http.get(this.atletUrl+'get-by-match')
       .subscribe((res) => {
