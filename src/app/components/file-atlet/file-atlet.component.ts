@@ -17,6 +17,8 @@ const Toast = Swal.mixin({
   styleUrls: ['./file-atlet.component.css'],
 })
 export class FileAtletComponent implements OnInit {
+
+  isLoading: boolean = false;
   atlet: any = [];
   group: any = [];
 
@@ -36,7 +38,6 @@ export class FileAtletComponent implements OnInit {
       .then((res: any) => {
         this.atlet = res.result.atlet;
         this.group = res.result.group;
-        console.log(res.result);
       })
       .catch((err) => {
         console.log(err);
@@ -44,18 +45,40 @@ export class FileAtletComponent implements OnInit {
   }
 
   finishMatch(id) {
-    this.matchService
-      .updateMatch(id)
-      .then((res) => {
-        console.log(res);
-        this.socket.emit("reset-scoreboard")
-        this.socket.emit('reset-admin');
-        this.socket.emit('reset-juri');
-        this.getAllAtlet();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.isLoading = !this.isLoading;
+
+    setTimeout(() => {
+      this.matchService
+        .updateMatch(id)
+        .then((res) => {
+          this.atletService
+            .getAtlet()
+            .then((res: any) => {
+
+              Toast.fire({
+                icon: 'info',
+                title: `Atlet telah selesai bertanding`,
+              });
+
+              this.atlet = res.result.atlet;
+              this.group = res.result.group;
+              this.isLoading = !this.isLoading;
+            })
+            .catch((err) => {
+              console.log(err);
+              this.isLoading = !this.isLoading;
+            });
+
+          // this.socket.emit("reset-scoreboard")
+          // this.socket.emit('reset-admin');
+          // this.socket.emit('reset-juri');
+        })
+        .catch((err) => {
+          console.log(err);
+          this.isLoading = !this.isLoading;
+        });
+
+    }, 500)
   }
 
   startGroupMatch(atlet) {
@@ -74,5 +97,65 @@ export class FileAtletComponent implements OnInit {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  deleteAtlet(atlet) {
+
+    this.atletService.deleteAtlet(atlet.id_atlet)
+    .then((res:any) => {
+
+      Toast.fire({
+        icon: 'success',
+        title: `Atlet ${atlet.atlet_name} di diskualifikasi`,
+      });
+
+      this.atletService
+        .getAtlet()
+        .then((res: any) => {
+
+          this.atlet = res.result.atlet;
+          this.group = res.result.group;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+          // this.socket.emit("reset-scoreboard")
+          // this.socket.emit('reset-admin');
+          // this.socket.emit('reset-juri');
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  deleteGroup(group) {
+    this.atletService.deleteGroup(group.id)
+      .then((res: any) => {
+
+        Toast.fire({
+          icon: 'success',
+          title: `${group.group_name} berhasil dihapus`,
+        });
+
+        console.log(res);
+
+        this.atletService
+          .getAtlet()
+          .then((res: any) => {
+            this.atlet = res.result.atlet;
+            this.group = res.result.group;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        // this.socket.emit("reset-scoreboard")
+        // this.socket.emit('reset-admin');
+        // this.socket.emit('reset-juri');
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }

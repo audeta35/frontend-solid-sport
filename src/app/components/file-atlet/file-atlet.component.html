@@ -89,7 +89,7 @@
                       </div>
 
                       <div *ngIf="item.status === 1">
-                        <button (click)="finishMatch(item.it_atlet)" class="btn btn-block btn-sm btn-outline-info">
+                        <button (click)="finishMatch(item.id_atlet)" class="btn btn-block btn-sm btn-outline-info">
                           Selesaikan
                         </button>
                       </div>
@@ -102,19 +102,9 @@
                     </td>
 
                     <td *ngIf="item.grouping === 'null'">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <button class="dropdown-item" routerLink="/edit-atlet"> <i class="fa fa-edit text-warning"></i>
-                            Edit </button>
-                          <button class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteModal"> <i
-                              class="fa fa-trash text-danger"></i>
-                            Hapus </button>
-                        </div>
-                      </div>
+                      <button class="btn btn-sm btn-outline-danger" (click)="deleteAtlet(item)">
+                        Diskualifikasi
+                      </button>
                     </td>
                   </tr>
                 </tbody>
@@ -176,7 +166,7 @@
                               </div>
                             </td>
                             <td *ngIf="groups.group_name === item.grouping">
-                              <button class="btn btn-block btn-sm btn-outline-danger">
+                              <button class="btn btn-block btn-sm btn-outline-danger" (click)="deleteAtlet(item)">
                                 Diskualifikasi
                               </button>
                             </td>
@@ -186,7 +176,7 @@
                     </div>
                   </div>
                   <div class="card-footer">
-                    <button class="btn btn-block btn-outline-primary">
+                    <button class="btn btn-block btn-outline-primary" (click)="deleteGroup(groups)">
                       Hapus Group & Data
                     </button>
                   </div>
