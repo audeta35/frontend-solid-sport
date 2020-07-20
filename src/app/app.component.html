@@ -89,7 +89,7 @@
               <span class="nav-link-text">Penilaian</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="user.level === 0" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/assessment-juri">
               <i class="fa fa-edit text-primary"></i>
               <span class="nav-link-text">Penilaian juri</span>
@@ -226,6 +226,11 @@
   </nav>
   <!-- Header -->
   <!-- Header -->
-
-
   <router-outlet></router-outlet>
+
+  <footer *ngIf="loginPage" class="footer fixed-bottom ">
+    <div class="copyright text-center text-muted">
+      &copy; 2020 <a class="font-weight-bold">
+        <script>document.write(new Date().getFullYear())</script> Solid Sport Organizer</a>
+    </div>
+  </footer>

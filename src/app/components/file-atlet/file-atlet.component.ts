@@ -44,13 +44,21 @@ export class FileAtletComponent implements OnInit {
       });
   }
 
-  finishMatch(id) {
+  isMatch(atlet) {
+
+    Toast.fire({
+      icon: 'error',
+      title: `atlet sedang bertanding`,
+    });
+  }
+
+  finishMatch(atlet) {
     this.isLoading = !this.isLoading;
 
-    setTimeout(() => {
-      this.matchService
-        .updateMatch(id)
+    this.matchService
+        .updateMatch(atlet.id_atlet)
         .then((res) => {
+          setTimeout(() => {
           this.atletService
             .getAtlet()
             .then((res: any) => {
@@ -69,16 +77,15 @@ export class FileAtletComponent implements OnInit {
               this.isLoading = !this.isLoading;
             });
 
-          // this.socket.emit("reset-scoreboard")
-          // this.socket.emit('reset-admin');
-          // this.socket.emit('reset-juri');
+          this.socket.emit("reset-scoreboard")
+          this.socket.emit('reset-admin');
+          this.socket.emit('reset-juri');
+          }, 500)
         })
         .catch((err) => {
           console.log(err);
           this.isLoading = !this.isLoading;
         });
-
-    }, 500)
   }
 
   startGroupMatch(atlet) {
@@ -137,8 +144,6 @@ export class FileAtletComponent implements OnInit {
           icon: 'success',
           title: `${group.group_name} berhasil dihapus`,
         });
-
-        console.log(res);
 
         this.atletService
           .getAtlet()
