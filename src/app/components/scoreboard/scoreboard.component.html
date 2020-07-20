@@ -9,6 +9,8 @@
                     <strong> Kata Perorangan kadet
                         Putra</strong>
                 </h1>
+                <button class="btn btn-dark float-right" routerLink="/list-score">List score <i
+                        class="fa fa-angle-right"></i></button>
                 <hr>
             </div>
         </div>
@@ -21,9 +23,13 @@
                     <div *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="card bg-danger"
                         style="width: 100%;height: auto;">
                         <div class="card-body">
-                            <h1 class="text-center"
+                            <h1 class="text-center" *ngIf="finalScore"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                {{ finalScore }}
+                                 {{ finalScore }}
+                            </h1>
+                            <h1 class="text-center" *ngIf="!finalScore"
+                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
+                                 &nbsp;
                             </h1>
                         </div>
                     </div>
@@ -145,13 +151,14 @@
 
 
                                     <div *ngIf="!points.technical_result_status && points.noColor">
-                                        {{ points.athletic_result > -1 
-                                            ? points.athletic_result 
+                                        {{ points.technical_result > -1 
+                                            ? points.technical_result 
                                             : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
                                 </td>
                             </tr>
+                            <!-- ==================================== ATLETIK ========================================== -->
                             <tr>
 
                                 <th style="color: #fff;font-weight: 700;">ATLETIK</th>

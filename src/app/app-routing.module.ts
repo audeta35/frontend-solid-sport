@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'add-atlet', loadChildren: () => import('src/app/components/add-atlet/add-atlet.component.module').then(m => m.AddAtletComponentModule) },
   { path: 'import-atlet', loadChildren: () => import('src/app/components/import-atlet/import-atlet.component.module').then(m => m.ImportAtletComponentModule) },
   { path: 'add-atlet-hth', loadChildren: () => import('src/app/components/add-atlet-hth/add-atlet-hth.component.module').then(m => m.AddAtletHthComponentModule) },
+  { path: 'file-tatami', loadChildren: () => import('src/app/components/file-tatami/file-tatami.component.module').then(m => m.FileTatamiComponentModule) },
   { path: 'assessment-admin', loadChildren: () => import('src/app/components/assessment-admin/assessment-admin.component.module').then(m => m.AssessmentAdminComponentModule) },
   { path: 'assessment-juri', loadChildren: () => import('src/app/components/assessment-juri/assessment-juri.component.module').then(m => m.AssessmentJuriComponentModule) },
   { path: 'scoreboard', loadChildren: () => import('src/app/components/scoreboard/scoreboard.component.module').then(m => m.ScoreboardComponentModule) },
