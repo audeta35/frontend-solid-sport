@@ -12,6 +12,7 @@ import { MatchService } from './provider/services/match';
 import { PointService } from './provider/services/points';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { TatamiServices } from './provider/services/tatami';
 
 // const path = 'http://localhost:3000';
 // const path = 'http://192.168.10.116:3000';
@@ -37,6 +38,7 @@ const config: SocketIoConfig = { url: path, options: {} };
     AtletService,
     MatchService,
     PointService,
+    TatamiServices
   ],
   bootstrap: [AppComponent],
 })
