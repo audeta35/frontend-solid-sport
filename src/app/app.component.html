@@ -226,12 +226,9 @@
   </nav>
   <!-- Header -->
   <!-- Header -->
-  <div class="mb-5">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
-  </div>
-
-  <footer class="footer fixed-bottom ">
+  <footer *ngIf="loginPage" class="footer fixed-bottom ">
     <div class="copyright text-center text-muted">
       &copy; 2020 <a class="font-weight-bold">
         <script>document.write(new Date().getFullYear())</script> Solid Sport Organizer</a>
