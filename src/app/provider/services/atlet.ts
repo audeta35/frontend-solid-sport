@@ -68,7 +68,6 @@ export class AtletService {
   }
 
   getAtletByMatch() {
-    console.log('=== sebelum service')
     return new Promise((resolve, reject) => {
       this.http.get(this.atletUrl+'get-by-match')
       .subscribe((res) => {
@@ -76,6 +75,28 @@ export class AtletService {
       }, (err) => {
         reject(err);
       })
+    })
+  }
+
+  deleteAtlet(id) {
+    return new Promise((resolve, reject) => {
+      this.http.delete<any>(this.atletUrl + "del-atlet/" + id)
+      .subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
+  deleteGroup(id) {
+    return new Promise((resolve, reject) => {
+      this.http.delete<any>(this.atletUrl + "del-group/" + id)
+        .subscribe((res) => {
+          resolve(res)
+        }, (err) => {
+          reject(err);
+        })
     })
   }
 }

@@ -11,14 +11,14 @@ import { Injectable } from '@angular/core';
 export class GlobalProvider {
   constructor(
     public http: HttpClient
-  ){}
+  ) { }
 
   config(url: string) {
     let path = "https://solidapi.bisapastibisa.com/";
     // let path = 'http://192.168.1.11:3000/';
     const config = {
-      "juriUrl" : path + "users/",
-      "atletUrl" : path + "atlet/",
+      "juriUrl": path + "users/",
+      "atletUrl": path + "atlet/",
       "matchUrl": path + "match/",
       "pointsUrl": path + "points/"
     }

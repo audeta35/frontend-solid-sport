@@ -1,4 +1,5 @@
-<body *ngIf="!isLoading" style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
+<body *ngIf="!isLoading"
+    style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
     <div class="container mt-2 mb-4">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
@@ -8,6 +9,8 @@
                     <strong> Kata Perorangan kadet
                         Putra</strong>
                 </h1>
+                <button class="btn btn-dark float-right" routerLink="/list-score">List score <i
+                        class="fa fa-angle-right"></i></button>
                 <hr>
             </div>
         </div>
@@ -17,19 +20,25 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <div *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="card bg-danger" style="width: 100%;height: auto;">
+                    <div *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="card bg-danger"
+                        style="width: 100%;height: auto;">
                         <div class="card-body">
-                            <h1 class="text-center"
+                            <h1 class="text-center" *ngIf="finalScore"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                {{ finalScore }}   
+                                 {{ finalScore }}
+                            </h1>
+                            <h1 class="text-center" *ngIf="!finalScore"
+                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
+                                 &nbsp;
                             </h1>
                         </div>
                     </div>
-                    <div *ngIf="userData.attribute.toUpperCase() === 'AO'" class="card bg-primary" style="width: 100%;height: auto;">
+                    <div *ngIf="userData.attribute.toUpperCase() === 'AO'" class="card bg-primary"
+                        style="width: 100%;height: auto;">
                         <div class="card-body">
                             <h1 class="text-center"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                {{ finalScore }}    
+                                {{ finalScore }}
                             </h1>
                         </div>
                     </div>
@@ -72,7 +81,7 @@
                 <div class="table-responsive">
 
                     <table class="table">
-                        <thead *ngIf="item.belt==='AKA'" class="bg-danger">
+                        <thead *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="bg-danger">
 
                             <tr>
                                 <th style="background-color: #fff !important;border:none !important;">
@@ -98,7 +107,7 @@
                                 <th>HASIL</th>
                             </tr>
                         </thead>
-                        <thead *ngIf="item.belt==='AO'" class="bg-primary">
+                        <thead *ngIf="userData.attribute.toUpperCase() === 'AO'" class="bg-primary">
 
                             <tr>
                                 <th style="background-color: #fff !important;">
@@ -129,33 +138,36 @@
                                 <th style="color: #fff;font-weight: 700;">TEKNIK</th>
                                 <td *ngFor="let points of pointList">
                                     <div *ngIf="points.technical_result_status === 1 ">
-                                        {{ points.technical_result || points.technicalValue }} 
+                                        {{ points.technical_result || points.technicalValue }}
                                     </div>
 
-                                    <div *ngIf="!points.technical_result_status && !points.noColor" style="text-decoration: line-through; color: red;">                                    
+                                    <div *ngIf="!points.technical_result_status && !points.noColor"
+                                        style="text-decoration: line-through; color: red;">
                                         {{ points.technical_result > -1 
                                            ? points.technical_result 
                                            : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
 
-                                    
+
                                     <div *ngIf="!points.technical_result_status && points.noColor">
-                                        {{ points.athletic_result > -1 
-                                            ? points.athletic_result 
+                                        {{ points.technical_result > -1 
+                                            ? points.technical_result 
                                             : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
                                 </td>
                             </tr>
+                            <!-- ==================================== ATLETIK ========================================== -->
                             <tr>
 
-                                <th style="color: #fff;font-weight: 700;">ATLETIK</th>                        
+                                <th style="color: #fff;font-weight: 700;">ATLETIK</th>
                                 <td *ngFor="let points of pointList">
                                     <div *ngIf="points.athletic_result_status === 1">
-                                        {{ points.athletic_result || points.athleticValue }} 
+                                        {{ points.athletic_result || points.athleticValue }}
                                     </div>
-                                    <div *ngIf="!points.athletic_result_status && !points.noColor" style="text-decoration: line-through; color: red;">
+                                    <div *ngIf="!points.athletic_result_status && !points.noColor"
+                                        style="text-decoration: line-through; color: red;">
                                         {{ points.athletic_result > -1 
                                             ? points.athletic_result 
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue

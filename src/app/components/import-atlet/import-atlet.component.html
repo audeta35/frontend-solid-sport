@@ -1,0 +1,145 @@
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Import Data Atlet</p>
+
+            </div>
+            <!-- Card stats -->
+
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -100px;">
+    <div class="col"></div>
+    <div class="col-lg-11 col-md-11">
+        <div class="row">
+            <div class="col-md-12">
+                <a routerLink="/file-atlet" class="btn btn-sm btn-neutral mb-4"> <i class="fa fa-angle-left"></i>
+                    Back</a>
+                <span class="float-right badge badge-success">import .csv</span>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <input type="file" class="btn btn-block btn-outline-success" #csvReader name="Upload CSV" id="txtFileUpload"
+                                  (change)="uploadListener($event)" accept=".csv" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card" *ngIf="names.length">
+                    <div class="card-header bg-primary">
+                        <h1 class="text-uppercase text-center text-white">
+                            IMPOR DATA ATLET
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+
+                                        <th>
+                                            pilih
+                                        </th>
+                                        <th>No</th>
+                                        <th>Nama Atlet</th>
+                                        <th>Kontingen</th>
+                                        <th>Kata yang dimainkan</th>
+                                        <th>Grup</th>
+                                        <th>Atribut</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let i = index; let item of names">
+                                        <th>
+                                            <button (click)="deleteForm(i)" class="btn btn-sm btn-outline-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </th>
+                                        <th>
+                                            {{i + 1}}
+                                        </th>
+
+                                        <td>
+                                            <div class="form-group">
+
+                                                <input [(ngModel)]="item.name" placeholder="Nama Atlet"
+                                                    [ngModelOptions]="{standalone: true}" type="text"
+                                                    class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input [(ngModel)]="item.kontingen" placeholder="Kontingen"
+                                                    [ngModelOptions]="{standalone: true}" type="text"
+                                                    class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select [(ngModel)]="item.kata" placeholder="Nama Atlet"
+                                                    [ngModelOptions]="{standalone: true}" class="form-control">
+                                                    <option value="inkai">INKAI</option>
+                                                    <option value="unsu">UNSU</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                          <div *ngIf="item.group === 'null'; else grouping">
+                                            <span class="badge badge-primary">
+                                              <input [(ngModel)]="item.group" placeholder="group" [ngModelOptions]="{standalone: true}" type="text"
+                                                class="form-control">
+                                            </span>
+                                          </div>
+                                          <ng-template #grouping>
+                                            <span class="badge badge-success">
+                                              <input [(ngModel)]="item.group" placeholder="group" [ngModelOptions]="{standalone: true}" type="text"
+                                                class="form-control">
+                                            </span>
+                                          </ng-template>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select [(ngModel)]="item.attribute" placeholder="Nama Atlet"
+                                                    [ngModelOptions]="{standalone: true}" class="form-control">
+                                                    <option value="aka" style="background-color: red;color: #fff;">AKA
+                                                    </option>
+                                                    <option value="ao" style="background-color: blue;color: #fff;">AO
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <button (click)="setForm()" class="btn btn-outline-primary">
+                                Tambah Form
+                            </button>
+
+                            <button (click)="submitForm()" class="btn float-right btn-outline-success">
+                              Simpan Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

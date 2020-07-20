@@ -69,14 +69,14 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let i = index;let item of Data">
-                                        <th>{{i+1}}</th>
-                                        <th>{{item.juri}}</th>
+                                        <th>{{ i+1 }}</th>
+                                        <th>{{ item.juri }}</th>
                                         <td>
                                             <div class="form-group">
                                                 <select class="form-control">
                                                     <option>0</option>
-                                                    <option [attr.selected]="i + 1 == option.userId && option.selectedTechnical ? true : null"
-                                                    *ngFor="let option of optionValue">{{ option.point }}</option>
+                                                    <option [attr.selected]="i + 1 == optionValue[i].userId && option.selectedTechnical ? true : null"
+                                                    *ngFor="let option of optionValue[i].data">{{ option.point }}</option>
                                                 </select>
                                             </div>
                                         </td>
@@ -84,8 +84,8 @@
                                             <div class="form-group">
                                                 <select class="form-control">
                                                     <option>0</option>
-                                                    <option [attr.selected]="i + 1 === option.userId && option.selectedAthletic ? true : null"
-                                                    *ngFor="let option of optionValue">{{ option.point }}</option>
+                                                    <option [attr.selected]="i + 1 === optionValue[i].userId && option.selectedAthletic ? true : null"
+                                                    *ngFor="let option of optionValue[i].data">{{ option.point }}</option>
                                                 </select>
                                             </div>
                                         </td>

@@ -7,6 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [routing, HttpClientModule, CommonModule, ReactiveFormsModule],
-    declarations: [FileJuriComponent]
+  declarations: [FileJuriComponent]
 })
 export class FileJuriComponentModule { }
