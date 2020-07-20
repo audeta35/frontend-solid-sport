@@ -40,4 +40,15 @@ export class TatamiServices {
         })
     })
   }
+
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      this.http.delete<any>(this.tatamiUrl + "/del/" + id)
+        .subscribe((res) => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        })
+    })
+  }
 }
