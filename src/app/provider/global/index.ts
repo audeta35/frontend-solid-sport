@@ -20,7 +20,8 @@ export class GlobalProvider {
       "juriUrl": path + "users/",
       "atletUrl": path + "atlet/",
       "matchUrl": path + "match/",
-      "pointsUrl": path + "points/"
+      "pointsUrl": path + "points/",
+      "tatamiUrl": path + "tatami/"
     }
 
     return config[url];

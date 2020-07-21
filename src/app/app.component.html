@@ -40,6 +40,12 @@
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-tatami">
+              <i class="fa fa-flag-checkered text-primary"></i>
+              <span class="nav-link-text">Arena Pertandingan</span>
+            </a>
+          </li>
+          <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-admin">
               <i class="fa fa-user-lock text-primary"></i>
               <span class="nav-link-text">Admin</span>
@@ -228,9 +234,12 @@
   <!-- Header -->
   <router-outlet></router-outlet>
 
-  <footer *ngIf="loginPage" class="footer fixed-bottom ">
+  <footer *ngIf="loginPage" class="footer sticky-bottom ">
     <div class="copyright text-center text-muted">
-      &copy; 2020 <a class="font-weight-bold">
-        <script>document.write(new Date().getFullYear())</script> Solid Sport Organizer</a>
+      &copy;
+      {{year}}
+      <a class="font-weight-bold">
+        Solid Sport Organizer
+      </a>
     </div>
   </footer>

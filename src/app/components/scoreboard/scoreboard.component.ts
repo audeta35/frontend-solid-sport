@@ -10,7 +10,12 @@ import { PointService } from 'src/app/provider/services/points';
 })
 export class ScoreboardComponent implements OnInit {
   isLoading: boolean = false;
-  userData: any;
+  userData: any = {
+    atlet_name: '',
+    kata_name: '',
+    kontingen: '',
+    attribute: 'AKA'
+  };
   pointList: any = [];
   cmpPointList: any = [];
   atlet: any;
@@ -77,32 +82,58 @@ export class ScoreboardComponent implements OnInit {
 
               this.isLoading = false;
             })
-            .catch(error => {
-
-              if (error['status'] === 404) {
-                for (let i = 0; i < 10; i++) {
-                  if (i == 7) {
-                    this.pointList.push({
-                      FAC_ATH: 0.3,
-                      FAC_TECH: 0.7
-                    })
-                  } else {
-
-                    this.pointList.push({
-                      technicalValue: 0,
-                      athleticValue: 0
-                    })
-                  }
-                }
-              }
-
+            .catch(error => {              
+              console.log(error)
               this.isLoading = false;
             })
         })
         .catch(err => {
           console.log(err);
           if (err['status'] === 404) {
-            console.log('notFound');
+            console.log('sadasdasd');
+            this.pointList = [] ;
+            this.finalScore = 0;
+
+            this.cmpPointList = [] ;
+            for (let i = 0; i < 10; i++) {
+              if (i === 7) {
+                this.pointList.push({
+                  FAC_ATH: 0.3,
+                  FAC_TECH: 0.7,
+                  noColor: true
+                })
+              } else if (i < 7) {
+
+                this.pointList.push({
+                  technicalValue: 0,
+                  athleticValue: 0,
+                  noColor: true
+                })
+              } else if (i === 8) {
+                this.pointList.push({
+                  technical_point_result: '0',
+                  athletic_point_result: '0',
+                  noColor: true,
+                })
+              } else if(i === 9) {
+                this.pointList.push({
+                  technical_point: '0',
+                  athletic_point: '0',
+                  noColor: true,
+                })
+              }
+            }
+
+            for(let j in this.cmpPointList) {
+              if(this.cmpPointList.length > 7) {
+
+              } else {
+                this.pointList[this.cmpPointList[j].id_user - 1] = this.cmpPointList[j]; 
+                this.pointList[this.cmpPointList[j].id_user - 1].noColor = true;                  
+              }
+            }
+            
+            console.log(this.pointList)
           }
           this.isLoading = false;
         })

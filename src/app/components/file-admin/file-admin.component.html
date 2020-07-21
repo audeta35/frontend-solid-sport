@@ -9,14 +9,14 @@
         <div class="text-center">
           <h1 class="text-white text-capitalize" style="font-size: 50px;">{{detailUser.name}}</h1>
           <h5 class="h3 text-white mb-1">
-            {{detailUser.username}}
+            username: {{detailUser.username}}
           </h5>
-          <i class="{{detailUser.status === 'online' ? 'text-light' : null}}">
-            {{detailUser.status}}
+          <i>
+            password: {{detailUser.password}}
           </i>
           <div class="mt-2">
-            <span class="badge badge-pill {{detailUser.tatami  === 'aka' ? 'badge-primary' : 'badge-danger'}}">
-              {{detailUser.tatami}}
+            <span class="badge badge-pill badge-light">
+             tatami: {{detailUser.tatami}}
             </span>
           </div>
         </div>
@@ -68,6 +68,7 @@
             <th scope="col" class="text-center">No</th>
             <th scope="col">Nama</th>
             <th scope="col">Posisi</th>
+            <th scope="col">ID Tatami</th>
             <th scope="col">status</th>
 
             <th scope="col" class="text-center">
@@ -94,7 +95,12 @@
             </td>
             <td class="text-center">{{i + 1}}.</td>
             <td>{{item.username}}</td>
-            <td class="text-capitalize"><strong>{{item.name}}</strong></td>
+            <td class="text-uppercase"><strong>{{item.name}}</strong></td>
+            <td class="text-capitalize">
+              <div>
+                {{item.tatami}}
+              </div>
+            </td>
             <td>
               <span class="badge badge-pill {{item.status === 'online' ? 'badge-success' : 'badge-danger'}}">
                 {{item.status}}
@@ -102,7 +108,7 @@
             </td>
 
             <td class="text-center">
-              <div class="dropdown">
+              <div *ngIf="item.id_user === user.id_user" class="dropdown">
                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-ellipsis-v"></i>
@@ -118,6 +124,10 @@
                     data-target="#deleteModal"> <i class="fa fa-trash text-danger"></i>
                     Hapus </button>
                 </div>
+              </div>
+
+              <div *ngIf="item.id_user !== user.id_user">
+                <i class="fa fa-lock text-danger"></i>
               </div>
             </td>
           </tr>

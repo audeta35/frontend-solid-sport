@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/provider/services/users';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TatamiServices } from 'src/app/provider/services/tatami';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -23,13 +24,27 @@ export class FileJuriComponent implements OnInit {
 
   detailUser: any = {}
 
+  listTatami = [];
+
   constructor(
     private userService: UserService,
-    private routes: Router
+    private routes: Router,
+    private tatamiService: TatamiServices
   ) { }
 
   ngOnInit(): void {
     this.getAllUser();
+    this.getTatami();
+  }
+
+  getTatami() {
+    this.tatamiService.getTatami()
+      .then((res: any) => {
+        this.listTatami = res.result;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   getAllUser() {

@@ -44,7 +44,7 @@
                                     <label for="exampleFormControlSelect1" class="form-control-label">Tatami</label>
                                     <select (change)="keyUp()" [(ngModel)]="payload.tatami" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1">
                                         <option disabled selected>Pilih Tatami</option>
-                                        <option *ngFor="let opt of listTatami" [value]="opt.value" [selected]="opt.name">
+                                        <option *ngFor="let opt of listTatami" [value]="opt.id" [selected]="old.name === true">
                                           {{opt.name}}
                                         </option>
                                     </select>

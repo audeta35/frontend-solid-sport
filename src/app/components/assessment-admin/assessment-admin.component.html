@@ -9,7 +9,7 @@
         </div>
     </div>
 </div>
-<div class="row" style="margin-top: -80px;">
+<div class="row" style="margin-top: -80px;" *ngIf="!isLoading">
     <div class="col"></div>
     <div class="col-lg-8 col-md-10">
         <div class="row">
@@ -21,7 +21,7 @@
 
                                 <div class="text-center">
                                     <label>Nama Atlet </label>
-                                    <h1> {{ userData.atlet_name }}</h1>
+                                    <h1> {{ userData.atlet_name  }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
     </div>
     <div class="col"></div>
 </div>
-<div class="row">
+<div class="row" *ngIf="!isLoading">
     <div class="col"></div>
     <div class="col-lg-10 col-md-12">
         <div class="row">

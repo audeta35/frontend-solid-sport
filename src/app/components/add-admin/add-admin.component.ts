@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/provider/services/users';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TatamiServices } from 'src/app/provider/services/tatami';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -21,9 +22,11 @@ export class AddAdminComponent implements OnInit {
     username: "",
     password: "",
     position: "admin",
-    tatami: " ",
+    tatami: "",
     level: 1
   }
+
+  listTatami = [];
 
   isValid: boolean = false;
   isLoading: boolean = false;
@@ -32,13 +35,27 @@ export class AddAdminComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private routes: Router
-  ) { }
+    private routes: Router,
+    private tatamiService: TatamiServices
+  ) {
+    this.getTatami();
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   showPassword() {
     this.showButton = !this.showButton;
+  }
+
+  getTatami() {
+    this.tatamiService.getTatami()
+    .then((res:any) => {
+      this.listTatami = res.result;
+      console.log(res.result);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   keyUp() {
