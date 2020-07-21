@@ -64,6 +64,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Kontingen</th>
+                    <th>Kelas</th>
                     <th>Kata</th>
                     <th>Atribut</th>
                     <th>Pertandingan</th>
@@ -75,6 +76,7 @@
                     <td *ngIf="item.grouping === 'null'">{{i + 1}}</td>
                     <td *ngIf="item.grouping === 'null'">{{item.atlet_name}}</td>
                     <td *ngIf="item.grouping === 'null'">{{item.kontingen}}</td>
+                    <td *ngIf="item.grouping === 'null'">{{item.class}}</td>
                     <td *ngIf="item.grouping === 'null'">{{item.kata_name}}</td>
 
                     <td *ngIf="item.grouping === 'null'"> <span
@@ -138,6 +140,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Kontingen</th>
+                            <th>Kelas</th>
                             <th>Kata</th>
                             <th>Atribut</th>
                             <th class="text-center">Pertandingan</th>
@@ -149,6 +152,7 @@
                             <td *ngIf="groups.group_name === item.grouping">{{i + 1}}</td>
                             <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
                             <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.class}}</td>
                             <td *ngIf="groups.group_name === item.grouping">{{item.kata_name}}</td>
 
                             <td *ngIf="groups.group_name === item.grouping"><span
