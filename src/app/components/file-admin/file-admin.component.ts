@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/provider/services/users';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TatamiServices } from 'src/app/provider/services/tatami';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -18,17 +19,23 @@ const Toast = Swal.mixin({
 export class FileAdminComponent implements OnInit {
 
   userData: any = [];
+  user: any = {};
   deleteId: number;
   detailUser:any = {};
+  listTatami = [];
 
   constructor(
     private userService: UserService,
-    private routes: Router
-  ) { }
+    private routes: Router,
+    private tatamiService: TatamiServices
+  ) {
+    this.user = JSON.parse(sessionStorage.getItem('users'));
+    this.user.name = this.user.name.toUpperCase();
+  }
 
   ngOnInit(): void {
     this.getAllUser();
-  }
+   }
 
   getAllUser() {
     this.userService.getAdmin()

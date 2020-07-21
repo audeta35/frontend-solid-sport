@@ -69,7 +69,8 @@ export class AddAtletComponent implements OnInit {
             kata: "",
             attribute: "",
             selected: false,
-            group: `group ${i}`
+            group: `group ${i}`,
+            class: ""
           })
         }
       }
@@ -103,7 +104,8 @@ export class AddAtletComponent implements OnInit {
       kata: "",
       attribute: "",
       selected: false,
-      group: group
+      group: group,
+      class: ""
     })
   }
 
