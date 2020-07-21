@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/provider/services/users';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TatamiServices } from 'src/app/provider/services/tatami';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -30,13 +31,16 @@ export class EditAdminComponent implements OnInit {
     tatami: "",
   }
 
+  listTatami = [];
+
   isValid: boolean = true;
   isLoading: boolean = false;
 
   constructor(
     private userService: UserService,
     private routes: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tatamiService: TatamiServices
   ) {
     this.routes.params.subscribe((param) => {
       this.payload.id = param.id;
@@ -53,7 +57,19 @@ export class EditAdminComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getTatami();
+  }
+
+  getTatami() {
+    this.tatamiService.getTatami()
+      .then((res: any) => {
+        this.listTatami = res.result;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   keyUp() {
     let { username, position, tatami } = this.payload;
