@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/provider/services/users';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TatamiServices } from 'src/app/provider/services/tatami';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -51,22 +52,30 @@ export class AddJuriComponent implements OnInit {
     value: "j7"
   }];
 
-  listTatami = [{
-    name: "AKA",
-    value: "aka"
-  }, {
-    name: "AO",
-    value: "ao"
-  }];
+  listTatami = [];
 
   showButton: boolean = false;
 
   constructor(
     private userService: UserService,
-    private routes: Router
+    private routes: Router,
+    private tatamiService: TatamiServices
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTatami();
+  }
+
+  getTatami() {
+    this.tatamiService.getTatami()
+      .then((res: any) => {
+        this.listTatami = res.result;
+        console.log(res.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   showPassword() {
     this.showButton = !this.showButton;
