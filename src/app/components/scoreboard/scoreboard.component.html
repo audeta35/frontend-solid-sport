@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" *ngIf="userData">
+    <div class="container-fluid" *ngIf="userData && !isLoading">
         <div class="col-md-12 col-lg-12 col-xl-12">
 
             <div class="row">
@@ -36,36 +36,54 @@
                     <div *ngIf="userData.attribute.toUpperCase() === 'AO'" class="card bg-primary"
                         style="width: 100%;height: auto;">
                         <div class="card-body">
-                            <h1 class="text-center"
+                            <h1 class="text-center" *ngIf="finalScore"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                {{ finalScore }}
+                                 {{ finalScore }}
                             </h1>
+                            <h1 class="text-center" *ngIf="!finalScore"
+                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
+                                 &nbsp;
+                            </h1>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8 mt-4">
                     <div class="card">
                         <div class="container">
-                            <h1 class="mb-0"
+                            <h1 class="mb-0" *ngIf="userData.atlet_name"
                                 style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{ userData.atlet_name }}</h1>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="container">
-
-                            <h1 class="mb-0"
+                                {{ userData.atlet_name }}
+                            </h1>
+                            <h1 class="mb-0" *ngIf="!userData.atlet_name"
                                 style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{ userData.kontingen }}
+                                &nbsp;
                             </h1>
                         </div>
                     </div>
                     <div class="card">
                         <div class="container">
 
-                            <h1 class="mb-0"
+                            <h1 class="mb-0" *ngIf="userData.kontingen"
+                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                                {{ userData.kontingen }}
+                            </h1>
+                            <h1 class="mb-0" *ngIf="!userData.kontingen"
+                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                                &nbsp;
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="container">
+
+                            <h1 class="mb-0" *ngIf="userData.kata_name"
                                 style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
                                 {{ userData.kata_name }}
+                            </h1>
+                            <h1 class="mb-0" *ngIf="!userData.kata_name"
+                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                                &nbsp;
                             </h1>
                         </div>
                     </div>

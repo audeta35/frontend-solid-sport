@@ -11,18 +11,11 @@ import { PointService } from 'src/app/provider/services/points';
 export class AssessmentAdminComponent implements OnInit {
   isLoading: boolean = false;
   userData: any = {}  ;
-  optionValue: any = [{
-    data: [{
-      point: '',
-      selectedAthletic: false,
-      selectedTechnical: false,
-    }],
-    point: '',
-    userId: 1
-  }];
+  optionValue: any = [];
   originalOptionValue: any = [];
   userPoint: any = [];
-
+  cmpUserPoint: any = []
+  isFound: boolean = false;
   Data = [
     {
       juri: 'j1',
@@ -54,26 +47,63 @@ export class AssessmentAdminComponent implements OnInit {
           this.userData = res['result'][0];
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
             .then((response: any) => {
-              this.userPoint = response['result']['athlete_point_list'];
-              for(let i = 0; i < this.userPoint.length; i++) {
-                this.optionValue.push({ 
-                  userId: this.userPoint[i].id_user + 1,
-                  data: []
-                });
-                
-                for (let j = 5.0; j < 10; j = j + 0.2) {
-                  let point = j.toFixed(1);
-                  this.optionValue[i].data.push({ point: point });
-                  if(this.userPoint[i].technical_result.toFixed(1) === point) {
-                    this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedTechnical = true;                    
-                    if(this.userPoint[i].athletic_result.toFixed(1) === point) {
-                      this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedAthletic = true;                                          
+              this.userPoint = response['result']['athlete_point_list'] || response['result'] ||  [];
+              this.cmpUserPoint = [...this.userPoint];
+              if(this.userPoint.length < 1) {
+                for(let i = 0; i < 7; i++) {
+                  this.optionValue.push({ 
+                    userId: i + 1,
+                    data: []
+                  });
+                  
+                  for (let j = 5.0; j < 10; j = j + 0.2) {
+                    let point = j.toFixed(1);
+                    this.optionValue[i].data.push({ point: point });                    
+                  }
+                }
+              } else {
+                for(let i = 0; i < 7; i++) {
+
+                  this.isFound = false;
+                  for(let index in this.userPoint) {
+                    if(this.userPoint[index].id_user - 1 === i) {
+                      this.isFound = true;
+                      
+                      this.optionValue.push({ 
+                        userId: this.userPoint[index].id_user,
+                        data: [],
+                        isFound: true
+                      });
                     }
                   }
-                  if(this.userPoint[i].athletic_result.toFixed(1) === point) {
-                    this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedAthletic = true;                    
-                    if(this.userPoint[i].technical_result.toFixed(1) === point) {
-                      this.optionValue[i].data[this.optionValue[i].data.length - 1].selectedTechnical = true;                                          
+                  if(!this.isFound) {
+                    this.optionValue.push({ 
+                      userId: (i + 1) * 10,
+                      data: []
+                    });
+                  }
+                  for (let j = 5.0; j < 10; j = j + 0.2) {
+                    let point = j.toFixed(1);
+                    this.optionValue[i].data.push({ point: point });          
+                  }
+                }
+
+                for(let i in this.optionValue) {
+                  if(this.userPoint[i]) {
+                    for(let j in this.optionValue[i].data) {
+                      let data = this.optionValue[i].data[j];
+                      if(this.userPoint[i].technical_result.toFixed(1) === data.point) {
+                        this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedTechnical = true;                    
+                        if(this.userPoint[i].athletic_result.toFixed(1) === data.point) {
+                          this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedAthletic = true;                                          
+                        }
+                      }
+                      if(this.userPoint[i].athletic_result.toFixed(1) === data.point) {
+                        this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedAthletic = true;                    
+                        if(this.userPoint[i].technical_result.toFixed(1) === data.point) {
+                          this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedTechnical = true;                                          
+                        }
+                      }
                     }
                   }
                 }
@@ -82,6 +112,7 @@ export class AssessmentAdminComponent implements OnInit {
               this.isLoading = false;
             })
             .catch(error => {
+              console.log(error)
               if (error['status'] === 404) {
                 for (let i = 5.0; i < 10; i = i + 0.2) {
                   let point = i.toFixed(1);
@@ -97,6 +128,17 @@ export class AssessmentAdminComponent implements OnInit {
         .catch(err => {
           if (err['status'] === 404) {
             console.log('notFound');
+            for(let i = 0; i < 7; i++) {
+              this.optionValue.push({ 
+                userId: i + 1,
+                data: []
+              });
+              
+              for (let j = 5.0; j < 10; j = j + 0.2) {
+                let point = j.toFixed(1);
+                this.optionValue[i].data.push({ point: point });                    
+              }
+            }
           }
           console.log(err);
           this.isLoading = false;
