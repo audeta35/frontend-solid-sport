@@ -88,6 +88,7 @@ export class ImportAtletComponent implements OnInit {
         csvRecord.attribute = curruntRecord[2].trim();
         csvRecord.kata = curruntRecord[3].trim();
         csvRecord.group = curruntRecord[4].trim();
+        csvRecord.class = curruntRecord[5].trim();
 
         this.names.push({
           name: csvRecord.name,
@@ -96,6 +97,7 @@ export class ImportAtletComponent implements OnInit {
           attribute: csvRecord.attribute,
           selected: false,
           group: `group ${csvRecord.group}`,
+          class: csvRecord.class
         });
       }
     }
@@ -135,7 +137,8 @@ export class ImportAtletComponent implements OnInit {
           kontingen: "",
           kata: "",
           attribute: "",
-          group: "null"
+          group: "null",
+          class: ""
         })
       }
 
@@ -149,7 +152,8 @@ export class ImportAtletComponent implements OnInit {
       kontingen: "",
       kata: "",
       attribute: "",
-      group: "null"
+      group: "null",
+      class: ""
     })
   }
 

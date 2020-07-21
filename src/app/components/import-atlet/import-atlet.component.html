@@ -58,6 +58,7 @@
                                         <th>Kata yang dimainkan</th>
                                         <th>Grup</th>
                                         <th>Atribut</th>
+                                        <th>Kelas</th>
 
                                     </tr>
                                 </thead>
@@ -65,9 +66,7 @@
 
                                     <tr *ngFor="let i = index; let item of names">
                                         <th>
-                                            <button (click)="deleteForm(i)" class="btn btn-sm btn-outline-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            <i class="fa fa-trash text-danger" (click)="deleteForm(i)"></i>
                                         </th>
                                         <th>
                                             {{i + 1}}
@@ -78,49 +77,42 @@
 
                                                 <input [(ngModel)]="item.name" placeholder="Nama Atlet"
                                                     [ngModelOptions]="{standalone: true}" type="text"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
                                                 <input [(ngModel)]="item.kontingen" placeholder="Kontingen"
                                                     [ngModelOptions]="{standalone: true}" type="text"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
                                                 <select [(ngModel)]="item.kata" placeholder="Nama Atlet"
-                                                    [ngModelOptions]="{standalone: true}" class="form-control">
+                                                    [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
                                                     <option value="inkai">INKAI</option>
                                                     <option value="unsu">UNSU</option>
                                                 </select>
                                             </div>
                                         </td>
                                         <td>
-                                          <div *ngIf="item.group === 'null'; else grouping">
-                                            <span class="badge badge-primary">
-                                              <input [(ngModel)]="item.group" placeholder="group" [ngModelOptions]="{standalone: true}" type="text"
-                                                class="form-control">
-                                            </span>
-                                          </div>
-                                          <ng-template #grouping>
-                                            <span class="badge badge-success">
-                                              <input [(ngModel)]="item.group" placeholder="group" [ngModelOptions]="{standalone: true}" type="text"
-                                                class="form-control">
-                                            </span>
-                                          </ng-template>
+                                          <input [(ngModel)]="item.group" placeholder="group" [ngModelOptions]="{standalone: true}" type="text"
+                                            class="form-control form-control-sm" />
                                         </td>
                                         <td>
                                             <div class="form-group">
                                                 <select [(ngModel)]="item.attribute" placeholder="Nama Atlet"
-                                                    [ngModelOptions]="{standalone: true}" class="form-control">
+                                                    [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
                                                     <option value="aka" style="background-color: red;color: #fff;">AKA
                                                     </option>
                                                     <option value="ao" style="background-color: blue;color: #fff;">AO
                                                     </option>
                                                 </select>
                                             </div>
+                                        </td>
+                                        <td>
+                                          <input type="text" [(ngModel)]="item.class" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                 </tbody>
