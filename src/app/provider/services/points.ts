@@ -57,4 +57,16 @@ export class PointService {
       })
     })
   }
+
+  changeAthleteAssessment(athleteId) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.pointsUrl+ 'get-next-athlete/'+athleteId, null, {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
 }
