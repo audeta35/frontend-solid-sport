@@ -25,9 +25,7 @@ export class FileTatamiComponent implements OnInit {
     this.getTatami();
   }
 
-  ngOnInit(): void {
-    console.log(this.tatami)
-  }
+  ngOnInit(): void {}
 
   setId(id) {
     this.idTatami = id;

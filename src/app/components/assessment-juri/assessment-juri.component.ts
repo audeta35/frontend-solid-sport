@@ -63,9 +63,7 @@ export class AssessmentJuriComponent implements OnInit {
     });
 
     this.socket.on('reset-data-juri', () => {
-      this.payload = {}
-
-      console.log('reset-data-juri', this.payload);
+      window.location.reload()
     })
   }
 
@@ -109,10 +107,11 @@ export class AssessmentJuriComponent implements OnInit {
   }
 
   onSubmit() {
-    // fungsi
-    // this.socket.emit('scoreboard');
-    // this.socket.emit('result-admin');
-    // this.socket.emit('result-juri');
+
+    this.socket.emit('scoreboard');
+    this.socket.emit('result-admin');
+    this.socket.emit('result-juri');
+
     console.log(this.payload);
     this.payload.techValue = Number(this.payload.techValue);
     this.payload.athValue = Number(this.payload.athValue);
@@ -121,10 +120,13 @@ export class AssessmentJuriComponent implements OnInit {
       .doPointsByUser(this.payload)
       .then((res) => {
         console.log(res);
-        Toast.fire({
-          icon: 'info',
-          title: `Atlet berhasil dinilai`,
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Sukses',
+          text: `${this.userData.atlet_name} berhasil di nilai`
         });
+
         (this.payload.techValue = 0), (this.payload.athValue = 0);
         $('#pointOptions').prop('selected', function () {
           return this.defaultSelected;

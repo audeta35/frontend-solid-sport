@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "solidsport": "angular-http-server"
+    "solidsport": "ng serve --host 0.0.0.0"
   },
   "private": true,
   "dependencies": {
