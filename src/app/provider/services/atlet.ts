@@ -69,7 +69,7 @@ export class AtletService {
 
   getAtletByMatch() {
     return new Promise((resolve, reject) => {
-      this.http.get(this.atletUrl+'get-by-match')
+      this.http.post(this.atletUrl+'get-by-match', null)
       .subscribe((res) => {
         resolve(res);
       }, (err) => {
