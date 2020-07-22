@@ -24,7 +24,7 @@ export class PointService {
 
   getPointForAdmin(idAtlet, idMatch) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.pointsUrl+`get-point/${ idAtlet }/${ idMatch }`, {
+      this.http.post(this.pointsUrl+`get-point/${ idAtlet }/${ idMatch }`, null, {
         headers: new HttpHeaders().set("Authorization", this.token)
       }).subscribe((res) => {
         resolve(res);
@@ -36,7 +36,7 @@ export class PointService {
 
   getPointForScoreboard(idAtlet, idMatch) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.pointsUrl+`get-scoreboard-point/${ idAtlet }/${ idMatch }`)
+      this.http.post(this.pointsUrl+`get-scoreboard-point/${ idAtlet }/${ idMatch }`, null)
       .subscribe((res) => {
         resolve(res);
       }, (err) => {
