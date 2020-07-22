@@ -68,6 +68,10 @@ export class FileAtletComponent implements OnInit {
                 title: `Atlet telah selesai bertanding`,
               });
 
+              this.socket.emit("reset-scoreboard")
+              this.socket.emit('reset-admin');
+              this.socket.emit('reset-juri');
+
               this.atlet = res.result.atlet;
               this.group = res.result.group;
               this.isLoading = !this.isLoading;
@@ -77,9 +81,6 @@ export class FileAtletComponent implements OnInit {
               this.isLoading = !this.isLoading;
             });
 
-          this.socket.emit("reset-scoreboard")
-          this.socket.emit('reset-admin');
-          this.socket.emit('reset-juri');
           }, 500)
         })
         .catch((err) => {
@@ -116,6 +117,10 @@ export class FileAtletComponent implements OnInit {
         title: `Atlet ${atlet.atlet_name} di diskualifikasi`,
       });
 
+      this.socket.emit("reset-scoreboard")
+      this.socket.emit('reset-admin');
+      this.socket.emit('reset-juri');
+
       this.atletService
         .getAtlet()
         .then((res: any) => {
@@ -126,10 +131,6 @@ export class FileAtletComponent implements OnInit {
         .catch((err) => {
           console.log(err);
         });
-
-          // this.socket.emit("reset-scoreboard")
-          // this.socket.emit('reset-admin');
-          // this.socket.emit('reset-juri');
     })
     .catch((err) => {
       console.log(err)
