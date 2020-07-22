@@ -51,7 +51,7 @@
 </div>
 <div class="row" *ngIf="!isLoading">
     <div class="col"></div>
-    <div class="col-lg-10 col-md-12">
+    <div class="col-lg-8 col-md-10">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -75,8 +75,10 @@
                                             <div class="form-group">
                                                 <select class="form-control">
                                                     <option>0</option>
-                                                    <option [attr.selected]="i + 1 == optionValue[i].userId && option.selectedTechnical ? true : null"
-                                                    *ngFor="let option of optionValue[i].data">{{ option.point }}</option>
+                                                    <option
+                                                        [attr.selected]="i + 1 == optionValue[i].userId && option.selectedTechnical ? true : null"
+                                                        *ngFor="let option of optionValue[i].data">{{ option.point }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </td>
@@ -84,8 +86,10 @@
                                             <div class="form-group">
                                                 <select class="form-control">
                                                     <option>0</option>
-                                                    <option [attr.selected]="i + 1 === optionValue[i].userId && option.selectedAthletic ? true : null"
-                                                    *ngFor="let option of optionValue[i].data">{{ option.point }}</option>
+                                                    <option
+                                                        [attr.selected]="i + 1 === optionValue[i].userId && option.selectedAthletic ? true : null"
+                                                        *ngFor="let option of optionValue[i].data">{{ option.point }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </td>
@@ -96,6 +100,9 @@
                         <div class="col-md-12">
                             <hr>
                             <button class="btn btn-outline-success float-right"> <i class="fa fa-save"></i> Simpan
+                            </button>
+                            <button class="btn btn-danger">
+                                <i class="fa fa-eraser"></i> Reset
                             </button>
                         </div>
                     </div>
