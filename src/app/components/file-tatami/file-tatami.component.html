@@ -37,14 +37,18 @@
                 <thead class="thead-light text-dark">
                     <tr>
                         <th class="text-center">No</th>
+                        <th class="text-center">ID Tatami</th>
                         <th class="text-center">Tatami / Arena</th>
                         <th class="text-center">Kelas</th>
-                        <th class="text-center"> <i class="fa fa-cog"></i></th>
+                        <th class="text-center">
+                          <i class="fa fa-cogs"></i>
+                        </th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let i =index;let item of tatami">
                     <tr>
                         <th class="text-center">{{i+1}}</th>
+                        <td class="text-center">{{item.id}}</td>
                         <td class="text-center">{{item.name}}</td>
                         <td class="text-center">{{item.class}}</td>
                         <td class="text-center" (click)="setId(item.id)" data-toggle="modal" data-target="#deleteModal"><i
