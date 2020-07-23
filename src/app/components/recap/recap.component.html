@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="row align-items-center py-4">
-                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Rekap data</p>
+                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Hasil Pertandingan</p>
 
             </div>
 
@@ -23,28 +23,33 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Nama</th>
-                            <th class="text-center">Jenis pertandingan</th>
+                            <th class="text-center">Kontingen</th>
+                            <th class="text-center">Kelas</th>
                             <th class="text-center">Kata</th>
-                            <th class="text-center">Tatami</th>
                             <th class="text-center">Atribut</th>
-                            <th class="text-center">Nilai teknik</th>
-                            <th class="text-center">Nilai atletik</th>
+                            <th class="text-center">Klasemen</th>
                             <th class="text-center">Total point</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let i = index;let item of Data | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr *ngFor="let i = index;let item of data | paginate: { itemsPerPage: 10, currentPage: p }">
                             <th class="text-center">{{i + 1}}</th>
-                            <td class="text-center">{{item.username}}</td>
-                            <td class="text-center">{{item.type}}</td>
-                            <td class="text-center">{{item.kata}}</td>
-                            <td class="text-center">{{item.tatami}}</td>
-                            <td class="text-center"> <span
-                                    class="badge badge-pill {{item.atribut === 'AKA' ? 'badge-danger' : 'badge-primary'}}">{{item.atribut}}</span>
+                            <td class="text-center">{{item.atlet_name}}</td>
+                            <td class="text-center">{{item.kontingen}}</td>
+                            <td class="text-center">{{item.class}}</td>
+                            <td class="text-center">{{item.kata_name}}</td>
+                            <td class="text-center {{item.attribute.toUpperCase() === 'AKA' ? 'badge-danger' : 'badge-primary'}}">
+                              {{item.attribute}}
                             </td>
-                            <td class="text-center">{{item.teknik}}</td>
-                            <td class="text-center">{{item.atletik}}</td>
-                            <th class="text-center">{{item.point}}</th>
+                            <th class="text-center">
+                              <b *ngIf="item.grouping === 'null'">
+                                Individual
+                              </b>
+                              <b *ngIf="item.grouping !== 'null'">
+                                {{item.grouping}}
+                              </b>
+                            </th>
+                            <th class="text-center">{{item.total_point}}</th>
                         </tr>
                     </tbody>
                 </table>
