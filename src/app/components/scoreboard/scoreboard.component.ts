@@ -14,13 +14,12 @@ export class ScoreboardComponent implements OnInit {
     atlet_name: '',
     kata_name: '',
     kontingen: '',
-    attribute: ''
+    attribute: 'AKA'
   };
-  pointList:any = [];
-  cmpPointList:any = [];
-  atlet:any ;
+  pointList: any = [];
+  cmpPointList: any = [];
+  atlet: any;
   finalScore: number = 0;
-  score:any = {};
   Data = [
     {
       username: 'Muhammad deta sandi bima',
@@ -32,45 +31,76 @@ export class ScoreboardComponent implements OnInit {
   ];
 
   constructor(private socket: Socket, private atletService: AtletService, private pointService: PointService) {
-    socket.emit("scoreboard");
-    this.socket.on("reset-data-score", () => {
-      this.userData = {
-        atlet_name: '',
-        kata_name: '',
-        kontingen: '',
-        attribute: ''
-      };
-      this.pointList = [];
-      this.cmpPointList = [];
-      this.atlet;
-      this.finalScore = 0;
-      this.score = {};
-
-      setTimeout(() => {
-        this.getScore();
-      }, 150)
-    })
+    socket.emit('scoreboard');
   }
 
   ngOnInit(): void {
     this.isLoading = true;
+    console.log()
     this.socket.on('data-score', () => {
-      console.log('socket listener')
-      this.getScore();
-    })
-  }
+      this.atletService.getAtletByMatch()
+        .then(res => {
+          this.userData = res['result'][0];
+          this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
+            .then(response => {
+              this.pointList = [];
+              this.finalScore = response['result']['total_point'] || '';
 
-  getScore() {
-    this.atletService.getAtletByMatch()
-      .then(res => {
-        this.userData = res['result'][0];
-        this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
-          .then(response => {
+              this.cmpPointList = response['result']['athlete_point_list'] ? [...response['result']['athlete_point_list']] : [...response['result']];
+              for (let i = this.pointList.length; i < 10; i++) {
+                if (i === 7) {
+                  this.pointList.push({
+                    FAC_ATH: 0.3,
+                    FAC_TECH: 0.7,
+                    noColor: true
+                  })
+                } else if (i < 7) {
+
+                  this.pointList.push({
+                    technicalValue: 0,
+                    athleticValue: 0,
+                    noColor: true
+                  })
+                } else if (i === 8) {
+                  this.pointList.push({
+                    technical_point_result: response['result']['technical_point_result'] || '0',
+                    athletic_point_result: response['result']['athletic_point_result'] || '0',
+                    noColor: true,
+                  })
+                } else if (i === 9) {
+                  this.pointList.push({
+                    technical_point: response['result']['technical_point'] || '0',
+                    athletic_point: response['result']['athletic_point'] || '0',
+                    noColor: true,
+                  })
+                }
+              }
+
+              for (let j in this.cmpPointList) {
+                if (this.cmpPointList.length > 7) {
+
+                } else {
+                  this.pointList[this.cmpPointList[j].id_user - 1] = this.cmpPointList[j];
+                  this.pointList[this.cmpPointList[j].id_user - 1].noColor = true;
+                }
+              }
+
+              this.isLoading = false;
+            })
+            .catch(error => {
+              console.log(error)
+              this.isLoading = false;
+            })
+        })
+        .catch(err => {
+          console.log(err);
+          if (err['status'] === 404) {
+            console.log('sadasdasd');
             this.pointList = [];
-            this.finalScore = response['result']['total_point'] || '';
-            this.score = response['result'];
-            this.cmpPointList = response['result']['athlete_point_list'] ? [...response['result']['athlete_point_list']] : [...response['result']];
-            for (let i = this.pointList.length; i < 10; i++) {
+            this.finalScore = 0;
+
+            this.cmpPointList = [];
+            for (let i = 0; i < 10; i++) {
               if (i === 7) {
                 this.pointList.push({
                   FAC_ATH: 0.3,
@@ -86,14 +116,14 @@ export class ScoreboardComponent implements OnInit {
                 })
               } else if (i === 8) {
                 this.pointList.push({
-                  technical_point_result: response['result']['technical_point_result'] || '0',
-                  athletic_point_result: response['result']['athletic_point_result'] || '0',
+                  technical_point_result: '0',
+                  athletic_point_result: '0',
                   noColor: true,
                 })
               } else if (i === 9) {
                 this.pointList.push({
-                  technical_point: response['result']['technical_point'] || '0',
-                  athletic_point: response['result']['athletic_point'] || '0',
+                  technical_point: '0',
+                  athletic_point: '0',
                   noColor: true,
                 })
               }
@@ -108,61 +138,60 @@ export class ScoreboardComponent implements OnInit {
               }
             }
 
-            this.isLoading = false;
-          })
-          .catch(error => {
-            console.log(error)
-            this.isLoading = false;
-          })
-      })
-      .catch(err => {
-        console.log(err);
-        if (err['status'] === 404) {
-          this.pointList = [];
-          this.finalScore = 0;
-
-          this.cmpPointList = [];
-          for (let i = 0; i < 10; i++) {
-            if (i === 7) {
-              this.pointList.push({
-                FAC_ATH: 0.3,
-                FAC_TECH: 0.7,
-                noColor: true
-              })
-            } else if (i < 7) {
-
-              this.pointList.push({
-                technicalValue: 0,
-                athleticValue: 0,
-                noColor: true
-              })
-            } else if (i === 8) {
-              this.pointList.push({
-                technical_point_result: '0',
-                athletic_point_result: '0',
-                noColor: true,
-              })
-            } else if (i === 9) {
-              this.pointList.push({
-                technical_point: '0',
-                athletic_point: '0',
-                noColor: true,
-              })
-            }
+            console.log(this.pointList)
           }
+          this.isLoading = false;
+        })
+    })
 
-          for (let j in this.cmpPointList) {
-            if (this.cmpPointList.length > 7) {
+    this.socket.on("reset-data-score", () => {      
+      this.userData.atlet_name = '',
+      this.userData.kata_name = '',
+      this.userData.kontingen = '',
+      this.userData.attribute = 'AKA'
+      this.pointList = [];
+      this.finalScore = 0;
 
-            } else {
-              this.pointList[this.cmpPointList[j].id_user - 1] = this.cmpPointList[j];
-              this.pointList[this.cmpPointList[j].id_user - 1].noColor = true;
-            }
-          }
+      this.cmpPointList = [];
+      for (let i = 0; i < 10; i++) {
+        if (i === 7) {
+          this.pointList.push({
+            FAC_ATH: 0.3,
+            FAC_TECH: 0.7,
+            noColor: true
+          })
+        } else if (i < 7) {
 
-          console.log(this.pointList)
+          this.pointList.push({
+            technicalValue: 0,
+            athleticValue: 0,
+            noColor: true
+          })
+        } else if (i === 8) {
+          this.pointList.push({
+            technical_point_result: '0',
+            athletic_point_result: '0',
+            noColor: true,
+          })
+        } else if (i === 9) {
+          this.pointList.push({
+            technical_point: '0',
+            athletic_point: '0',
+            noColor: true,
+          })
         }
-        this.isLoading = false;
-      })
+      }
+
+      for (let j in this.cmpPointList) {
+        if (this.cmpPointList.length > 7) {
+
+        } else {
+          this.pointList[this.cmpPointList[j].id_user - 1] = this.cmpPointList[j];
+          this.pointList[this.cmpPointList[j].id_user - 1].noColor = true;
+        }
+      }
+
+      console.log(this.pointList)
+    })
   }
 }

@@ -51,6 +51,12 @@ export class AssessmentAdminComponent implements OnInit {
     this.socket.on("data-admin", () => {
       this.atletService.getAtletByMatch()
         .then((res: any) => {
+          this.userData = {};
+          this.optionValue = [];
+          this.originalOptionValue = [];
+          this.userPoint = [];
+          this.cmpUserPoint = []
+
           this.userData = res['result'][0];
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
             .then((response: any) => {
@@ -121,12 +127,16 @@ export class AssessmentAdminComponent implements OnInit {
             .catch(error => {
               console.log(error)
               if (error['status'] === 404) {
-                for (let i = 5.0; i < 10; i = i + 0.2) {
-                  let point = i.toFixed(1);
+                for (let i = 0; i < 7; i++) {
                   this.optionValue.push({
-                    point: point,
-                    selected: false
+                    userId: i + 1,
+                    data: []
                   });
+
+                  for (let j = 5.0; j < 10; j = j + 0.2) {
+                    let point = j.toFixed(1);
+                    this.optionValue[i].data.push({ point: point });
+                  }
                 }
               }
               this.isLoading = false;
@@ -151,6 +161,29 @@ export class AssessmentAdminComponent implements OnInit {
           this.isLoading = false;
         })
     })
+
+    this.socket.on("reset-data-admin", () => {
+      console.log('realtime reset')
+
+      this.userData = {};
+      this.optionValue = [];
+      this.originalOptionValue = [];
+      this.userPoint = [];
+      this.cmpUserPoint = [];
+
+      for (let i = 0; i < 7; i++) {
+        this.optionValue.push({
+          userId: i + 1,
+          data: []
+        });
+
+        for (let j = 5.0; j < 10; j = j + 0.2) {
+          let point = j.toFixed(1);
+          this.optionValue[i].data.push({ point: point });
+        }
+      }
+            
+    })
   }
 
   ngOnInit(): void {
@@ -170,9 +203,9 @@ export class AssessmentAdminComponent implements OnInit {
   }
 
   athleteReset() {
-    console.log('masuk', this.userData)
+
     if(this.userData) {
-      let counter = 1;
+      let counter = 0;
       for(let i in this.optionValue) {
         for(let j in this.optionValue[i].data) {
           if(this.optionValue[i].data[j].selectedTechnical) {
@@ -184,14 +217,25 @@ export class AssessmentAdminComponent implements OnInit {
         this.pointService.changeAthleteAssessment(this.userData.id_atlet)
         .then(res => {
           console.log(res);
+          this.socket.emit("reset-admin")
         })
         .catch(err => {
           console.log(err);
           if(err['status'] === 404) {
-            this.isLoading = true;
-            console.log('masuk gag');
-            this.optionValue = [];
+            console.log('== masuk gag 404')
+            
             this.userData = {};
+            this.optionValue = [];
+            this.originalOptionValue = [];
+            this.socket.emit("reset-scoreboard")
+            this.socket.emit("reset-admin")
+            this.socket.emit("reset-juri")
+            this.userPoint = [];
+            this.cmpUserPoint = [];
+            
+            this.isLoading = true;
+
+
             for (let i = 0; i < 7; i++) {
               this.optionValue.push({
                 userId: i + 1,

@@ -63,12 +63,17 @@ export class AssessmentJuriComponent implements OnInit {
     });
 
     this.socket.on('reset-data-juri', () => {
-      window.location.reload()
+      this.userData = {};
+      this.optionValue = [];
+      this.payload = {};
+    
+      for (let i = 5.0; i < 10; i = i + 0.2) {
+        this.optionValue.push(i.toFixed(1));
+      }
     })
   }
 
   ngOnInit(): void {
-
     for (let i = 5.0; i < 10; i = i + 0.2) {
       this.optionValue.push(i.toFixed(1));
     }
