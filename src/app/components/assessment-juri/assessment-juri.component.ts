@@ -108,10 +108,6 @@ export class AssessmentJuriComponent implements OnInit {
 
   onSubmit() {
 
-    this.socket.emit('scoreboard');
-    this.socket.emit('result-admin');
-    this.socket.emit('result-juri');
-
     console.log(this.payload);
     this.payload.techValue = Number(this.payload.techValue);
     this.payload.athValue = Number(this.payload.athValue);
@@ -134,6 +130,12 @@ export class AssessmentJuriComponent implements OnInit {
         $('#pointOptions2').prop('selected', function () {
           return this.defaultSelected;
         });
+
+        setTimeout(() => {
+          this.socket.emit('scoreboard');
+          this.socket.emit('result-admin');
+          this.socket.emit('result-juri');
+        }, 100);
       })
       .catch((err) => {
         if (err['status'] === 400) {
