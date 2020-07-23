@@ -95,6 +95,10 @@ export class AppComponent implements OnInit {
     window.open('/scoreboard');
   }
 
+  testBtn() {
+    this.socket.emit("reset-scoreboard");
+  }
+
   logout() {
     console.log(this.user);
     this.userService
