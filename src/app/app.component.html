@@ -208,7 +208,7 @@
                   </div>
 
                   <div *ngIf="user.level === 1">
-                    <span class="text-white font-weight-bold">{{user.name}}</span>
+                    <span (click)="testBtn()" class="text-white font-weight-bold">{{user.name}}</span>
                   </div>
                 </div>
               </div>
