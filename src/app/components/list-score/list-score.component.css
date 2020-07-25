@@ -1,20 +1,20 @@
 th{
-    font-size: 30px !important;
+    font-size: 20px !important;
     font-weight: 700;
 }
 
 td{
-    font-size: 30px !important;
+    font-size: 20px !important;
     color: #fff;
     font-family: Arial, sans-serif;
     font-weight: 600;
-    
+
 }
 tbody{
     background: rgba(0, 0, 0, 0.2);
 }
 .score{
-    font-size: 55px !important;
+    font-size: 35px !important;
 }
 
 .badge-dangerr{
@@ -25,3 +25,13 @@ tbody{
     font-size: 35px !important;
 
 }
+.blinking{
+      animation:blinkingText 0.3s infinite;
+  }
+  @keyframes blinkingText{
+      0%{     color: #ffffff;    }
+      49%{    color: #ffffff; }
+      60%{    color: greenyellow; }
+      99%{    color: greenyellow;  }
+      100%{   color: #ffffff;    }
+  }
