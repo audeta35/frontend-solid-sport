@@ -1,0 +1,54 @@
+<div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
+  <div class="container-fluid">
+    <div class="row align-items-center py-4">
+      <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">
+        Navigasi Papan Skor
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card rounded shadow">
+          <div class="card-header bg-primary">
+            <h2 class="text-white text-center text-uppercase">
+              papan skor
+            </h2>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <button class="btn btn-outline-dark text-uppercase" (click)="scoreboard()">
+                <b>Navigasi ke papan skor</b>
+                <i class="float-right fa fa-external-link-alt"></i>
+              </button>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card rounded shadow">
+          <div class="card-header bg-primary">
+            <h2 class="text-white text-uppercase">
+              navigasi list atlet
+
+              <button (click)="backToScore()" class="text-sm badge badge-light badge-pill float-right">
+                Papan Skor
+              </button>
+            </h2>
+          </div>
+          <div class="card-body">
+            <ul *ngFor="let item of group" class="list-group list-group-flush">
+              <li class="list-group-item">
+                <button class="btn btn-block btn-outline-primary text-uppercase" (click)="listScore(item)">
+                  <b>top list atlet {{item.group_name}}</b>
+                  <i class="float-right fa fa-external-link-square-alt"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
