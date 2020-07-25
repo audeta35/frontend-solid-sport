@@ -98,13 +98,12 @@
                                         <span class="dot bg-success"></span>
                                         <span class="dot bg-biru"></span>
                                      -->
-                                <th>J-1 <span class="dot bg-success"></span></th>
-                                <th>J-2 <span class="dot bg-success"></span></th>
-                                <th>J-3 <span class="dot bg-success"></span></th>
-                                <th>J-4 <span class="dot bg-success"></span></th>
-                                <th>J-5 <span class="dot bg-success"></span></th>
-                                <th>J-6 <span class="dot bg-success"></span></th>
-                                <th>J-7 <span class="dot bg-success"></span></th>
+                                <ng-container *ngFor="let j of juryList">
+                                  <th>
+                                    {{j.name}}
+                                    <span class="dot {{j.status === 'online' ? 'bg-success' : 'bg-danger'}}" style="position:absolute" data-toggle="tooltip" title="{{j.name}} sedang {{j.status}}"></span>
+                                  </th>
+                                </ng-container>
                                 <th>FAC</th>
                                 <th>JUMLAH</th>
                                 <th>HASIL</th>

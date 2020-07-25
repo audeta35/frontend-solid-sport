@@ -3,6 +3,7 @@ import { Socket } from 'ngx-socket-io';
 import { AtletService } from 'src/app/provider/services/atlet';
 import { PointService } from 'src/app/provider/services/points';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/provider/services/users';
 
 @Component({
   selector: 'app-scoreboard',
@@ -17,6 +18,7 @@ export class ScoreboardComponent implements OnInit {
     kontingen: '',
     attribute: 'AKA'
   };
+  juryList: any = [];
   pointList: any = [];
   cmpPointList: any = [];
   atlet: any;
@@ -33,14 +35,32 @@ export class ScoreboardComponent implements OnInit {
 
   constructor(
     private socket: Socket, private atletService: AtletService, private pointService: PointService,
-    private routes: Router
+    private routes: Router, private userService: UserService
   ) {
     socket.emit('scoreboard');
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    console.log()
+    this.getSevenJury();
+    this.socket.on('getStatus', () => {
+      this.userService.getUsers()
+        .then((res: any) => {
+          this.juryList = res.result;
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    });
+    this.socket.on('getStatus2', () => {
+      this.userService.getUsers()
+        .then((res: any) => {
+          this.juryList = res.result;
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    });
     this.socket.on('data-score', () => {
       this.atletService.getAtletByMatch()
         .then(res => {
@@ -141,8 +161,6 @@ export class ScoreboardComponent implements OnInit {
                 this.pointList[this.cmpPointList[j].id_user - 1].noColor = true;
               }
             }
-
-            console.log(this.pointList)
           }
           this.isLoading = false;
         })
@@ -205,6 +223,17 @@ export class ScoreboardComponent implements OnInit {
       } else {
         this.routes.navigate([`/list-score/klasemen/individual/head-to-head`]);
       }
+    })
+  }
+
+  getSevenJury() {
+    this.userService.getUsers()
+    .then((res:any) => {
+      this.juryList = res.result;
+      console.log(this.juryList);
+    })
+    .catch((err) => {
+      console.error(err)
     })
   }
 }
