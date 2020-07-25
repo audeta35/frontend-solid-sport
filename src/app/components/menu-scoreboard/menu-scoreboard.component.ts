@@ -48,9 +48,15 @@ export class MenuScoreboardComponent implements OnInit {
 
   listScore(item:any) {
     this.socket.emit("push-link-listscore", item)
-    Toast.fire({
-      title: `papan skor sedang menampilkan ranking ${item.group_name}`,
-    });
+    if(item === 'individual') {
+      Toast.fire({
+        title: `papan skor sedang menampilkan ranking ${item}`,
+      });
+    } else {
+      Toast.fire({
+        title: `papan skor sedang menampilkan ranking ${item.group_name}`,
+      });
+    }
 
   }
 
