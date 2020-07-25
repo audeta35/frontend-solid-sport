@@ -57,6 +57,17 @@ export class PointService {
       })
     })
   }
+  doPointByAdmin(payload) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.pointsUrl+ 'calculate-by-admin', payload, {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
 
   changeAthleteAssessment(athleteId) {
     return new Promise((resolve, reject) => {
