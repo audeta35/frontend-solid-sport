@@ -200,7 +200,11 @@ export class ScoreboardComponent implements OnInit {
 
     // remote control
     this.socket.on('listscore-link', (item: any) => {
-      this.routes.navigate([`/list-score/klasemen/${item.id}/${item.group_name}`]);
+      if(item) {
+        this.routes.navigate([`/list-score/klasemen/${item.id}/${item.group_name}`]);
+      } else {
+        this.routes.navigate([`/list-score/klasemen/individual/head-to-head`]);
+      }
     })
   }
 }
