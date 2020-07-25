@@ -34,6 +34,30 @@ export class AtletService {
     })
   }
 
+  getGroup() {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.atletUrl + '/get-group', {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
+  getRanking(id) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.atletUrl + '/get-ranking/' + id, {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
   addAtletGroup(payload, group) {
     let atlet = {
       payload : payload,

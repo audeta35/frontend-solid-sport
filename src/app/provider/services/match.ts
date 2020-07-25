@@ -35,6 +35,22 @@ export class MatchService {
     });
   }
 
+  getRecap() {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.matchUrl + 'getRecap', {
+        headers: new HttpHeaders().set('Authorization', this.token),
+      })
+        .subscribe(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+  }
+
   updateMatch(id) {
     let data = {
       id: id,

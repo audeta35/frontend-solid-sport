@@ -63,12 +63,17 @@ export class AssessmentJuriComponent implements OnInit {
     });
 
     this.socket.on('reset-data-juri', () => {
-      window.location.reload()
+      this.userData = {};
+      this.optionValue = [];
+      this.payload = {};
+
+      for (let i = 5.0; i < 10; i = i + 0.2) {
+        this.optionValue.push(i.toFixed(1));
+      }
     })
   }
 
   ngOnInit(): void {
-
     for (let i = 5.0; i < 10; i = i + 0.2) {
       this.optionValue.push(i.toFixed(1));
     }
@@ -108,10 +113,6 @@ export class AssessmentJuriComponent implements OnInit {
 
   onSubmit() {
 
-    this.socket.emit('scoreboard');
-    this.socket.emit('result-admin');
-    this.socket.emit('result-juri');
-
     console.log(this.payload);
     this.payload.techValue = Number(this.payload.techValue);
     this.payload.athValue = Number(this.payload.athValue);
@@ -134,14 +135,25 @@ export class AssessmentJuriComponent implements OnInit {
         $('#pointOptions2').prop('selected', function () {
           return this.defaultSelected;
         });
+
+        setTimeout(() => {
+          this.socket.emit('scoreboard');
+          this.socket.emit('result-admin');
+          this.socket.emit('result-juri');
+        }, 100);
       })
       .catch((err) => {
         if (err['status'] === 400) {
-          Toast.fire({
+          Swal.fire({
+            icon: 'error',
+            title: 'Atlet sudah mendapat penilaian',
+          })
+        } else if(err['status'] === 500) {
+          Swal.fire({
             icon: 'info',
-            text:
-              'Maaf, anda sudah memberikan nilai terhadap atlit ini sebelumnya',
-          });
+            title: 'Informasi',
+            text: 'Belum ada atlet yang bertanding'
+          })
         }
         console.log(err);
       });

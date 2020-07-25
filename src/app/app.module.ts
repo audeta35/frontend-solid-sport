@@ -15,6 +15,8 @@ import { environment } from '../environments/environment';
 import { TatamiServices } from './provider/services/tatami';
 
 // const path = 'http://localhost:3000';
+// let path = 'http://192.168.43.164:3000/';
+
 // const path = 'http://192.168.10.116:3000';
 let path = "https://solidapi.bisapastibisa.com";
 

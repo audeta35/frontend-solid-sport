@@ -9,7 +9,7 @@ td{
     font-family: 'Arial', sans-serif;
     font-weight: 900;
     color: #fff;
-    
+
 }
 .dot {
     height: 20px;
@@ -26,4 +26,14 @@ td{
   }
   .card{
       border-radius: 0px !important;
+  }
+  .blinking{
+      animation:blinkingText 0.3s infinite;
+  }
+  @keyframes blinkingText{
+      0%{     color: #ffffff;    }
+      49%{    color: #ffffff; }
+      60%{    color: greenyellow; }
+      99%{    color: greenyellow;  }
+      100%{   color: #ffffff;    }
   }

@@ -1,5 +1,5 @@
 <body *ngIf="!isLoading"
-    style="background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
+    style="position:fixed; width: 100%; height: 100%;background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
     <div class="container mt-2 mb-4">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
@@ -9,8 +9,6 @@
                     <strong> Kata Perorangan kadet
                         Putra</strong>
                 </h1>
-                <button class="btn btn-dark float-right" routerLink="/list-score">List score <i
-                        class="fa fa-angle-right"></i></button>
                 <hr>
             </div>
         </div>
@@ -20,31 +18,17 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <div *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="card bg-danger"
+                    <div class="card {{ userData.attribute === 'aka' ? 'bg-danger' : userData.attribute === 'ao' ? 'bg-primary' : 'bg-dark' }}"
                         style="width: 100%;height: auto;">
                         <div class="card-body">
                             <h1 class="text-center" *ngIf="finalScore"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                 {{ finalScore }}
+                                {{ finalScore }}
                             </h1>
                             <h1 class="text-center" *ngIf="!finalScore"
                                 style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                 &nbsp;
+                                &nbsp;
                             </h1>
-                        </div>
-                    </div>
-                    <div *ngIf="userData.attribute.toUpperCase() === 'AO'" class="card bg-primary"
-                        style="width: 100%;height: auto;">
-                        <div class="card-body">
-                            <h1 class="text-center" *ngIf="finalScore"
-                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                 {{ finalScore }}
-                            </h1>
-                            <h1 class="text-center" *ngIf="!finalScore"
-                                style="font-size: 200px;color: white;font-family: 'Arial', sans-serif;">
-                                 &nbsp;
-                            </h1>
-                            
                         </div>
                     </div>
                 </div>
@@ -99,33 +83,8 @@
                 <div class="table-responsive">
 
                     <table class="table">
-                        <thead *ngIf="userData.attribute.toUpperCase() === 'AKA'" class="bg-danger">
-
-                            <tr>
-                                <th style="background-color: #fff !important;border:none !important;">
-                                    <div class="text-center">
-                                        <img src="assets/images/logo/ada.png" class="img-fluid" style="width: 80px;"
-                                            alt="">
-                                    </div>
-                                </th>
-                                <!-- INDIKATOR
-                                        <span class="dot bg-merah"></span>
-                                        <span class="dot bg-success"></span>
-                                        <span class="dot bg-biru"></span>
-                                     -->
-                                <th>J-1 <span class="dot bg-success"></span></th>
-                                <th>J-2 <span class="dot bg-success"></span></th>
-                                <th>J-3 <span class="dot bg-success"></span></th>
-                                <th>J-4 <span class="dot bg-success"></span></th>
-                                <th>J-5 <span class="dot bg-success"></span></th>
-                                <th>J-6 <span class="dot bg-success"></span></th>
-                                <th>J-7 <span class="dot bg-success"></span></th>
-                                <th>FAC</th>
-                                <th>JUMLAH</th>
-                                <th>HASIL</th>
-                            </tr>
-                        </thead>
-                        <thead *ngIf="userData.attribute.toUpperCase() === 'AO'" class="bg-primary">
+                        <thead
+                            class="{{userData.attribute === 'ao' ? 'bg-primary' : userData.attribute === 'aka' ? 'bg-danger' : 'bg-dark'}}">
 
                             <tr>
                                 <th style="background-color: #fff !important;">
@@ -161,16 +120,16 @@
 
                                     <div *ngIf="!points.technical_result_status && !points.noColor"
                                         style="text-decoration: line-through; color: red;">
-                                        {{ points.technical_result > -1 
-                                           ? points.technical_result 
+                                        {{ points.technical_result > -1
+                                           ? points.technical_result
                                            : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
 
 
                                     <div *ngIf="!points.technical_result_status && points.noColor">
-                                        {{ points.technical_result > -1 
-                                            ? points.technical_result 
+                                        {{ points.technical_result > -1
+                                            ? points.technical_result
                                             : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
@@ -186,15 +145,15 @@
                                     </div>
                                     <div *ngIf="!points.athletic_result_status && !points.noColor"
                                         style="text-decoration: line-through; color: red;">
-                                        {{ points.athletic_result > -1 
-                                            ? points.athletic_result 
+                                        {{ points.athletic_result > -1
+                                            ? points.athletic_result
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue
                                         }}
                                     </div>
 
                                     <div *ngIf="!points.athletic_result_status && points.noColor">
-                                        {{ points.athletic_result > -1 
-                                            ? points.athletic_result 
+                                        {{ points.athletic_result > -1
+                                            ? points.athletic_result
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue
                                         }}
                                     </div>

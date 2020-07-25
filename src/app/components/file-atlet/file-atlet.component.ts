@@ -117,7 +117,7 @@ export class FileAtletComponent implements OnInit {
         title: `Atlet ${atlet.atlet_name} di diskualifikasi`,
       });
 
-      this.socket.emit("reset-scoreboard")
+      this.socket.emit("reset-scoreboard");
       this.socket.emit('reset-admin');
       this.socket.emit('reset-juri');
 
@@ -151,14 +151,13 @@ export class FileAtletComponent implements OnInit {
           .then((res: any) => {
             this.atlet = res.result.atlet;
             this.group = res.result.group;
+            this.socket.emit("reset-scoreboard")
+            this.socket.emit('reset-admin');
+            this.socket.emit('reset-juri');
           })
           .catch((err) => {
             console.log(err);
           });
-
-        // this.socket.emit("reset-scoreboard")
-        // this.socket.emit('reset-admin');
-        // this.socket.emit('reset-juri');
       })
       .catch((err) => {
         console.log(err)

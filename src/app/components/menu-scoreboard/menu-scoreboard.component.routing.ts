@@ -1,10 +1,10 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ListScoreComponent } from './list-score.component';
+import { MenuScoreboardComponent } from './menu-scoreboard.component';
 
 const routes: Routes = [
-    { path: 'klasemen/:id/:group', component: ListScoreComponent }
+    { path: '', component: MenuScoreboardComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
