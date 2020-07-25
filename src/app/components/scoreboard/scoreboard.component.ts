@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { AtletService } from 'src/app/provider/services/atlet';
 import { PointService } from 'src/app/provider/services/points';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scoreboard',
@@ -30,7 +31,10 @@ export class ScoreboardComponent implements OnInit {
     },
   ];
 
-  constructor(private socket: Socket, private atletService: AtletService, private pointService: PointService) {
+  constructor(
+    private socket: Socket, private atletService: AtletService, private pointService: PointService,
+    private routes: Router
+  ) {
     socket.emit('scoreboard');
   }
 
@@ -144,7 +148,7 @@ export class ScoreboardComponent implements OnInit {
         })
     })
 
-    this.socket.on("reset-data-score", () => {      
+    this.socket.on("reset-data-score", () => {
       this.userData.atlet_name = '',
       this.userData.kata_name = '',
       this.userData.kontingen = '',
@@ -192,6 +196,11 @@ export class ScoreboardComponent implements OnInit {
       }
 
       console.log(this.pointList)
+    })
+
+    // remote control
+    this.socket.on('listscore-link', (item: any) => {
+      this.routes.navigate([`/list-score/klasemen/${item.id}/${item.group_name}`]);
     })
   }
 }
