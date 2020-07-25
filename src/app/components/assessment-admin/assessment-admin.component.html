@@ -73,7 +73,7 @@
                                         <th>{{ item.juri }}</th>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control">
+                                                <select class="form-control" (change)="_handleSelectPoint('tech', i, $event.target.value)">
                                                     <option>0</option>
                                                     <option
                                                         [attr.selected]="i + 1 == optionValue[i].userId && option.selectedTechnical ? true : null"
@@ -84,7 +84,7 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control">
+                                                <select class="form-control" (change)="_handleSelectPoint('ath', i, $event.target.value)">
                                                     <option>0</option>
                                                     <option
                                                         [attr.selected]="i + 1 === optionValue[i].userId && option.selectedAthletic ? true : null"
@@ -99,7 +99,8 @@
                         </div>
                         <div class="col-md-12">
                             <hr>
-                            <button class="btn btn-outline-success float-right"> <i class="fa fa-save"></i> Simpan
+                            <button class="btn btn-outline-success float-right" (click)="onSubmit()"> 
+                                <i class="fa fa-save"></i> Simpan
                             </button>
                             <button class="btn btn-danger" (click)="athleteReset()">
                                 <i class="fa fa-eraser"></i> Reset

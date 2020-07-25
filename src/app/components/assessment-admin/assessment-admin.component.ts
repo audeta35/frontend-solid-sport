@@ -46,6 +46,11 @@ export class AssessmentAdminComponent implements OnInit {
       juri: 'J-7',
     },
   ];
+  payload = {
+    matchId: 0,
+    athleteId: 0,
+    adminPointList: []
+  }
   constructor(private socket: Socket, private atletService: AtletService, private pointService: PointService) {
     this.socket.emit("result-admin");
     this.socket.on("data-admin", () => {
@@ -58,6 +63,11 @@ export class AssessmentAdminComponent implements OnInit {
           this.cmpUserPoint = []
 
           this.userData = res['result'][0];
+
+
+          this.payload.matchId = this.userData.id_match;
+          this.payload.athleteId = this.userData.id_atlet;
+
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
             .then((response: any) => {
               this.userPoint = response['result']['athlete_point_list'] || response['result'] || [];
@@ -107,21 +117,25 @@ export class AssessmentAdminComponent implements OnInit {
                       let data = this.optionValue[i].data[j];
                       if (this.userPoint[i].technical_result.toFixed(1) === data.point) {
                         this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedTechnical = true;
+                        this.payload.adminPointList[this.userPoint[i].id_user - 1].techValue = data.point;
                         if (this.userPoint[i].athletic_result.toFixed(1) === data.point) {
                           this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedAthletic = true;
+                          this.payload.adminPointList[this.userPoint[i].id_user - 1].athValue = data.point;
                         }
                       }
                       if (this.userPoint[i].athletic_result.toFixed(1) === data.point) {
                         this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedAthletic = true;
+                        this.payload.adminPointList[this.userPoint[i].id_user - 1].athValue = data.point;
                         if (this.userPoint[i].technical_result.toFixed(1) === data.point) {
                           this.optionValue[this.userPoint[i].id_user - 1].data[j].selectedTechnical = true;
+                          this.payload.adminPointList[this.userPoint[i].id_user - 1].techValue = data.point;
                         }
                       }
                     }
                   }
                 }
               }
-
+              console.log(this.optionValue)
               this.isLoading = false;
             })
             .catch(error => {
@@ -187,19 +201,34 @@ export class AssessmentAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log(this.optionValue)
+    for(let i = 1; i < 8; i++) {
+      this.payload.adminPointList.push({
+        userId: i,
+        techValue: 0,
+        athValue: 0,
+      })
+    }
     this.isLoading = true;
 
   }
 
+  _handleSelectPoint(cat, index, point ) {
+    if(cat === 'tech') {
+      this.payload.adminPointList[index].techValue = point;
+    } else {
+      this.payload.adminPointList[index].athValue = point;
+    }
+  }
+
   onSubmit() {
-
-    // fungsi
-
-    this.socket.emit('scoreboard');
-    this.socket.emit('result-admin');
-    this.socket.emit('result-juri');
+    this.pointService.doPointByAdmin(this.payload)
+    .then(res => {
+      this.socket.emit('result-admin');
+      this.socket.emit('scoreboard');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   athleteReset() {
@@ -267,4 +296,5 @@ export class AssessmentAdminComponent implements OnInit {
       });
     }
   }
+  
 }
