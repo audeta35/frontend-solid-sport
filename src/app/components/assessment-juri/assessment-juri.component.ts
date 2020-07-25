@@ -66,7 +66,7 @@ export class AssessmentJuriComponent implements OnInit {
       this.userData = {};
       this.optionValue = [];
       this.payload = {};
-    
+
       for (let i = 5.0; i < 10; i = i + 0.2) {
         this.optionValue.push(i.toFixed(1));
       }
@@ -144,11 +144,16 @@ export class AssessmentJuriComponent implements OnInit {
       })
       .catch((err) => {
         if (err['status'] === 400) {
-          Toast.fire({
+          Swal.fire({
+            icon: 'error',
+            title: 'Atlet sudah mendapat penilaian',
+          })
+        } else if(err['status'] === 500) {
+          Swal.fire({
             icon: 'info',
-            text:
-              'Maaf, anda sudah memberikan nilai terhadap atlit ini sebelumnya',
-          });
+            title: 'Informasi',
+            text: 'Belum ada atlet yang bertanding'
+          })
         }
         console.log(err);
       });

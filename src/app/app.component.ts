@@ -91,10 +91,6 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  scoreboard() {
-    window.open('/scoreboard');
-  }
-
   testBtn() {
     this.socket.emit("reset-scoreboard");
   }

@@ -9,8 +9,6 @@
                     <strong> Kata Perorangan kadet
                         Putra</strong>
                 </h1>
-                <button class="btn btn-dark float-right" routerLink="/list-score">List score <i
-                        class="fa fa-angle-right"></i></button>
                 <hr>
             </div>
         </div>
@@ -122,16 +120,16 @@
 
                                     <div *ngIf="!points.technical_result_status && !points.noColor"
                                         style="text-decoration: line-through; color: red;">
-                                        {{ points.technical_result > -1 
-                                           ? points.technical_result 
+                                        {{ points.technical_result > -1
+                                           ? points.technical_result
                                            : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
 
 
                                     <div *ngIf="!points.technical_result_status && points.noColor">
-                                        {{ points.technical_result > -1 
-                                            ? points.technical_result 
+                                        {{ points.technical_result > -1
+                                            ? points.technical_result
                                             : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
                                     </div>
@@ -147,15 +145,15 @@
                                     </div>
                                     <div *ngIf="!points.athletic_result_status && !points.noColor"
                                         style="text-decoration: line-through; color: red;">
-                                        {{ points.athletic_result > -1 
-                                            ? points.athletic_result 
+                                        {{ points.athletic_result > -1
+                                            ? points.athletic_result
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue
                                         }}
                                     </div>
 
                                     <div *ngIf="!points.athletic_result_status && points.noColor">
-                                        {{ points.athletic_result > -1 
-                                            ? points.athletic_result 
+                                        {{ points.athletic_result > -1
+                                            ? points.athletic_result
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue
                                         }}
                                     </div>
