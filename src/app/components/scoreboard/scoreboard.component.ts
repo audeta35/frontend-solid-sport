@@ -109,6 +109,7 @@ export class ScoreboardComponent implements OnInit {
                 }
               }
 
+              console.log('thispoointLIst', this.pointList)
               this.isLoading = false;
             })
             .catch(error => {
