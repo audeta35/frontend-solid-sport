@@ -225,6 +225,7 @@ export class AssessmentAdminComponent implements OnInit {
     .then(res => {
       this.socket.emit('result-admin');
       this.socket.emit('scoreboard');
+      
     })
     .catch(err => {
       console.log(err);

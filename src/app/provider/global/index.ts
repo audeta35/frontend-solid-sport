@@ -17,6 +17,8 @@ export class GlobalProvider {
     // let path = "http://localhost:3000/";
     // let path = 'http://192.168.43.164:3000/';
     // const path = 'http://192.168.10.116:3000/';
+    // let path = 'http://192.168.1.74:3000/';
+    // let path = 'http://192.168.43.183:3000/';
     let path = "https://solidapi.bisapastibisa.com/";
     const config = {
       "juriUrl": path + "users/",
