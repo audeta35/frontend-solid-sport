@@ -63,10 +63,10 @@ export class ScoreboardComponent implements OnInit {
     });
     this.socket.on('data-score', () => {
       this.atletService.getAtletByMatch()
-        .then(res => {
+        .then((res:any) => {
           this.userData = res['result'][0];
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
-            .then(response => {
+            .then((response:any) => {
               this.pointList = [];
               this.finalScore = response['result']['total_point'] || '';
 
