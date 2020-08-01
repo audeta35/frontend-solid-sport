@@ -2,8 +2,9 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="row align-items-center py-4">
-                <p class="text-center text-light mt-3" style="margin:auto;font-size: 40px;">Penilaian Juri</p>
-
+                <p class="text-center text-capitalize text-light mt-3" style="margin:auto;font-size: 40px;">
+                 Yth, <b>{{juryData.username}}</b> - {{juryData.name}}
+                </p>
             </div>
 
         </div>
@@ -35,7 +36,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center">
-                                    <label>Tatami </label>
+                                    <label>Atribut </label>
                                     <h2 class="{{userData.tatami === 'ao' ? 'bg-primary' : 'bg-danger'}} text-white"> {{ userData.tatami }}</h2>
 
                                 </div>
