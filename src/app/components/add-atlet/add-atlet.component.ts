@@ -56,12 +56,12 @@ export class AddAtletComponent implements OnInit {
 
       for (i = 1; i <= result; i++) {
         this.group.push({
-          name: `group ${i}`,
+          name: `group ${(i + 9).toString(36).toLowerCase()}`,
         })
       }
 
       for (i = 1; i <= result; i++) {
-        for (let x = 1; x < this.maxUserGroup; x++) {
+        for (let x = 0; x < this.maxUserGroup; x++) {
 
           this.names.push({
             name: "",
@@ -69,7 +69,7 @@ export class AddAtletComponent implements OnInit {
             kata: "",
             attribute: "",
             selected: false,
-            group: `group ${i}`,
+            group: `group ${(i + 9).toString(36).toLowerCase()}`,
             class: ""
           })
         }
@@ -92,7 +92,7 @@ export class AddAtletComponent implements OnInit {
 
   addGroup() {
     this.group.push({
-      name: `group ${this.group.length + 1}`
+      name: `group ${(this.group.length + 11).toString(36)}`
     })
   }
 

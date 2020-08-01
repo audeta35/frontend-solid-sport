@@ -42,6 +42,14 @@
                         <h1 class="text-uppercase text-center text-white">
                             IMPOR DATA ATLET
                         </h1>
+                         <div class="position-absolute">
+                            <b *ngFor="let gid = index; let g of group" class="text-uppercase my-1">
+                              <span class="badge badge-primary">
+                                {{g.name}}
+                              </span>
+                              <i *ngIf="gid + 1 !== group.length" class="fa fa-caret-right mx-2 text-success"></i>
+                            </b>
+                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -55,7 +63,7 @@
                                         <th>No</th>
                                         <th>Nama Atlet</th>
                                         <th>Kontingen</th>
-                                        <th>Kata yang dimainkan</th>
+                                        <th>Kata</th>
                                         <th>Grup</th>
                                         <th>Atribut</th>
                                         <th>Kelas</th>
@@ -89,11 +97,8 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select [(ngModel)]="item.kata" placeholder="Nama Atlet"
+                                                <input type="text" [(ngModel)]="item.kata" placeholder="Kata"
                                                     [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
-                                                    <option value="inkai">INKAI</option>
-                                                    <option value="unsu">UNSU</option>
-                                                </select>
                                             </div>
                                         </td>
                                         <td>

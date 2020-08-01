@@ -68,12 +68,15 @@ export class ImportAtletComponent implements OnInit {
     let csvArr = [];
     let i: number;
 
-    let total = csvRecordsArray.length / this.maxUserGroup;
+    let removeHeader = csvRecordsArray.length - 2;
+    let total = removeHeader / this.maxUserGroup;
     let result = Math.ceil(total);
+
+    console.log(`before ${csvRecordsArray.length}, after ${removeHeader}`);
 
     for (i = 1; i <= result; i++) {
       this.group.push({
-        name: `group ${i}`,
+        name: `group ${(i+9).toString(36)}`,
       });
     }
 
@@ -96,7 +99,7 @@ export class ImportAtletComponent implements OnInit {
           kata: csvRecord.kata,
           attribute: csvRecord.attribute,
           selected: false,
-          group: `group ${csvRecord.group}`,
+          group: `group ${csvRecord.group.toLowerCase()}`,
           class: csvRecord.class
         });
       }

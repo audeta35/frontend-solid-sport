@@ -17,13 +17,13 @@ import { MenuScoreboardComponent } from './components/menu-scoreboard/menu-score
 
 // let path = 'http://localhost:3000';
 // let path = 'http://192.168.43.164:3000';
-// let path = 'http://192.168.10.116:3000';
+let path = 'http://192.168.10.116:3000';
 // const path = 'http://localhost:3000';
 // let path = 'http://192.168.43.164:3000/';
 // let path = 'http://192.168.1.74:3000/';
 // let path = 'http://192.168.43.183:3000/';
 // const path = 'http://192.168.10.116:3000';
-let path = "https://solidapi.bisapastibisa.com";
+// let path = "https://solidapi.bisapastibisa.com";
 
 const config: SocketIoConfig = { url: path, options: {} };
 
