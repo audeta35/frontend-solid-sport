@@ -58,6 +58,8 @@ export class PointService {
     })
   }
   doPointByAdmin(payload) {
+    payload.adminPointList = payload.adminPointList.filter((item) => { return item.userId < 6 })
+    console.log('payload', payload);
     return new Promise((resolve, reject) => {
       this.http.post(this.pointsUrl+ 'calculate-by-admin', payload, {
         headers: new HttpHeaders().set("Authorization", this.token)

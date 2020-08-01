@@ -23,7 +23,9 @@ export class UserService {
   }
 
   getUsers() {
-
+    if(sessionStorage.getItem('token')) {
+      this.token = sessionStorage.getItem('token');
+    }
     return new Promise((resolve, reject) => {
       this.http.get<any>(this.juriUrl)
       .subscribe((res) => {

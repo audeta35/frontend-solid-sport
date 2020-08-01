@@ -221,8 +221,10 @@ export class AssessmentAdminComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.payload)
     this.pointService.doPointByAdmin(this.payload)
     .then(res => {
+      console.log(res);
       this.socket.emit('result-admin');
       this.socket.emit('scoreboard');
       
@@ -243,7 +245,7 @@ export class AssessmentAdminComponent implements OnInit {
           }
         }
       }
-      if(counter === 7) {
+      if(counter >= 5) {
         this.pointService.changeAthleteAssessment(this.userData.id_atlet)
         .then(res => {
           console.log(res);
