@@ -65,33 +65,36 @@ export class ScoreboardComponent implements OnInit {
       this.atletService.getAtletByMatch()
         .then((res:any) => {
           this.userData = res['result'][0];
+          console.log(this.userData)
           this.pointService.getPointForScoreboard(this.userData.id_atlet, this.userData.id_match)
             .then((response:any) => {
               this.pointList = [];
-              this.finalScore = response['result']['total_point'] || '';
+              this.finalScore = response['result']['total_point'] || 0;
+
+              console.log('masuk gag', this.finalScore)
 
               this.cmpPointList = response['result']['athlete_point_list'] ? [...response['result']['athlete_point_list']] : [...response['result']];
-              for (let i = this.pointList.length; i < 10; i++) {
-                if (i === 7) {
+              for (let i = this.pointList.length; i < 8; i++) {
+                if (i === 5) {
                   this.pointList.push({
                     FAC_ATH: 0.3,
                     FAC_TECH: 0.7,
                     noColor: true
                   })
-                } else if (i < 7) {
+                } else if (i < 5) {
 
                   this.pointList.push({
                     technicalValue: 0,
                     athleticValue: 0,
                     noColor: true
                   })
-                } else if (i === 8) {
+                } else if (i === 6) {
                   this.pointList.push({
                     technical_point_result: response['result']['technical_point_result'] || '0',
                     athletic_point_result: response['result']['athletic_point_result'] || '0',
                     noColor: true,
                   })
-                } else if (i === 9) {
+                } else if (i === 7) {
                   this.pointList.push({
                     technical_point: response['result']['technical_point'] || '0',
                     athletic_point: response['result']['athletic_point'] || '0',
@@ -101,7 +104,7 @@ export class ScoreboardComponent implements OnInit {
               }
 
               for (let j in this.cmpPointList) {
-                if (this.cmpPointList.length > 7) {
+                if (this.cmpPointList.length > 5) {
 
                 } else {
                   this.pointList[this.cmpPointList[j].id_user - 1] = this.cmpPointList[j];
@@ -125,27 +128,27 @@ export class ScoreboardComponent implements OnInit {
             this.finalScore = 0;
 
             this.cmpPointList = [];
-            for (let i = 0; i < 10; i++) {
-              if (i === 7) {
+            for (let i = 0; i < 8; i++) {
+              if (i === 5) {
                 this.pointList.push({
                   FAC_ATH: 0.3,
                   FAC_TECH: 0.7,
                   noColor: true
                 })
-              } else if (i < 7) {
+              } else if (i < 5) {
 
                 this.pointList.push({
                   technicalValue: 0,
                   athleticValue: 0,
                   noColor: true
                 })
-              } else if (i === 8) {
+              } else if (i === 6) {
                 this.pointList.push({
                   technical_point_result: '0',
                   athletic_point_result: '0',
                   noColor: true,
                 })
-              } else if (i === 9) {
+              } else if (i === 7) {
                 this.pointList.push({
                   technical_point: '0',
                   athletic_point: '0',
@@ -168,6 +171,7 @@ export class ScoreboardComponent implements OnInit {
     })
 
     this.socket.on("reset-data-score", () => {
+      
       this.userData.atlet_name = '',
       this.userData.kata_name = '',
       this.userData.kontingen = '',
@@ -176,27 +180,27 @@ export class ScoreboardComponent implements OnInit {
       this.finalScore = 0;
 
       this.cmpPointList = [];
-      for (let i = 0; i < 10; i++) {
-        if (i === 7) {
+      for (let i = 0; i < 8; i++) {
+        if (i === 5) {
           this.pointList.push({
             FAC_ATH: 0.3,
             FAC_TECH: 0.7,
             noColor: true
           })
-        } else if (i < 7) {
+        } else if (i < 5) {
 
           this.pointList.push({
             technicalValue: 0,
             athleticValue: 0,
             noColor: true
           })
-        } else if (i === 8) {
+        } else if (i === 6) {
           this.pointList.push({
             technical_point_result: '0',
             athletic_point_result: '0',
             noColor: true,
           })
-        } else if (i === 9) {
+        } else if (i === 7) {
           this.pointList.push({
             technical_point: '0',
             athletic_point: '0',
@@ -232,6 +236,8 @@ export class ScoreboardComponent implements OnInit {
     .then((res:any) => {
       this.juryList = res.result;
       console.log(this.juryList);
+
+      this.isLoading = false;
     })
     .catch((err) => {
       console.error(err)

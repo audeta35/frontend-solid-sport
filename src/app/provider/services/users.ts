@@ -23,11 +23,11 @@ export class UserService {
   }
 
   getUsers() {
-
+    if(sessionStorage.getItem('token')) {
+      this.token = sessionStorage.getItem('token');
+    }
     return new Promise((resolve, reject) => {
-      this.http.get<any>(this.juriUrl, {
-        headers: new HttpHeaders().set('Authorization', this.token)
-      })
+      this.http.get<any>(this.juriUrl)
       .subscribe((res) => {
         resolve(res)
       }, (err) => {
