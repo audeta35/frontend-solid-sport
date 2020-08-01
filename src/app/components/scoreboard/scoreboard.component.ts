@@ -105,7 +105,7 @@ export class ScoreboardComponent implements OnInit {
 
                 } else {
                   this.pointList[this.cmpPointList[j].id_user - 1] = this.cmpPointList[j];
-                  this.pointList[this.cmpPointList[j].id_user - 1].noColor = true;
+                  this.pointList[this.cmpPointList[j].id_user - 1].noColor = false;
                 }
               }
 
