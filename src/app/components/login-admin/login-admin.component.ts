@@ -23,6 +23,8 @@ export class LoginAdminComponent implements OnInit {
     passwordJury: '',
   }
 
+  juryList:any = [];
+
   isDisabled = false;
   isDisabled2 = false;
   isLoading = false;
@@ -43,7 +45,20 @@ export class LoginAdminComponent implements OnInit {
 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getJury()
+  }
+
+  getJury() {
+    this.userService.getUsers()
+    .then((res:any) => {
+      this.juryList = res.result;
+      console.log(this.juryList);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 
   isValidate() {
     if (this.payload.username && this.payload.password) {

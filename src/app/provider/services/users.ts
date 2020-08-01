@@ -25,9 +25,7 @@ export class UserService {
   getUsers() {
 
     return new Promise((resolve, reject) => {
-      this.http.get<any>(this.juriUrl, {
-        headers: new HttpHeaders().set('Authorization', this.token)
-      })
+      this.http.get<any>(this.juriUrl)
       .subscribe((res) => {
         resolve(res)
       }, (err) => {
