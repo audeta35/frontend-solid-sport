@@ -48,9 +48,7 @@ export class AtletService {
 
   getRanking(id) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.atletUrl + '/get-ranking/' + id, {
-        headers: new HttpHeaders().set("Authorization", this.token)
-      }).subscribe((res) => {
+      this.http.get(this.atletUrl + '/get-ranking/' + id).subscribe((res) => {
         resolve(res);
       }, (err) => {
         reject(err);
