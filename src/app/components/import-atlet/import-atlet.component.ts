@@ -82,7 +82,7 @@ export class ImportAtletComponent implements OnInit {
 
     for (i = 1; i <= csvRecordsArray.length; i++) {
 
-      let curruntRecord = (<string>csvRecordsArray[i]).split(',');
+      let curruntRecord: any = (<string>csvRecordsArray[i]).split(',');
 
       if (curruntRecord.length == headerLength) {
         let csvRecord: CSVRecord = new CSVRecord();
