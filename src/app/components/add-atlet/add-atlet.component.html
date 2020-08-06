@@ -64,7 +64,7 @@
                                     <div *ngIf="!isProcess" class="input-group ml-auto">
 
                                       <input type="text" (keypress)="numberOnly($event)" [(ngModel)]="totalForm" [ngModelOptions]="{standalone: true}"
-                                        maxlength="2" placeholder="Masukan jumlah atlet" class="form-control">
+                                        maxlength="4" placeholder="Masukan jumlah atlet" class="form-control">
                                       <div class="input-group-append">
                                         <button (click)="setForm()" class="btn btn-outline-primary">
                                           Buat Form
