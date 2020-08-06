@@ -6,8 +6,7 @@
 
                 <h1 class="pt-3 text-center"
                     style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
-                    <strong> Kata Perorangan kadet
-                        Putra</strong>
+                    <strong>Solidsport Organizer</strong>
                 </h1>
                 <hr>
             </div>
@@ -23,7 +22,7 @@
                         <div class="card-body">
                             <h1 class="text-center blinking" *ngIf="finalScore"
                                 style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
-                                <b *ngIf="userData.grouping !== 'null'">
+                                <b *ngIf="userData.grouping !== 'group individu'">
                                   {{ finalScore }}
                                 </b>
                             </h1>
@@ -109,7 +108,7 @@
                         <tbody>
                             <tr>
                                 <th style="color: #fff;font-weight: 700;">TEKNIK</th>
-                                <td *ngFor="let points of pointList">                                    
+                                <td *ngFor="let points of pointList">
                                     <div *ngIf="!points.technical_result_status && !points.noColor"
                                         style="text-decoration: line-through; color: red;">
                                         {{ points.technical_result > -1
@@ -131,7 +130,7 @@
                             <tr>
 
                                 <th style="color: #fff;font-weight: 700;">ATLETIK</th>
-                                <td *ngFor="let points of pointList">                                    
+                                <td *ngFor="let points of pointList">
                                     <div *ngIf="!points.athletic_result_status && !points.noColor"
                                         style="text-decoration: line-through; color: red;">
                                         {{ points.athletic_result
