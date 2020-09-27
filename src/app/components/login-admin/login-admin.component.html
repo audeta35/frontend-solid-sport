@@ -91,7 +91,7 @@
                                             <select (change)="isValidate2()" class="custom-select" [(ngModel)]="payload.usernameJury" [ngModelOptions]="{standalone: true}">
                                               <option value="" selected>pilih juri</option>
                                               <ng-container *ngIf="juryList.length !== 0">
-                                                <option *ngFor="let i = index; let opt of juryList" [value]="opt.name" [selected]="opt.name === true">
+                                                <option *ngFor="let i = index; let opt of juryList" [value]="opt.username" [selected]="opt.username === true">
                                                   <b class="text-capitalize">
                                                     {{opt.username}} - Juri {{i + 1}}
                                                   </b>
