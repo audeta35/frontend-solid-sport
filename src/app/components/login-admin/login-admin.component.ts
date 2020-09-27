@@ -82,7 +82,6 @@ export class LoginAdminComponent implements OnInit {
   onSubmit() {
 
     this.isLoadingOne = true;
-
     setTimeout(() => {
       if (!this.payload.username || !this.payload.password) {
         for (let i in this.payload) {
@@ -139,7 +138,7 @@ export class LoginAdminComponent implements OnInit {
   onSubmitJury() {
 
     this.isLoading = true;
-
+    
     setTimeout(() => {
       if (!this.payload.usernameJury || !this.payload.passwordJury) {
         for (let i in this.payload) {
