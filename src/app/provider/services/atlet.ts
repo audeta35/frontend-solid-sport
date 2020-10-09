@@ -73,6 +73,30 @@ export class AtletService {
     })
   }
 
+  truncateAtlet() {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.atletUrl + "truncate", {}, {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
+  truncatePoints() {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.atletUrl + "truncateMatch", {}, {
+        headers: new HttpHeaders().set("Authorization", this.token)
+      }).subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
   addAtlet(payload) {
     let atlet = {
       payload: payload

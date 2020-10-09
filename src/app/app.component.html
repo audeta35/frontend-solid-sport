@@ -58,28 +58,15 @@
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet-hth">
-
-              <i class="fa fa-people-carry text-primary"></i>
-              <span class="nav-link-text">Head to Head</span>
-            </a>
-          </li>
-          <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-atlet">
-              <i class="fa fa-user-friends text-primary"></i>
-              <span class="nav-link-text">Grouping</span>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
+              <i class="fa fa-table text-primary"></i>
+              <span class="nav-link-text">Data Pertandingan</span>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="/import-atlet">
-              <i class="fa fa-users text-primary"></i>
+              <i class="fa fa-file-excel text-primary"></i>
               <span class="nav-link-text">Import Data Atlet</span>
-            </a>
-          </li>
-          <li *ngIf="user.level === 1" class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/file-atlet">
-              <i class="fa fa-database text-primary"></i>
-              <span class="nav-link-text">Data Atlet</span>
             </a>
           </li>
           <li *ngIf="user.level === 1" class="nav-item">
@@ -186,7 +173,6 @@
                           </small>
                         </div>
                       </div>
-                      <p class="text-sm mb-0">Perwakilan dari tatami <b class="text-uppercase">{{juri.tatami}}</b></p>
                     </div>
                   </div>
                 </div>

@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let i = index;let item of data | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr *ngFor="let i = index;let item of data">
                             <th class="text-center">{{i + 1}}</th>
                             <td class="text-center">{{item.atlet_name}}</td>
                             <td class="text-center">{{item.kontingen}}</td>
@@ -55,7 +55,6 @@
                 </table>
             </div>
         </div>
-        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
     </div>
     <div class="col"></div>
 </div>

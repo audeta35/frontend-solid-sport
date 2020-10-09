@@ -47,8 +47,8 @@ export class AddAdminComponent implements OnInit {
     this.showButton = !this.showButton;
   }
 
-  getTatami() {
-    this.tatamiService.getTatami()
+  async getTatami() {
+    await this.tatamiService.getTatami()
     .then((res:any) => {
       this.listTatami = res.result;
       console.log(res.result);

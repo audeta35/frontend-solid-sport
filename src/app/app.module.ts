@@ -15,16 +15,11 @@ import { environment } from '../environments/environment';
 import { TatamiServices } from './provider/services/tatami';
 import { MenuScoreboardComponent } from './components/menu-scoreboard/menu-scoreboard.component';
 
-// let path = 'http://localhost:3000';
-// let path = 'http://192.168.43.14:3000';
-// let path = 'http://192.168.43.164:3000';
-// let path = 'http://192.168.10.116:3000';
-// const path = 'http://localhost:3000';
-// let path = 'http://192.168.43.164:3000/';
-// let path = 'http://192.168.1.74:3000/';
-// let path = 'http://192.168.43.183:3000/';
-// const path = 'http://192.168.10.116:3000';
-let path = "https://solidapi.bisapastibisa.com";
+// local dev path
+let path = 'http://localhost:3000';
+
+// prod path
+// let path = "https://solidapi.bisapastibisa.com";
 
 const config: SocketIoConfig = { url: path, options: {} };
 

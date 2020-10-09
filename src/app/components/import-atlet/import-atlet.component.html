@@ -23,7 +23,7 @@
                         <div class="row">
 
                             <div class="col-md-12">
-                                <input type="file" class="btn btn-block btn-outline-success" #csvReader name="Upload CSV" id="txtFileUpload"
+                                <input type="file" class="btn btn-block btn-primary" #csvReader name="Upload CSV" id="txtFileUpload"
                                   (change)="uploadListener($event)" accept=".csv" />
                             </div>
 
@@ -37,36 +37,43 @@
         <div class="row">
             <div class="col-md-12">
 
+                <div class="card" *ngIf="!names.length">
+                    <div class="card-header bg-dark">
+                        <h1 class="text-uppercase text-center text-white">
+                            Data belum tersedia
+                        </h1>
+                    </div>
+                </div>
+
                 <div class="card" *ngIf="names.length">
                     <div class="card-header bg-primary">
                         <h1 class="text-uppercase text-center text-white">
-                            IMPOR DATA ATLET
+                            {{names[0].class}}
                         </h1>
-                         <div class="position-absolute">
+                         <!-- <div class="position-absolute">
                             <b *ngFor="let gid = index; let g of group" class="text-uppercase my-1">
                               <span class="badge badge-primary">
                                 {{g.name}}
                               </span>
                               <i *ngIf="gid + 1 !== group.length" class="fa fa-caret-right mx-2 text-success"></i>
                             </b>
-                         </div>
+                         </div> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-borderless">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
 
                                         <th>
                                             pilih
                                         </th>
-                                        <th>No</th>
                                         <th>Nama Atlet</th>
                                         <th>Kontingen</th>
                                         <th>Kata</th>
                                         <th>Grup</th>
-                                        <th>Atribut</th>
                                         <th>Kelas</th>
+                                        <th>Atribut</th>
 
                                     </tr>
                                 </thead>
@@ -75,40 +82,43 @@
                                     <tr *ngFor="let i = index; let item of names">
                                         <th>
                                             <i class="fa fa-trash text-danger" (click)="deleteForm(i)"></i>
+                                            <b>
+                                                {{i + 1}}
+                                            </b>
                                         </th>
-                                        <th>
-                                            {{i + 1}}
-                                        </th>
-
                                         <td>
                                             <div class="form-group">
 
-                                                <input [(ngModel)]="item.name" placeholder="Nama Atlet"
-                                                    [ngModelOptions]="{standalone: true}" type="text"
-                                                    class="form-control form-control-sm">
+                                                <textarea [(ngModel)]="item.name" placeholder="Nama Atlet"
+                                                [ngModelOptions]="{standalone: true}" type="text"
+                                                class="form-control form-control-sm text-dark font-weight-bold" rows="2"></textarea>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input [(ngModel)]="item.kontingen" placeholder="Kontingen"
-                                                    [ngModelOptions]="{standalone: true}" type="text"
-                                                    class="form-control form-control-sm">
+                                                <textarea [(ngModel)]="item.kontingen" placeholder="Kontingen"
+                                                [ngModelOptions]="{standalone: true}" type="text"
+                                                class="form-control form-control-sm text-dark font-weight-bold" rows="2"></textarea>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="text" [(ngModel)]="item.kata" placeholder="Kata"
-                                                    [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
+                                                <textarea type="text" [(ngModel)]="item.kata" placeholder="Kata"
+                                                [ngModelOptions]="{standalone: true}" class="form-control form-control-sm text-dark font-weight-bold" rows="1"></textarea>
                                             </div>
                                         </td>
                                         <td>
                                           <input [(ngModel)]="item.group" placeholder="group" [ngModelOptions]="{standalone: true}" type="text"
-                                            class="form-control form-control-sm" />
+                                            class="form-control form-control-sm text-dark font-weight-bold" />
                                         </td>
+                                        <td>
+                                            <input [(ngModel)]="item.class" placeholder="class" [ngModelOptions]="{standalone: true}" type="text"
+                                              class="form-control form-control-sm text-dark font-weight-bold" />
+                                          </td>
                                         <td>
                                             <div class="form-group">
                                                 <select [(ngModel)]="item.attribute" placeholder="Nama Atlet"
-                                                    [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
+                                                    [ngModelOptions]="{standalone: true}" class="form-control-sm text-dark">
                                                     <option value="aka" style="background-color: red;color: #fff;">AKA
                                                     </option>
                                                     <option value="ao" style="background-color: blue;color: #fff;">AO
@@ -116,25 +126,23 @@
                                                 </select>
                                             </div>
                                         </td>
-                                        <td>
-                                          <input type="text" [(ngModel)]="item.class" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
 
-                        <div class="card-footer">
-                            <button (click)="setForm()" class="btn btn-outline-primary">
-                                Tambah Form
-                            </button>
+                    <div class="card-footer">
+                        <button (click)="setForm()" class="btn btn-primary">
+                            Tambah Form
+                        </button>
 
-                            <button (click)="submitForm()" class="btn float-right btn-outline-success">
-                              Simpan Data
-                            </button>
-                        </div>
+                        <button (click)="submitForm()" class="btn float-right btn-success">
+                          Simpan Data
+                        </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

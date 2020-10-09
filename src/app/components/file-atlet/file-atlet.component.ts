@@ -3,6 +3,7 @@ import { AtletService } from 'src/app/provider/services/atlet';
 import { MatchService } from 'src/app/provider/services/match';
 import Swal from 'sweetalert2';
 import { Socket } from 'ngx-socket-io';
+import { async } from '@angular/core/testing';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -21,6 +22,16 @@ export class FileAtletComponent implements OnInit {
   isLoading: boolean = false;
   atlet: any = [];
   group: any = [];
+  finalAtlet = {
+    atlet_name: "",
+    attribute: "",
+    class: "",
+    grouping: "",
+    id_atlet: null,
+    kata_name: "",
+    kontingen: "",
+    status: null,
+  };
 
   constructor(
     private atletService: AtletService,
@@ -30,6 +41,25 @@ export class FileAtletComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAtlet();
+  }
+
+  truncate() {
+    this.atletService.truncateAtlet()
+    .then((res) => {
+      this.getAllAtlet();
+      console.log("pertandingan di refresh ulang", res);
+      Toast.fire({
+        icon: 'success',
+        title: `pertandingan berhasil di refresh`,
+      });
+    })
+    .catch((err) => { 
+      Toast.fire({
+        icon: 'error',
+        title: `pertandingan gagal di refresh`,
+      });
+      console.log("pertandingan gagal di refresh", err);
+    })
   }
 
   getAllAtlet() {
@@ -89,6 +119,41 @@ export class FileAtletComponent implements OnInit {
         });
   }
 
+  finalMatch(atlet) {
+    this.finalAtlet = {
+      atlet_name: atlet.atlet_name,
+      attribute: "aka",
+      class: atlet.class,
+      grouping: "group final",
+      id_atlet: atlet.id_atlet,
+      kata_name: "",
+      kontingen: atlet.kontingen,
+      status: 0,
+    };
+  }
+
+  setFinalMatch() {
+    console.log(this.finalAtlet);
+    this.atletService.addAtlet(this.finalAtlet)
+    .then((res) => {
+      Toast.fire({
+        icon: 'success',
+        title: `Atlet ${this.finalAtlet.atlet_name} masuk babak final`,
+      });
+
+      console.log(res)
+
+      this.getAllAtlet();
+    })
+    .catch((err:any) => {
+      Toast.fire({
+        icon: 'error',
+        title: `Kesalahan pada server`,
+      });
+      console.log(err)
+    })
+  }
+
   startGroupMatch(atlet) {
     this.matchService
       .addGroupMatch(atlet)
@@ -105,6 +170,25 @@ export class FileAtletComponent implements OnInit {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  truncateMatch() {
+    this.atletService.truncatePoints()
+    .then((res) => {
+      Toast.fire({
+        icon: 'success',
+        title: `Reset Babak Final Sukses`,
+      });
+
+      this.getAllAtlet();
+    })
+    .catch((err) => {
+      console.log(err);
+      Toast.fire({
+        icon: 'info',
+        title: `Reset Babak Final Gagal`,
+      });
+    })
   }
 
   deleteAtlet(atlet) {

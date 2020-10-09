@@ -24,12 +24,17 @@ export class MenuScoreboardComponent implements OnInit {
     private socket: Socket
   ) { }
 
-  ngOnInit(): void {
-    this.getGroup();
+  async ngOnInit(): void {
+    await this.getGroup();
+    console.log(this.group);
   }
 
-  getGroup = () => {
-    this.atletService.getGroup()
+  resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+  }
+
+  getGroup = async () => {
+    await this.atletService.getGroup()
     .then((res: any) => {
       this.group = res.result;
     })

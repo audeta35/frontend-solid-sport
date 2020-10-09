@@ -7,6 +7,7 @@
                 <h1 class="pt-3 text-center"
                     style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
                     <strong>Solidsport Organizer</strong>
+                    <b *ngIf="userData" class="ml-2">{{ userData.class }}</b>
                 </h1>
                 <hr>
             </div>
@@ -22,7 +23,7 @@
                         <div class="card-body">
                             <h1 class="text-center blinking" *ngIf="finalScore"
                                 style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
-                                <b *ngIf="userData.grouping !== 'group individu'">
+                                <b *ngIf="userData.grouping !== 'group final'">
                                   {{ finalScore }}
                                 </b>
                             </h1>

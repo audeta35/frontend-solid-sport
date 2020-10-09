@@ -97,7 +97,7 @@ export class ImportAtletComponent implements OnInit {
           name: csvRecord.name,
           kontingen: csvRecord.kontingen,
           kata: csvRecord.kata,
-          attribute: csvRecord.attribute,
+          attribute: csvRecord.attribute.toLowerCase(),
           selected: false,
           group: `group ${csvRecord.group.toLowerCase()}`,
           class: csvRecord.class
