@@ -38,13 +38,7 @@ export class AssessmentAdminComponent implements OnInit {
     },
     {
       juri: 'J-5',
-    },
-    {
-      juri: 'J-6',
-    },
-    {
-      juri: 'J-7',
-    },
+    }
   ];
   payload = {
     matchId: 0,
@@ -225,12 +219,20 @@ export class AssessmentAdminComponent implements OnInit {
     this.pointService.doPointByAdmin(this.payload)
     .then(res => {
       console.log(res);
+      Toast.fire({
+        icon: "success",
+        title: "Atlet Berhasil Dinilai"
+      })
       this.socket.emit('result-admin');
       this.socket.emit('scoreboard');
       
     })
     .catch(err => {
       console.log(err);
+      Toast.fire({
+        icon: "error",
+        title: "Atlet Sudah Mendapat Penilaian"
+      })
     })
   }
 

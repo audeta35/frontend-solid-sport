@@ -1,13 +1,16 @@
 <body *ngIf="!isLoading"
     style="position:fixed; width: 100%; height: 100%;background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
-    <div class="container mt-2 mb-4">
+    <div class="container mt-2">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
 
-                <h1 class="pt-3 text-center"
+                <h1 class="text-center pt-3"
                     style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
-                    <strong>Solidsport Organizer</strong>
-                    <b *ngIf="userData" class="ml-2">{{ userData.class }}</b>
+                    <b *ngIf="userData">
+                        {{ userData.class }} -
+                        <i class="{{userData.grouping === 'group final' ? 'blinking' : 'null'}}">{{userData.grouping}}</i>
+                    </b>
+                    <hr class="bg-white" />
                 </h1>
                 <hr>
             </div>
@@ -22,9 +25,12 @@
                         style="width: 100%;height: auto;">
                         <div class="card-body">
                             <h1 class="text-center blinking" *ngIf="finalScore"
-                                style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
+                                style="font-size: 150px;color: white;">
                                 <b *ngIf="userData.grouping !== 'group final'">
                                   {{ finalScore }}
+                                </b>
+                                <b *ngIf="userData.grouping === 'group final'">
+                                    -
                                 </b>
                             </h1>
                             <h1 class="text-center" *ngIf="!finalScore"

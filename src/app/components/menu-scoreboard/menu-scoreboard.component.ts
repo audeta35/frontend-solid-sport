@@ -24,7 +24,7 @@ export class MenuScoreboardComponent implements OnInit {
     private socket: Socket
   ) { }
 
-  async ngOnInit(): void {
+  async ngOnInit() {
     await this.getGroup();
     console.log(this.group);
   }
@@ -47,21 +47,25 @@ export class MenuScoreboardComponent implements OnInit {
     window.open('/scoreboard');
   }
 
-  backToScore = () => {
-    this.socket.emit("push-link-scoreboard");
+  backToScore = async () => {
+    await this.socket.emit("push-link-scoreboard");
+    Swal.fire({
+      icon: `success`,
+      title: `Layar telah kembali ke papan skor`,
+      timer: 1500,
+      timerProgressBar: true,
+    });
   }
 
-  listScore(item:any) {
-    this.socket.emit("push-link-listscore", item)
-    if(item === 'individual') {
-      Toast.fire({
-        title: `papan skor sedang menampilkan ranking ${item}`,
-      });
-    } else {
-      Toast.fire({
-        title: `papan skor sedang menampilkan ranking ${item.group_name}`,
-      });
-    }
+  async listScore(item:any) {
+    await this.socket.emit("push-link-listscore", item)
+    Swal.fire({
+      icon: `success`,
+      title: `${item.group_name.toUpperCase()}`,
+      html: `Layar sedang menampilkan <b>${item.group_name.toUpperCase()}</b>`,
+      timer: 1500,
+      timerProgressBar: true,
+    });
 
   }
 

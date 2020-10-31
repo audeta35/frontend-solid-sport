@@ -6,20 +6,22 @@
           <b>Navigasi ke papan skor</b>
           <i class="float-right fa fa-external-link-alt"></i>
         </button>
+        <button class="btn bg-gradient-primary text-white text-uppercase" (click)="backToScore()">
+          <b>Reset Top Ranking List</b>
+          <i class="float-right fa fa-undo"></i>
+        </button>
       </p>
     </div>
   </div>
 
   <div class="container-fluid">
-    <div class="row">
-      <div *ngFor="let item of group" class="list-group-item" class="col-md-4">
-        <a href>
-          <div class="card bg-gradient-info py-5">
-            <h1 class="text-center text-white">
+    <div class="row mt-5">
+      <div *ngFor="let item of group" class="col-md-4">
+          <div (click)="listScore(item)" class="card {{item.group_name === 'group final' ? 'bg-gradient-danger' : 'bg-gradient-primary'}} shadow-sm py-5">
+            <h1 class="text-center text-white text-uppercase">
               <b>{{item.group_name}}</b>
             </h1>
           </div>
-        </a>
       </div>
     </div>
   </div>

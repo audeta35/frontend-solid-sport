@@ -1,7 +1,7 @@
 <div class="modal fade" id="truncateModal" tabindex="-1" role="dialog" aria-labelledby="truncateModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content bg-gradient-danger">
+        <div class="modal-content bg-gradient-primary">
             <div class="modal-header">
                 <h5 class="modal-title text-white text-uppercase" id="truncateModalLabel">
                   <b>Reset Penilaian</b>
@@ -24,7 +24,7 @@
 <div class="modal fade" id="truncateFinal" tabindex="-1" role="dialog" aria-labelledby="truncateFinalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content bg-gradient-primary">
+        <div class="modal-content bg-gradient-danger">
             <div class="modal-header">
                 <h5 class="modal-title text-white text-uppercase" id="truncateFinalLabel">
                   <b>Reset Babak Final</b>
@@ -66,6 +66,39 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-labelledby="startModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-white">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white text-uppercase" id="startModalLabel">
+                  <b>Mulai Pertandingan</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-dark">
+                <h3 class="text-uppercase text-center">
+                  <b class="text-success">
+                    {{matchAtlet.atlet_name}}
+                  </b>
+                  akan memainkan kata 
+                  <b class="text-success">
+                    {{matchAtlet.kata_name}}
+                  </b>
+                </h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-outline-success" (click)="startGroupMatch(matchAtlet)" data-dismiss="modal">Lanjut</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal confirm to final match -->
 <div class="modal fade" id="finalModal" tabindex="-1" role="dialog" aria-labelledby="finalModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -113,7 +146,7 @@
         </div>
     </div>
 </div>
-
+<!-- end of modal -->
 <div class="header pb-6" style="background:url('assets/images/banner/banner6.jpg');height: 200px;">
     <div class="container-fluid">
         <div class="header-body">
@@ -130,10 +163,10 @@
 <div class="row" style="margin-top: -100px;">
     <div class="col"></div>
     <div class="col-lg-11 col-md-11">
-        <button class="btn btn-warning btn-sm" data-target="#truncateModal" data-toggle="modal"> <i class="fa fa-plus"></i>
+        <button class="btn btn-primary btn-sm" data-target="#truncateModal" data-toggle="modal"> <i class="fa fa-plus"></i>
             Reset Semua Pertandingan
           </button>
-        <button class="btn bg-gradient-primary btn-sm float-right" data-target="#truncateFinal" data-toggle="modal"> <i
+        <button class="btn bg-danger text-white btn-sm float-right" data-target="#truncateFinal" data-toggle="modal"> <i
                 class="fa fa-plus"></i>
             Reset Babak Final
         </button>
@@ -157,7 +190,7 @@
             <div class="row">
               <div *ngFor="let ii = index; let groups of group" class="col-md-12 my-2">
                 <div *ngIf="groups.id === 3" class="card card-shadow rounded">
-                  <div class="card-header bg-gradient-success">
+                  <div class="card-header bg-gradient-danger">
                     <h1 class="text-center text-uppercase text-white">
                       <b>
                         {{groups.group_name}}
@@ -170,33 +203,21 @@
                         <thead class="thead-light text-dark">
                           <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                              <th>Kontingen</th>
-                              <th>Kelas</th>
-                              <th>Kata</th>
-                              <th>Atribut</th>
                             <th class="text-center">Pertandingan</th>
+                            <th>Nama</th>
+                            <th>Kontingen</th>
+                            <th>Kelas</th>
+                            <th>Kata</th>
+                            <th>Atribut</th>
                             <th class="text-center">Opsi</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let i = index; let item of atlet">
                             <td *ngIf="groups.group_name === item.grouping">{{i + 1}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.class}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">
-                              <b class="text-uppercase font-weight-bold">
-                                {{item.kata_name}}
-                              </b>
-                            </td>
-
-                            <td *ngIf="groups.group_name === item.grouping"><span
-                                class="badge badge-pill {{item.attribute === 'aka' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
-                            </td>
                             <td *ngIf="groups.group_name === item.grouping">
                               <div *ngIf="item.status === 0">
-                                <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm btn-outline-success">
+                                <button (click)="setMatchAtlet(item)" data-target="#startModal" data-toggle="modal" class="btn btn-block btn-sm btn-outline-success">
                                   Mulai
                                 </button>
                               </div>
@@ -212,6 +233,18 @@
                                   Sudah Tanding
                                 </button>
                               </div>
+                            </td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.class}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">
+                              <b class="text-uppercase font-weight-bold">
+                                {{item.kata_name}}
+                              </b>
+                            </td>
+
+                            <td *ngIf="groups.group_name === item.grouping"><span
+                                class="badge badge-pill {{item.attribute === 'aka' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
                             </td>
                             <td *ngIf="groups.group_name === item.grouping">
                               <div *ngIf="item.status === 1; else enable">
@@ -257,29 +290,21 @@
                         <thead class="thead-light text-dark">
                           <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                              <th>Kontingen</th>
-                              <th>Kelas</th>
-                              <th>Kata</th>
-                              <th>Atribut</th>
                             <th class="text-center">Pertandingan</th>
+                            <th>Nama</th>
+                            <th>Kontingen</th>
+                            <th>Kelas</th>
+                            <th>Kata</th>
+                            <th>Atribut</th>
                             <th class="text-center">Opsi</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let i = index; let item of atlet">
                             <td *ngIf="groups.group_name === item.grouping">{{i + 1}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.class}}</td>
-                            <td *ngIf="groups.group_name === item.grouping">{{item.kata_name}}</td>
-
-                            <td *ngIf="groups.group_name === item.grouping"><span
-                                class="badge badge-pill {{item.attribute === 'aka' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
-                            </td>
                             <td *ngIf="groups.group_name === item.grouping">
                               <div *ngIf="item.status === 0">
-                                <button (click)="startGroupMatch(item)" class="btn btn-block btn-sm border-0 btn-sm text-white bg-success">
+                                <button (click)="setMatchAtlet(item)" data-target="#startModal" data-toggle="modal" class="btn btn-block btn-sm border-0 btn-sm text-white bg-success">
                                   Mulai
                                 </button>
                               </div>
@@ -295,6 +320,14 @@
                                   Lanjut Ke Final
                                 </button>
                               </div>
+                            </td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.atlet_name}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.kontingen}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.class}}</td>
+                            <td *ngIf="groups.group_name === item.grouping">{{item.kata_name}}</td>
+
+                            <td *ngIf="groups.group_name === item.grouping"><span
+                                class="badge badge-pill {{item.attribute === 'aka' ? 'badge-danger' : 'badge-primary'}}">{{item.attribute}}</span>
                             </td>
                             <td *ngIf="groups.group_name === item.grouping">
                               <div *ngIf="item.status === 1; else enable">

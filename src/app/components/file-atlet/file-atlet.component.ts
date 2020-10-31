@@ -32,6 +32,16 @@ export class FileAtletComponent implements OnInit {
     kontingen: "",
     status: null,
   };
+  matchAtlet = {
+    atlet_name: "",
+    attribute: "",
+    class: "",
+    grouping: "",
+    id_atlet: null,
+    kata_name: "",
+    kontingen: "",
+    status: null,
+  }
 
   constructor(
     private atletService: AtletService,
@@ -39,8 +49,8 @@ export class FileAtletComponent implements OnInit {
     private socket: Socket
   ) {}
 
-  ngOnInit(): void {
-    this.getAllAtlet();
+  async ngOnInit() {
+    await this.getAllAtlet();
   }
 
   truncate() {
@@ -62,8 +72,8 @@ export class FileAtletComponent implements OnInit {
     })
   }
 
-  getAllAtlet() {
-    this.atletService
+  async getAllAtlet() {
+    await this.atletService
       .getAtlet()
       .then((res: any) => {
         this.atlet = res.result.atlet;
@@ -129,7 +139,20 @@ export class FileAtletComponent implements OnInit {
       kata_name: "",
       kontingen: atlet.kontingen,
       status: 0,
-    };
+    }
+  }
+
+  setMatchAtlet(atlet) {
+    this.matchAtlet = {
+      atlet_name: atlet.atlet_name,
+      attribute: atlet.attribute,
+      class: atlet.class,
+      grouping: atlet.grouping,
+      id_atlet: atlet.id_atlet,
+      kata_name: atlet.kata_name,
+      kontingen: atlet.kontingen,
+      status: atlet.status,
+    }
   }
 
   setFinalMatch() {
@@ -154,8 +177,8 @@ export class FileAtletComponent implements OnInit {
     })
   }
 
-  startGroupMatch(atlet) {
-    this.matchService
+  async startGroupMatch(atlet) {
+    await this.matchService
       .addGroupMatch(atlet)
       .then((res) => {
         Toast.fire({
