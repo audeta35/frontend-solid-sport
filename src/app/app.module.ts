@@ -16,6 +16,7 @@ import { TatamiServices } from './provider/services/tatami';
 import { MenuScoreboardComponent } from './components/menu-scoreboard/menu-scoreboard.component';
 
 // local dev path
+// let path = 'http://192.168.100.165:3000/';
 let path = 'http://localhost:3000';
 
 // prod path

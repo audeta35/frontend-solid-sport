@@ -15,8 +15,10 @@ export class GlobalProvider {
 
   config(url: string) {
     // local dev path
-    let path = "http://localhost:3000/";
-    
+    // let path = "http://192.168.100.165:3000/"
+
+    let path = "http://localhost:3000/"
+
     // prod path
     // let path = "https://solidapi.bisapastibisa.com/";
     const config = {

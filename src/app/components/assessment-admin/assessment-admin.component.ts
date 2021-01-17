@@ -190,12 +190,12 @@ export class AssessmentAdminComponent implements OnInit {
           this.optionValue[i].data.push({ point: point });
         }
       }
-            
+
     })
   }
 
   ngOnInit(): void {
-    for(let i = 1; i < 8; i++) {
+    for (let i = 1; i < 8; i++) {
       this.payload.adminPointList.push({
         userId: i,
         techValue: 0,
@@ -206,8 +206,8 @@ export class AssessmentAdminComponent implements OnInit {
 
   }
 
-  _handleSelectPoint(cat, index, point ) {
-    if(cat === 'tech') {
+  _handleSelectPoint(cat, index, point) {
+    if (cat === 'tech') {
       this.payload.adminPointList[index].techValue = point;
     } else {
       this.payload.adminPointList[index].athValue = point;
@@ -216,76 +216,92 @@ export class AssessmentAdminComponent implements OnInit {
 
   onSubmit() {
     console.log(this.payload)
+    // let counter = 0;
+    // for (let i in this.payload.adminPointList) {
+
+    //   if (!this.payload.adminPointList[i].athValue
+    //     && !this.payload.adminPointList[i].techValue) {
+    //     counter++;
+    //   }
+    // }
+    // if (counter === 7) {
+    //   console.log('nilai 0 semua')
+    //   this.socket.emit('result-admin');
+    //   this.socket.emit('scoreboard');
+
+    //   return true
+    // }
+    // return false
     this.pointService.doPointByAdmin(this.payload)
-    .then(res => {
-      console.log(res);
-      Toast.fire({
-        icon: "success",
-        title: "Atlet Berhasil Dinilai"
+      .then(res => {
+        console.log(res);
+        Toast.fire({
+          icon: "success",
+          title: "Atlet Berhasil Dinilai"
+        })
+        this.socket.emit('result-admin');
+        this.socket.emit('scoreboard');
+
       })
-      this.socket.emit('result-admin');
-      this.socket.emit('scoreboard');
-      
-    })
-    .catch(err => {
-      console.log(err);
-      Toast.fire({
-        icon: "error",
-        title: "Atlet Sudah Mendapat Penilaian"
+      .catch(err => {
+        console.log(err);
+        Toast.fire({
+          icon: "error",
+          title: "Atlet Sudah Mendapat Penilaian"
+        })
       })
-    })
   }
 
   athleteReset() {
 
-    if(this.userData) {
+    if (this.userData) {
       let counter = 0;
-      for(let i in this.optionValue) {
-        for(let j in this.optionValue[i].data) {
-          if(this.optionValue[i].data[j].selectedTechnical) {
+      for (let i in this.optionValue) {
+        for (let j in this.optionValue[i].data) {
+          if (this.optionValue[i].data[j].selectedTechnical) {
             counter++;
           }
         }
       }
-      if(counter >= 5) {
+      if (counter >= 5) {
         this.pointService.changeAthleteAssessment(this.userData.id_atlet)
-        .then(res => {
-          console.log(res);
-          this.socket.emit("reset-admin")
-        })
-        .catch(err => {
-          console.log(err);
-          if(err['status'] === 404) {
-            console.log('== masuk gag 404')
-            
-            this.userData = {};
-            this.optionValue = [];
-            this.originalOptionValue = [];
-            this.socket.emit("reset-scoreboard")
+          .then(res => {
+            console.log(res);
             this.socket.emit("reset-admin")
-            this.socket.emit("reset-juri")
-            this.userPoint = [];
-            this.cmpUserPoint = [];
-            
-            this.isLoading = true;
+          })
+          .catch(err => {
+            console.log(err);
+            if (err['status'] === 404) {
+              console.log('== masuk gag 404')
+
+              this.userData = {};
+              this.optionValue = [];
+              this.originalOptionValue = [];
+              this.socket.emit("reset-scoreboard")
+              this.socket.emit("reset-admin")
+              this.socket.emit("reset-juri")
+              this.userPoint = [];
+              this.cmpUserPoint = [];
+
+              this.isLoading = true;
 
 
-            for (let i = 0; i < 7; i++) {
-              this.optionValue.push({
-                userId: i + 1,
-                data: []
-              });
-  
-              for (let j = 5.0; j < 10; j = j + 0.2) {
-                let point = j.toFixed(1);
-                this.optionValue[i].data.push({ point: point });
+              for (let i = 0; i < 7; i++) {
+                this.optionValue.push({
+                  userId: i + 1,
+                  data: []
+                });
+
+                for (let j = 5.0; j < 10; j = j + 0.2) {
+                  let point = j.toFixed(1);
+                  this.optionValue[i].data.push({ point: point });
+                }
               }
             }
-          }
-  
-          this.isLoading = false;
-          console.log(this.optionValue)
-        })
+
+            this.isLoading = false;
+            console.log(this.optionValue)
+          })
       } else {
         Toast.fire({
           icon: 'info',
@@ -301,5 +317,5 @@ export class AssessmentAdminComponent implements OnInit {
       });
     }
   }
-  
+
 }
