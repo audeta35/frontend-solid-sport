@@ -1,164 +1,176 @@
 <body *ngIf="!isLoading"
-    style="position:fixed; width: 100%; height: 100%;background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-xl-12">
+  style="position:fixed; width: 100%; height: 100%;background:url('assets/images/banner/banner9.jpg');background-repeat: no-repeat;background-size: cover;">
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12">
 
-                <h1 class="text-center pt-3"
-                    style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
-                    <b *ngIf="userData">
-                        {{ userData.class }} -
-                        <i class="{{userData.grouping === 'group final' ? 'blinking' : 'null'}}">{{userData.grouping}}</i>
-                    </b>
-                    <hr class="bg-white" />
-                </h1>
-                <hr>
-            </div>
-        </div>
+        <h1 class="text-center pt-3"
+          style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;color: #fff;">
+          <b *ngIf="userData">
+            {{ userData.class }} -
+            <i class="{{userData.grouping === 'group final' ? 'blinking' : 'null'}}">{{userData.grouping}}</i>
+          </b>
+          <hr class="bg-white" />
+        </h1>
+        <hr>
+      </div>
     </div>
-    <div class="container-fluid" *ngIf="userData && !isLoading">
-        <div class="col-md-12 col-lg-12 col-xl-12">
+  </div>
+  <div class="container-fluid" *ngIf="userData && !isLoading">
+    <div class="col-md-12 col-lg-12 col-xl-12">
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card {{ userData.attribute === 'aka' ? 'bg-danger' : userData.attribute === 'ao' ? 'bg-primary' : 'bg-dark' }}"
-                        style="width: 100%;height: auto;">
-                        <div class="card-body">
-                            <h1 class="text-center blinking" *ngIf="finalScore"
-                                style="font-size: 150px;color: white;">
-                                <b *ngIf="userData.grouping !== 'group final'">
-                                  {{ finalScore }}
-                                </b>
-                                <b *ngIf="userData.grouping === 'group final'">
-                                    -
-                                </b>
-                            </h1>
-                            <h1 class="text-center" *ngIf="!finalScore"
-                                style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
-                                &nbsp;
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mt-4">
-                    <div class="card">
-                        <div class="container">
-                            <h1 class="mb-0" *ngIf="userData.atlet_name"
-                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{ userData.atlet_name }}
-                            </h1>
-                            <h1 class="mb-0" *ngIf="!userData.atlet_name"
-                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                &nbsp;
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="card {{ userData.attribute === 'aka' ? 'bg-danger' : userData.attribute === 'ao' ? 'bg-primary' : 'bg-dark' }}"
+            style="width: 100%;height: auto;">
+            <div class="card-body">
+              <h1 class="text-center blinking" *ngIf="finalScore && finalScore !== 1001 && finalScore !== 10000"
+                style="font-size: 150px;color: white;">
+                <b *ngIf="userData.grouping !== 'group final'">
+                  {{ finalScore }}
+                </b>
+                <b *ngIf="userData.grouping === 'group final'">
+                  -
+                </b>
+              </h1>
+              <h1 class="text-center" *ngIf="finalScore == 1001"
+                style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
+                &nbsp;
+              </h1>
+              <h1 class="text-center" *ngIf="!finalScore"
+                style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
+                -
+              </h1>
 
-                            <h1 class="mb-0" *ngIf="userData.kontingen"
-                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{ userData.kontingen }}
-                            </h1>
-                            <h1 class="mb-0" *ngIf="!userData.kontingen"
-                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                &nbsp;
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="container">
-
-                            <h1 class="mb-0" *ngIf="userData.kata_name"
-                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                {{ userData.kata_name }}
-                            </h1>
-                            <h1 class="mb-0" *ngIf="!userData.kata_name"
-                                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
-                                &nbsp;
-                            </h1>
-                        </div>
-                    </div>
-                </div>
+              <h1 class="text-center blinking" *ngIf="finalScore === 10000"
+                style="font-size: 150px;color: white;font-family: 'Arial', sans-serif;">
+                0
+              </h1>
             </div>
+          </div>
         </div>
+        <div class="col mt-4">
+          <div class="card">
+            <div class="container">
+              <h1 class="mb-0" *ngIf="userData.atlet_name"
+                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                {{ userData.atlet_name }}
+              </h1>
+              <h1 class="mb-0" *ngIf="!userData.atlet_name"
+                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                &nbsp;
+              </h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="container">
 
+              <h1 class="mb-0" *ngIf="userData.kontingen"
+                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                {{ userData.kontingen }}
+              </h1>
+              <h1 class="mb-0" *ngIf="!userData.kontingen"
+                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                &nbsp;
+              </h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="container">
+
+              <h1 class="mb-0" *ngIf="userData.kata_name"
+                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                {{ userData.kata_name }}
+              </h1>
+              <h1 class="mb-0" *ngIf="!userData.kata_name"
+                style="font-family: 'Arial', sans-serif;font-size: 50px;text-transform: uppercase;">
+                &nbsp;
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="container-fluid" *ngFor="let item of Data">
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-xl-12">
 
-                <div class="table-responsive">
+  </div>
+  <div class="container-fluid" *ngFor="let item of Data">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12">
 
-                    <table class="table">
-                        <thead
-                            class="{{userData.attribute === 'ao' ? 'bg-primary' : userData.attribute === 'aka' ? 'bg-danger' : 'bg-dark'}}">
+        <div class="table-responsive">
 
-                            <tr>
-                                <th style="background-color: #fff !important;">
-                                    <div class="text-center">
-                                        <img src="assets/images/logo/ada.png" class="img-fluid" style="width: 80px;"
-                                            alt="">
-                                    </div>
-                                </th>
-                                <ng-container *ngFor="let j of juryList; let i = index">
-                                  <th *ngIf="i < 5">
-                                    {{j.name}}
-                                    <span class="dot {{j.status === 'online' ? 'bg-success' : 'bg-danger'}}" style="position:absolute" data-toggle="tooltip" title="{{j.name}} sedang {{j.status}}"></span>
-                                  </th>
-                                </ng-container>
-                                <th>FAC</th>
-                                <th>JUMLAH</th>
-                                <th>HASIL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th style="color: #fff;font-weight: 700;">TEKNIK</th>
-                                <td *ngFor="let points of pointList">
-                                    <div *ngIf="!points.technical_result_status && !points.noColor"
-                                        style="text-decoration: line-through; color: red;">
-                                        {{ points.technical_result > -1
+          <table class="table">
+            <thead
+              class="{{userData.attribute === 'ao' ? 'bg-primary' : userData.attribute === 'aka' ? 'bg-danger' : 'bg-dark'}}">
+
+              <tr>
+                <th style="background-color: #fff !important;">
+                  <div class="text-center">
+                    <img src="assets/images/logo/ada.png" class="img-fluid" style="width: 80px;" alt="">
+                  </div>
+                </th>
+                <ng-container *ngFor="let j of juryList; let i = index">
+                  <th *ngIf="i < 5">
+                    {{j.name}}
+                    <span class="dot {{j.status === 'online' ? 'bg-success' : 'bg-danger'}}" style="position:absolute"
+                      data-toggle="tooltip" title="{{j.name}} sedang {{j.status}}"></span>
+                  </th>
+                </ng-container>
+                <th>FAC</th>
+                <th>JUMLAH</th>
+                <th>HASIL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th style="color: #fff;font-weight: 700;">TEKNIK</th>
+                <td *ngFor="let points of pointList">
+                  <div *ngIf="!points.technical_result_status && !points.noColor"
+                    style="text-decoration: line-through; color: red;">
+                    {{ points.technical_result > -1
                                            ? points.technical_result
                                            : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
-                                    </div>
+                  </div>
 
 
-                                    <div *ngIf="(!points.technical_result_status && points.noColor) || (points.technical_result_status && !points.noColor)">
-                                        {{ points.technical_result > -1
+                  <div
+                    *ngIf="(!points.technical_result_status && points.noColor) || (points.technical_result_status && !points.noColor)">
+                    {{ points.technical_result > -1
                                             ? points.technical_result
                                             : points.FAC_TECH || points.technical_point_result || points.technical_point || points.technicalValue
                                         }}
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- ==================================== ATLETIK ========================================== -->
-                            <tr>
+                  </div>
+                </td>
+              </tr>
+              <!-- ==================================== ATLETIK ========================================== -->
+              <tr>
 
-                                <th style="color: #fff;font-weight: 700;">ATLETIK</th>
-                                <td *ngFor="let points of pointList">
-                                    <div *ngIf="!points.athletic_result_status && !points.noColor"
-                                        style="text-decoration: line-through; color: red;">
-                                        {{ points.athletic_result
+                <th style="color: #fff;font-weight: 700;">ATLETIK</th>
+                <td *ngFor="let points of pointList">
+                  <div *ngIf="!points.athletic_result_status && !points.noColor"
+                    style="text-decoration: line-through; color: red;">
+                    {{ points.athletic_result > -1
                                             ? points.athletic_result
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue
                                         }}
-                                    </div>
+                  </div>
 
-                                    <div *ngIf="(!points.athletic_result_status && points.noColor) || (points.athletic_result_status && !points.noColor)">
-                                        {{ points.athletic_result
+                  <div
+                    *ngIf="(!points.athletic_result_status && points.noColor) || (points.athletic_result_status && !points.noColor)">
+                    {{ points.athletic_result > -1
                                             ? points.athletic_result
                                             : points.FAC_ATH || points.athletic_point_result || points.athletic_point || points.athleticValue
                                         }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
+      </div>
     </div>
+
+  </div>
 </body>

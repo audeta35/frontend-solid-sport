@@ -22,7 +22,7 @@ export class AssessmentJuriComponent implements OnInit {
   isLoading: boolean = false;
   userData: any = {};
   optionValue: any = [];
-  payload:any = {};
+  payload: any = {};
 
   juryData: any = {};
 
@@ -114,8 +114,18 @@ export class AssessmentJuriComponent implements OnInit {
   onSubmit() {
 
     console.log(this.payload);
-    this.payload.techValue = Number(this.payload.techValue);
-    this.payload.athValue = Number(this.payload.athValue);
+    this.payload.techValue = Number(this.payload.techValue) || 0;
+    this.payload.athValue = Number(this.payload.athValue) || 0;
+
+    if (this.payload.techValue === 0 || this.payload.athValue === 0) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Gagal',
+        text: `Harap masukkan nilai terlebih dahulu`,
+        timer: 1000
+      });
+
+    }
 
     this.pointService
       .doPointsByUser(this.payload)
@@ -125,7 +135,8 @@ export class AssessmentJuriComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Sukses',
-          text: `${this.userData.atlet_name} berhasil di nilai`
+          text: `${this.userData.atlet_name} berhasil di nilai`,
+          timer: 1500
         });
 
         (this.payload.techValue = 0), (this.payload.athValue = 0);
@@ -148,7 +159,7 @@ export class AssessmentJuriComponent implements OnInit {
             icon: 'error',
             title: 'Atlet sudah mendapat penilaian',
           })
-        } else if(err['status'] === 500) {
+        } else if (err['status'] === 500) {
           Swal.fire({
             icon: 'info',
             title: 'Informasi',

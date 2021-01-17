@@ -1,39 +1,59 @@
-
-th{
-font-size: 30px !important;
-color: #fff;
-font-family: 'Arial', sans-serif;
+th {
+  font-size: 30px !important;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
 }
-td{
-    font-size: 30px !important;
-    font-family: 'Arial', sans-serif;
-    font-weight: 900;
-    color: #fff;
+
+td {
+  font-size: 30px !important;
+  font-family: 'Arial', sans-serif;
+  font-weight: 900;
+  color: #fff;
 
 }
+
 .dot {
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    border: 2px solid white;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid white;
+}
+
+.bg-merah {
+  background-color: #fd1d1d;
+}
+
+.bg-biru {
+  background-color: #1d4efd;
+}
+
+.card {
+  border-radius: 0px !important;
+}
+
+.blinking {
+  animation: blinkingText 0.3s infinite;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: #ffffff;
   }
-  .bg-merah{
-      background-color: #fd1d1d;
+
+  49% {
+    color: #ffffff;
   }
-  .bg-biru{
-      background-color: #1d4efd;
+
+  60% {
+    color: greenyellow;
   }
-  .card{
-      border-radius: 0px !important;
+
+  99% {
+    color: greenyellow;
   }
-  .blinking{
-      animation:blinkingText 0.3s infinite;
+
+  100% {
+    color: #ffffff;
   }
-  @keyframes blinkingText{
-      0%{     color: #ffffff;    }
-      49%{    color: #ffffff; }
-      60%{    color: greenyellow; }
-      99%{    color: greenyellow;  }
-      100%{   color: #ffffff;    }
-  }
+}
